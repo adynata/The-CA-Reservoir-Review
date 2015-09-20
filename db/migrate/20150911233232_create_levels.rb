@@ -3,7 +3,7 @@ class CreateLevels < ActiveRecord::Migration
     create_table :levels do |t|
       t.integer :reservoir_id, null: false
       t.date :date, null: false
-      t.integer :level, null: false
+      t.float :level, null: false
       t.timestamps null: false
     end
 

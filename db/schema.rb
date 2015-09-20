@@ -13,24 +13,32 @@
 
 ActiveRecord::Schema.define(version: 20150911233232) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "levels", force: :cascade do |t|
     t.integer  "reservoir_id", null: false
     t.date     "date",         null: false
-    t.integer  "level",        null: false
+    t.float    "level",        null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
 
-  add_index "levels", ["reservoir_id"], name: "index_levels_on_reservoir_id"
+  add_index "levels", ["reservoir_id"], name: "index_levels_on_reservoir_id", using: :btree
 
   create_table "reservoirs", force: :cascade do |t|
-    t.string   "name",         null: false
-    t.string   "location",     null: false
-    t.integer  "max_capacity", null: false
-    t.float    "lat",          null: false
-    t.float    "lon",          null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.string   "name",            null: false
+    t.string   "station_id",      null: false
+    t.string   "hydrologic_area", null: false
+    t.string   "river_basin"
+    t.string   "location",        null: false
+    t.integer  "max_capacity",    null: false
+    t.string   "county",          null: false
+    t.string   "lat",             null: false
+    t.string   "lon",             null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "elevation",       null: false
   end
 
 end
