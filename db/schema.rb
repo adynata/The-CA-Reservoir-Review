@@ -28,9 +28,9 @@ ActiveRecord::Schema.define(version: 20150911233232) do
 
   create_table "reservoirs", force: :cascade do |t|
     t.string   "name",            null: false
-    t.string   "station_id",      null: false
     t.string   "hydrologic_area", null: false
     t.string   "river_basin"
+    t.string   "station_id",      null: false
     t.string   "location",        null: false
     t.integer  "max_capacity",    null: false
     t.string   "county",          null: false

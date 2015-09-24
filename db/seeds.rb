@@ -5,6 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+require 'csv'
 
 
 
@@ -25,3 +26,32 @@ oro_reservoir = Reservoir.new(
 )
 
 oro_reservoir.save!
+
+
+file = "db/ORO.csv"
+
+data = CSV.read(file)[2 .. -1]
+
+data.each do |row|
+
+  date = Date.strptime row[0], '%m/%d/%Y'
+  reservoir_id = Reservoir.find_by(station_id: "ORO").id
+
+  level = Level.new(
+    reservoir_id: reservoir_id,
+    level: row[3],
+    date: date)
+
+  level.save
+end
+
+# data.each do |row|
+#   if firstrow
+#     date = Date.strptime row[0], '%m/%d/%Y'
+#     storage = row[3]
+#     p "storage is #{storage}, date is #{date}"
+#     # p date.to_date
+#     p date.class
+#     firstrow = false
+#   end
+# end
