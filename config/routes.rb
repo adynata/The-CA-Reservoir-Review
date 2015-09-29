@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
   get 'reservoirs/coordinates' => 'reservoirs#coordinates'
+  
+  # TODO: make api the prefix to all of the routes serving data
 
   resources :reservoirs
   resources :levels
