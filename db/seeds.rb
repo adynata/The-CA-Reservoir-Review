@@ -110,8 +110,10 @@ number_of_days = "365"
   # create a level in the db for each pair:
 
   levels_arr.each do |pair|
+    date = pair[0]
+    level = pair[1]
     Level.create(reservoir_id: Reservoir.find_by(station_id: station).id,
-                date: Date.strptime pair[0], '%m/%d/%Y'
+                date: Date.strptime(pair[0], '%m/%d/%Y'),
                 level: pair[1])
   end
 
