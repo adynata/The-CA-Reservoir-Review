@@ -4,10 +4,13 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+  get 'reservoirs/coordinates' => 'reservoirs#coordinates'
 
   resources :reservoirs
-
   resources :levels
+  get 'reservoirs/:id/:year1/:year2' => 'reservoirs#annual'
+  get 'reservoirs/:id/daily' => 'reservoirs#all_daily'
+  # get 'reservoirs/:id' => 'reservoirs#show'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

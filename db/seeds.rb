@@ -90,9 +90,6 @@ number_of_days = "365"
 @select_station_ids.each do |station|
   @doc = Nokogiri::HTML(open("http://cdec.water.ca.gov/cgi-progs/queryDaily?" + station + "&d=25-Sept-2015+11:19&span=" + number_of_days + "days"))
 
-  # current_storage = @doc.css('tr').xpath('./td').map(&:text)[17].to_i
-  # date = @doc.css('tr').xpath('./td').map(&:text)[16]
-
   levels_arr = []
   @doc.css('tr').each do |row|
     one_entry = []
