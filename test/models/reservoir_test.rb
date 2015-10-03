@@ -4,9 +4,9 @@
 #
 #  id              :integer          not null, primary key
 #  name            :string           not null
-#  station_id      :string           not null
 #  hydrologic_area :string           not null
 #  river_basin     :string
+#  station_id      :string           not null
 #  location        :string           not null
 #  max_capacity    :integer          not null
 #  county          :string           not null
@@ -15,6 +15,7 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  elevation       :integer          not null
+#  operator        :string
 #
 
 require 'test_helper'
