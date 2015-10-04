@@ -52,29 +52,43 @@ svg.append("rect")
     .attr("height", height)
     .on("click", reset);
 
+
+// statelines
 var a = svg.append("a")
     .style("stroke-width", "1.5px");
 
-    var a = svg.append("a")
-        .style("stroke-width", "1.5px");
+d3.json("/us.json", function(error, us) {
+  if (error) throw error;
 
-    d3.json("/us.json", function(error, us) {
-      if (error) throw error;
+  a.selectAll("path")
+      .data(topojson.feature(us, us.objects.states).features)
+    .enter().append("path")
+      .attr("d", path)
+      .attr("class", "feature")
+      .on("click", clicked);
 
-      a.selectAll("path")
-          .data(topojson.feature(us, us.objects.states).features)
-        .enter().append("path")
-          .attr("d", path)
-          .attr("class", "feature")
-          .on("click", clicked);
+  a.append("path")
+      .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
+      .attr("class", "mesh")
+      .attr("d", path);
+});
 
-      a.append("path")
-          .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
-          .attr("class", "mesh")
-          .attr("d", path);
-    });
+// stations
 
-      // if (active.node() === this) return reset();
+d3.json("/waterStation-ca.json", function(error, station) {
+  if (error) throw error;
+
+  svg.selectAll("circle")
+    .data(topojson.feature(station, station.objects.collection).features)
+    // .enter()
+    .append("class", "points")
+    .attr("d", path)
+    .style('fill', 'rgb(247, 150, 29)');
+
+
+});
+
+// if (active.node() === this) return reset();
 
 var g = svg.append("g")
           .style("stroke-width", "1.5px");
@@ -84,7 +98,7 @@ d3.json("/caCountiesTopo.json", function(error, ca) {
 
   g.selectAll("path")
       .data(topojson.feature(ca, ca.objects.subunits).features)
-    .enter().append("path")
+      .enter().append("path")
       .attr("d", path)
       .attr("class", "feature")
       .on("click", clicked);
@@ -95,7 +109,7 @@ d3.json("/caCountiesTopo.json", function(error, ca) {
       .attr("d", path);
 });
 
-
+// hyrdo regions
 d3.json("/hydro_regions.json", function(error, hr) {
   if (error) throw error;
 
