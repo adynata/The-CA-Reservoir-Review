@@ -1,0 +1,371 @@
+
+{"type": "FeatureCollection",
+  "features": [
+    {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.76200,40.80100]
+      }, "properties": {
+        "name": "Trinity Lake"
+      }},
+
+    {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.52700,40.59800]
+      }, "properties": {
+        "name": "Whiskeytown Damn"
+      }},
+
+    {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.79300,40.72700]
+      }, "properties": {
+        "name": "Lewiston"
+      }},
+
+     {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-123.01000,38.72300]
+      }, "properties": {
+        "name": "Warm Springs"
+      }},
+
+     {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-123.18600, 39.29700]
+      }, "properties": {
+        "name": "Coyote"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.42000, 40.71800]
+      }, "properties": {
+        "name": "Shasta Dam"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.44300, 40.60100]
+      }, "properties": {
+        "name": "Keswick Reservoir"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-121.49300, 39.54000]
+      }, "properties": {
+        "name": "Oroville Dam"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-120.60700, 40.18000]
+      }, "properties": {
+        "name": "Antelope Lake"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-120.18300, 39.88300]
+      }, "properties": {
+        "name": "Frenchman Dam"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-120.46700, 39.88300]
+      }, "properties": {
+        "name": "Lake Davis"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-121.14000, 39.39300]
+      }, "properties": {
+        "name": "New Bullards Bar"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-121.26700, 39.23900]
+      }, "properties": {
+        "name": "Englebright"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-121.18300, 38.68300]
+      }, "properties": {
+        "name": "Folsom Lake"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-120.43800, 38.86400]
+      }, "properties": {
+        "name": "Union Valley"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-120.32300, 38.98300]
+      }, "properties": {
+        "name": "Loon Lake"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-120.35900, 38.82400]
+      }, "properties": {
+        "name": "Ice House"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-121.18300, 38.65000]
+      }, "properties": {
+        "name": "Lake Natoma"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.53300, 39.08300]
+      }, "properties": {
+        "name": "Indian Valley"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.32900, 39.80800]
+      }, "properties": {
+        "name": "Black Butte"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-120.81200, 38.15200]
+      }, "properties": {
+        "name": "New Hogan Lake"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-121.02100, 38.22500]
+      }, "properties": {
+        "name": "Camanche Reservoir"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-120.85000, 38.25000]
+      }, "properties": {
+        "name": "Pardee"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-119.96000, 38.32900]
+      }, "properties": {
+        "name": "Donnells"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-120.07500, 38.20300]
+      }, "properties": {
+        "name": "Beardsley Lake"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-120.60300, 37.87500]
+      }, "properties": {
+        "name": "Tulloch"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-120.52500, 37.94810]
+      }, "properties": {
+        "name": "New Melones"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-120.42100, 37.70200]
+      }, "properties": {
+        "name": "Don Pedro Reservoir"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-119.78300, 37.95000]
+      }, "properties": {
+        "name": "Hetch Hetchy"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-119.91700, 37.96700]
+      }, "properties": {
+        "name": "Cherry Valley Dam"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-120.27000, 37.58500]
+      }, "properties": {
+        "name": "New Exchequer-lk Mcclure"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-119.97000, 37.21300]
+      }, "properties": {
+        "name": "Buchanan Dam"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-119.91700, 37.20000]
+      }, "properties": {
+        "name": "Hidden Dam"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-119.70500, 37.00100]
+      }, "properties": {
+        "name": "Friant Dam"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-121.13300, 37.03300]
+      }, "properties": {
+        "name": "San Luis Reservoir"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-119.32500, 36.83300]
+      }, "properties": {
+        "name": "Pine Flat Dam"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-119.00200, 36.41500]
+      }, "properties": {
+        "name": "Terminus Dam"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-118.92200, 36.06100]
+      }, "properties": {
+        "name": "Success Dam"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-118.47300, 35.64600]
+      }, "properties": {
+        "name": "Isabella Dam"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-120.10300, 39.47100]
+      }, "properties": {
+        "name": "Stampede"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-120.29000, 39.45200]
+      }, "properties": {
+        "name": "Independence Lake"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-120.25000, 39.33300]
+      }, "properties": {
+        "name": "Donner Lake"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-119.98000, 34.58300]
+      }, "properties": {
+        "name": "Cachuma Lake"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-118.75000, 34.63300]
+      }, "properties": {
+        "name": "Pyramid"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-118.610610, 34.51520]
+      }, "properties": {
+        "name": "Castaic"
+      }},
+
+      {"type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-117.18300, 33.85800]
+      }, "properties": {
+        "name": "Perris"
+      }}
+    ]}
