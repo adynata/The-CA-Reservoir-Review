@@ -9,20 +9,16 @@
   fill: #ccc;
   cursor: pointer;
 }
-
 .hydro-region {
   fill: orange;
   z-index: 1;
 }
-
 .county {
   fill: #466040;
 }
-
 .states {
   fill: #2a493b;
 }
-
 .feature.active {
   fill: orange;
 }
@@ -76,30 +72,22 @@ svg.append("rect")
     .attr("width", width)
     .attr("height", height)
     .on("click", reset);
-
 var a = svg.append("a")
     .style("stroke-width", "1px");
-
 d3.json("/us.json", function(error, us) {
   if (error) throw error;
-
   a.selectAll("path")
       .data(topojson.feature(us, us.objects.states).features)
     .enter().append("path")
       .attr("d", path)
       .attr("class", "states");
       // .on("click", clicked);
-
   a.append("path")
       .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
       .attr("class", "mesh")
       .attr("d", path);
 });
-
-
 // if (active.node() === this) return reset();
-
-
 // var g = svg.append("g")
 //           .style("stroke-width", "1.5px");
 // d3.json("/caCountiesTopo.json", function(error, ca) {
@@ -115,7 +103,6 @@ d3.json("/us.json", function(error, us) {
 //       .attr("class", "mesh")
 //       .attr("d", path);
 // });
-
 // start edits here
   // station point data
   var sta = svg.append("g").attr("id", "sta");
@@ -145,8 +132,7 @@ d3.json("/us.json", function(error, us) {
       .attr("class", "tooltip")
       .style("opacity", 0);
 // end of edits
-
-d3.json("/hydro_regions.json", function(error, hr) {
+d3.json("/calwater_22_HR_topo.json", function(error, hr) {
   if (error) throw error;
   svg.selectAll("path")
       .data(topojson.feature(hr, hr.objects.hydrologic_regions_ca).features)
@@ -154,14 +140,11 @@ d3.json("/hydro_regions.json", function(error, hr) {
       .attr("d", path)
       .attr("class", "hydro_reg")
       .on("click", clicked);
-
   svg.append("path")
-      .datum(topojson.mesh(hr, hr.objects.hydrologic_regions_ca, function(a, b) { return a !== b; }))
+      .datum(topojson.mesh(hr, hr.objects.calwater_22_HR, function(a, b) { return a !== b; }))
       .attr("class", "mesh")
       .attr("d", path);
-
 });
-
 function clicked(d) {
   if (active.node() === this) return reset();
   active.classed("active", false);
@@ -178,7 +161,6 @@ function clicked(d) {
       .style("stroke-width", 1.5 / scale + "px")
       .attr("transform", "translate(" + translate + ")scale(" + scale + ")");
 }
-
 function reset() {
   active.classed("active", false);
   active = d3.select(null);
