@@ -38,8 +38,13 @@
 }
 #sta path:hover {
   opacity: 0.5;
-  fill: black;
+  fill: red;
 }
+
+#sta path:active {
+  height: 3px;
+}
+
 .tooltip {
   position: absolute;
   text-align: left;
@@ -119,14 +124,7 @@ d3.json("/hydro_regions.json", function(error, hr) {
 
 });
 
-
-
-
-
-
-// if (active.node() === this) return reset();
-
-
+// counties
 // var g = svg.append("g")
 //           .style("stroke-width", "1.5px");
 // d3.json("/caCountiesTopo.json", function(error, ca) {
@@ -165,7 +163,10 @@ sta.selectAll("path")
     div.transition()
       .duration(500)
       .style("opacity", 0.0);
-  });
+  })
+  .on("click", function(d){
+
+  })
   // tooltip information
   var div = d3.select("#map").append("div")
     .attr("class", "tooltip")
