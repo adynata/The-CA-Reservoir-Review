@@ -38,8 +38,13 @@
 }
 #sta path:hover {
   opacity: 0.5;
-  fill: black;
+  fill: red;
 }
+
+#sta path:active {
+  height: 3px;
+}
+
 .tooltip {
   position: absolute;
   text-align: left;
@@ -77,6 +82,8 @@ svg.append("rect")
     .attr("height", height)
     .on("click", reset);
 
+
+// statelines
 var a = svg.append("a")
     .style("stroke-width", "1px");
 
@@ -87,8 +94,8 @@ d3.json("/us.json", function(error, us) {
       .data(topojson.feature(us, us.objects.states).features)
     .enter().append("path")
       .attr("d", path)
-      .attr("class", "states");
-      // .on("click", clicked);
+      .attr("class", "states")
+      .on("click", clicked);
 
   a.append("path")
       .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
@@ -97,9 +104,27 @@ d3.json("/us.json", function(error, us) {
 });
 
 
-// if (active.node() === this) return reset();
+//hydrologic regions
+var g = svg.append("g")
+          .style("stroke-width", "1.5px");
 
+d3.json("/hydro_regions.json", function(error, hr) {
+  if (error) throw error;
+  g.selectAll("path")
+      .data(topojson.feature(hr, hr.objects.hydrologic_regions_ca).features)
+      .enter().append("path")
+      .attr("d", path)
+      .attr("class", "hydro_reg")
+      .on("click", clicked);
 
+  g.append("path")
+      .datum(topojson.mesh(hr, hr.objects.hydrologic_regions_ca, function(a, b) { return a !== b; }))
+      .attr("class", "mesh")
+      .attr("d", path);
+
+});
+
+// counties
 // var g = svg.append("g")
 //           .style("stroke-width", "1.5px");
 // d3.json("/caCountiesTopo.json", function(error, ca) {
@@ -116,51 +141,43 @@ d3.json("/us.json", function(error, us) {
 //       .attr("d", path);
 // });
 
-// start edits here
-  // station point data
-  var sta = svg.append("g").attr("id", "sta");
-  sta.selectAll("path")
-    .data(sta_json.features)
-    .enter()
-    .append( "path" )
-    .attr( "d", path )
-    // mouseover functions
-    .on("mouseover", function(feature) {
-      var props = feature.properties;
-      console.log(feature)
-      div.transition()
-        .duration(200)
-        .style("opacity", .9);
-      div.html('Name: ' + props.name)
-        .style("left", (d3.event.pageX) + 10 + "px")
-        .style("top", (d3.event.pageY - 30) + "px");
-    })
-    .on("mouseout", function(d) {
-      div.transition()
-        .duration(500)
-        .style("opacity", 0.0);
-    });
-    // tooltip information
-    var div = d3.select("#map").append("div")
-      .attr("class", "tooltip")
-      .style("opacity", 0);
+// station point data
+var sta = svg.append("g").attr("id", "sta");
+sta.selectAll("path")
+  .data(sta_json.features)
+  .enter()
+  .append( "path" )
+  .attr( "d", path )
+  // mouseover functions
+  .on("mouseover", function(feature) {
+    var props = feature.properties;
+    console.log(feature)
+    div.transition()
+      .duration(200)
+      .style("opacity", .9);
+    div.html('Name: ' + props.name)
+      .style("left", (d3.event.pageX) + 10 + "px")
+      .style("top", (d3.event.pageY - 30) + "px");
+  })
+  .on("mouseout", function(d) {
+    div.transition()
+      .duration(500)
+      .style("opacity", 0.0);
+  })
+  .on("click", function(d){
+
+  })
+  // tooltip information
+  var div = d3.select("#map").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
 // end of edits
 
-d3.json("/hydro_regions.json", function(error, hr) {
-  if (error) throw error;
-  svg.selectAll("path")
-      .data(topojson.feature(hr, hr.objects.hydrologic_regions_ca).features)
-      .enter().append("path")
-      .attr("d", path)
-      .attr("class", "hydro_reg")
-      .on("click", clicked);
-
-  svg.append("path")
-      .datum(topojson.mesh(hr, hr.objects.hydrologic_regions_ca, function(a, b) { return a !== b; }))
-      .attr("class", "mesh")
-      .attr("d", path);
-
-});
+// var zoom = d3.behavior.zoom()
+//     .translate([0, 0])
+//     .scale(1)
+//     .scaleExtent([1, 8])
+//     .on("zoom", zoomed);
 
 function clicked(d) {
   if (active.node() === this) return reset();
@@ -187,4 +204,5 @@ function reset() {
       .style("stroke-width", "1.5px")
       .attr("transform", "");
 }
+
 </script>
