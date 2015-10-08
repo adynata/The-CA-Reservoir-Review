@@ -146,7 +146,8 @@ var sta = svg.append("g").attr("id", "sta");
 sta.selectAll("path")
   .data(sta_json.features)
   .enter()
-  .append( "path" )
+  .append( "circle" )
+  .attr("r", 6)
   .attr( "d", path )
   // mouseover functions
   .on("mouseover", function(feature) {
@@ -190,33 +191,16 @@ function clicked(d) {
       y = (bounds[0][1] + bounds[1][1]) / 2,
       scale = .9 / Math.max(dx / width, dy / height),
       translate = [width / 2 - scale * x, height / 2 - scale * y];
-  a.transition()
-      .duration(750)
-      .style("stroke-width", 1.5 / scale + "px")
-      .attr("transform", "translate(" + translate + ")scale(" + scale + ")");
   g.transition()
       .duration(750)
       .style("stroke-width", 1.5 / scale + "px")
       .attr("transform", "translate(" + translate + ")scale(" + scale + ")");
-  sta.transition()
-      .duration(750)
-      .style("stroke-width", 1.5 / scale + "px")
-      .attr("transform", "translate(" + translate + ")scale(" + scale + ")");
-
 }
 
 function reset() {
   active.classed("active", false);
   active = d3.select(null);
   g.transition()
-      .duration(750)
-      .style("stroke-width", "1.5px")
-      .attr("transform", "");
-  a.transition()
-      .duration(750)
-      .style("stroke-width", "1.5px")
-      .attr("transform", "");
-  sta.transition()
       .duration(750)
       .style("stroke-width", "1.5px")
       .attr("transform", "");
