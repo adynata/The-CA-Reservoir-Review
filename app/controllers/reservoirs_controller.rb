@@ -25,6 +25,7 @@ class ReservoirsController < ApplicationController
   end
 
   def daily_by_year
+    puts 'HELLO'
     reservoir = Reservoir.find(params[:id])
     levels = reservoir.daily_by_year(params[:year])
     render json: levels

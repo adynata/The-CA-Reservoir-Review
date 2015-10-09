@@ -12,10 +12,9 @@ Rails.application.routes.draw do
 
   resources :reservoirs
   resources :levels
-  get 'api/reservoirs/:id/:year1/:year2' => 'reservoirs#annual'
   get 'api/reservoirs/:id/daily' => 'reservoirs#all_daily'
-  get 'api/reservoirs/show/:id/:year' => 'reservoirs#daily_by_year'
-  get 'api/reservoirs/show/:id/:year1/:year2' => 'reservoirs#daily_by_range'
+  get 'api/reservoirs/daily_by_range/:id/:year1/:year2' => 'reservoirs#daily_by_range'
+  get 'api/reservoirs/daily_by_year/:id/:year' => 'reservoirs#daily_by_year'
 
 
   # get 'reservoirs/:id' => 'reservoirs#show'
