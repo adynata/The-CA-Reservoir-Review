@@ -24,6 +24,18 @@ class ReservoirsController < ApplicationController
     # hard coded data here
   end
 
+  def daily_by_year
+    reservoir = Reservoir.find(params[:id])
+    levels = reservoir.daily_by_year(params[:year])
+    render json: levels
+  end
+
+  def daily_by_range
+    reservoir = Reservoir.find(params[:id])
+    levels = reservoir.daily_by_range(params[:year1], params[:year2])
+    render json: levels
+  end
+
   # def self.reservoirs(*ids)
   #   reservoirs = []
   #   args.each do |arg|

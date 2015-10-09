@@ -85,16 +85,17 @@ end
 # @select_station_ids = ["DON", "ORO"]
 
 
-number_of_days = "365"
+number_of_days = "7300"
 
 @select_station_ids.each do |station|
-  @doc = Nokogiri::HTML(open("http://cdec.water.ca.gov/cgi-progs/queryDaily?" + station + "&d=25-Sept-2015+11:19&span=" + number_of_days + "days"))
+  @doc = Nokogiri::HTML(open("http://cdec.water.ca.gov/cgi-progs/queryDaily?" + station + "&d=06-Oct-2015+11:19&span=" + number_of_days + "days"))
 
   levels_arr = []
   @doc.css('tr').each do |row|
     one_entry = []
     date = row.xpath('./td').map(&:text)[0]
-    level = row.xpath('./td').map(&:text)[1]
+    level = row.xpath('./td').ma
+    p(&:text)[1]
     one_entry << date
     one_entry << level
     levels_arr << one_entry

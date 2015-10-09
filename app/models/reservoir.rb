@@ -27,9 +27,6 @@ class Reservoir < ActiveRecord::Base
 
   end
 
-  def all_weekly_levels
-  end
-
   def all_daily_levels
     daily_levels = []
     levels.each do |level|
@@ -57,5 +54,17 @@ class Reservoir < ActiveRecord::Base
   # def range
   #   levels.where("created_at >= :start_date AND created_at <= :end_date",
   # # {start_date: params[:start_date], end_date: params[:end_date]})
+  def daily_by_year(year)
+    by_year1 = levels.where('extract(year from date) = ?', year)
+    by_year = {}
+    by_year["id"] = self.id
+    by_year[self.name] = []
+    by_year1.each do |level|
+      pair = []
+      pair << level.date
+      pair << level.level
+      by_year[self.name] << pair
+    end
+  end
 
 end
