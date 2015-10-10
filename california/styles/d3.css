@@ -1,0 +1,55 @@
+.background {
+  fill: grey;
+  pointer-events: all;
+}
+.feature {
+  fill: #ccc;
+  cursor: pointer;
+}
+
+.hydro-region {
+  fill: orange;
+  z-index: 1;
+}
+
+.county {
+  fill: #466040;
+}
+
+.states {
+  fill: #2a493b;
+}
+
+.feature.active {
+  fill: orange;
+}
+.mesh {
+  fill: none;
+  stroke: #fff;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+#sta path {
+  fill: aqua;
+  stroke: #999;
+}
+#sta path:hover {
+  opacity: 0.5;
+  fill: red;
+}
+
+#sta path:active {
+  height: 3px;
+}
+
+.tooltip {
+  position: absolute;
+  text-align: left;
+  padding: 10px;
+  font: 12px sans-serif;
+  color: white;
+  background: black;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
+}
