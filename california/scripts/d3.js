@@ -18,6 +18,25 @@ svg.append("rect")
     .on("click", reset);
 
 
+// counties
+var co = svg.append("g").attr("id", "county");
+
+d3.json("/json/caCountiesTopo.json", function(error, ca) {
+  if (error) throw error;
+  // svg.selectAll("path")
+  //     .data(topojson.feature(ca, ca.objects.subunits).features)
+  //   .enter().append("path")
+  //     .attr("d", path)
+  //     .attr("class", "county");
+  //     // .on("click", clicked);
+
+  co.append("path")
+      .datum(topojson.mesh(ca, ca.objects.subunits, function(a, b) { return a !== b; }))
+      .attr("class", "mesh")
+      // .attr("class", "county-line")
+      .attr("d", path);
+});
+
 // statelines
 var a = svg.append("a")
     .style("stroke-width", "1px");
@@ -29,14 +48,16 @@ d3.json("/json/us.json", function(error, us) {
       .data(topojson.feature(us, us.objects.states).features)
     .enter().append("path")
       .attr("d", path)
-      .attr("class", "states")
-      .on("click", clicked);
+      .attr("fill-opacity", "0.4")
+      .attr("class", "states");
+      // .on("click", clicked);
 
   a.append("path")
       .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
       .attr("class", "mesh")
       .attr("d", path);
 });
+
 
 
 //hydrologic regions
@@ -50,6 +71,7 @@ d3.json("/json/hydro_regions.json", function(error, hr) {
       .enter().append("path")
       .attr("d", path)
       .attr("class", "hydro_reg")
+      .attr("fill-opacity", "0.4")
       .on("click", clicked);
 
   g.append("path")
@@ -59,22 +81,7 @@ d3.json("/json/hydro_regions.json", function(error, hr) {
 
 });
 
-// counties
-// var g = svg.append("g")
-//           .style("stroke-width", "1.5px");
-// d3.json("/caCountiesTopo.json", function(error, ca) {
-//   if (error) throw error;
-//   g.selectAll("path")
-//       .data(topojson.feature(ca, ca.objects.subunits).features)
-//     .enter().append("path")
-//       .attr("d", path)
-//       .attr("class", "county")
-//       .on("click", clicked);
-//   g.append("path")
-//       .datum(topojson.mesh(ca, ca.objects.subunits, function(a, b) { return a !== b; }))
-//       .attr("class", "mesh")
-//       .attr("d", path);
-// });
+
 
 // station point data
 var sta = svg.append("g").attr("id", "sta");
@@ -86,7 +93,6 @@ sta.selectAll("path")
   // mouseover functions
   .on("mouseover", function(feature) {
     var props = feature.properties;
-    console.log(feature)
     div.transition()
       .duration(200)
       .style("opacity", .9);
@@ -137,6 +143,10 @@ function clicked(d) {
       .duration(750)
       .style("stroke-width", 1.5 / scale + "px")
       .attr("transform", "translate(" + translate + ")scale(" + scale + ")");
+  co.transition()
+      .duration(750)
+      .style("stroke-width", 1.5 / scale + "px")
+      .attr("transform", "translate(" + translate + ")scale(" + scale + ")");
 
 }
 
@@ -152,6 +162,10 @@ function reset() {
       .style("stroke-width", "1.5px")
       .attr("transform", "");
   sta.transition()
+      .duration(750)
+      .style("stroke-width", "1.5px")
+      .attr("transform", "");
+  co.transition()
       .duration(750)
       .style("stroke-width", "1.5px")
       .attr("transform", "");
