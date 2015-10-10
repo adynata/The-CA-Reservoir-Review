@@ -1,63 +1,9 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<style>
-.background {
-  fill: #85C4D3;
-  pointer-events: all;
-}
-.feature {
-  fill: #ccc;
-  cursor: pointer;
-}
-
-.hydro-reg {
-  fill: orange;
-  z-index: 1;
-  fill-opacity: 0.5;
-}
-
-.county {
-  fill: #466040;
-}
-
-.states {
-  fill: #9A5B18;
-}
-
-.feature.active {
-  fill: orange;
-}
-.mesh {
-  fill: none;
-  stroke: #fff;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-#sta path {
-  fill: #E74A25;
-  stroke: #999;
-}
-#sta path:hover {
-  opacity: 1;
-  fill: red;
-}
-
-#sta path:active {
-  height: 3px;
-}
-
-.tooltip {
-  position: absolute;
-  text-align: left;
-  padding: 10px;
-  font: 12px sans-serif;
-  color: white;
-  background: black;
-  border: 0px;
-  border-radius: 8px;
-  pointer-events: none;
-}
-</style>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style/d3.css">
+</head>
 <body>
 <div id="map"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
@@ -150,7 +96,7 @@ d3.json("/hydro_regions.json", function(error, hr) {
 
 
 // station point data
-var sta = svg.append("g").attr("id", "sta");
+var sta = svg.append("g").attr("id", "sta").style("stroke-width", ".5px");
 sta.selectAll("path")
   .data(sta_json.features)
   .enter()
@@ -239,3 +185,5 @@ function reset() {
 }
 
 </script>
+</body>
+</html>
