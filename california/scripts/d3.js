@@ -1,68 +1,3 @@
-<!DOCTYPE html>
-<meta charset="utf-8">
-<style>
-.background {
-  fill: grey;
-  pointer-events: all;
-}
-.feature {
-  fill: #ccc;
-  cursor: pointer;
-}
-
-.hydro-region {
-  fill: orange;
-  z-index: 1;
-}
-
-.county {
-  fill: #466040;
-}
-
-.states {
-  fill: #2a493b;
-}
-
-.feature.active {
-  fill: orange;
-}
-.mesh {
-  fill: none;
-  stroke: #fff;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-#sta path {
-  fill: aqua;
-  stroke: #999;
-}
-#sta path:hover {
-  opacity: 0.5;
-  fill: red;
-}
-
-#sta path:active {
-  height: 3px;
-}
-
-.tooltip {
-  position: absolute;
-  text-align: left;
-  padding: 10px;
-  font: 12px sans-serif;
-  color: white;
-  background: black;
-  border: 0px;
-  border-radius: 8px;
-  pointer-events: none;
-}
-</style>
-<body>
-<div id="map"></div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.min.js"></script>
-<script src="sta_json.js"></script>
-<script>
 var width = 500,
     height = 600,
     active = d3.select(null);
@@ -83,19 +18,39 @@ svg.append("rect")
     .on("click", reset);
 
 
+// counties
+var co = svg.append("g").attr("id", "county");
+
+d3.json("/json/caCountiesTopo.json", function(error, ca) {
+  if (error) throw error;
+  // svg.selectAll("path")
+  //     .data(topojson.feature(ca, ca.objects.subunits).features)
+  //   .enter().append("path")
+  //     .attr("d", path)
+  //     .attr("class", "county");
+  //     // .on("click", clicked);
+
+  co.append("path")
+      .datum(topojson.mesh(ca, ca.objects.subunits, function(a, b) { return a !== b; }))
+      .attr("class", "mesh")
+      // .attr("class", "county-line")
+      .attr("d", path);
+});
+
 // statelines
 var a = svg.append("a")
     .style("stroke-width", "1px");
 
-d3.json("/us.json", function(error, us) {
+d3.json("/json/us.json", function(error, us) {
   if (error) throw error;
 
   a.selectAll("path")
       .data(topojson.feature(us, us.objects.states).features)
     .enter().append("path")
       .attr("d", path)
-      .attr("class", "states")
-      .on("click", clicked);
+      .attr("fill-opacity", "0.4")
+      .attr("class", "states");
+      // .on("click", clicked);
 
   a.append("path")
       .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
@@ -104,17 +59,19 @@ d3.json("/us.json", function(error, us) {
 });
 
 
+
 //hydrologic regions
 var g = svg.append("g")
           .style("stroke-width", "1.5px");
 
-d3.json("/hydro_regions.json", function(error, hr) {
+d3.json("/json/hydro_regions.json", function(error, hr) {
   if (error) throw error;
   g.selectAll("path")
       .data(topojson.feature(hr, hr.objects.hydrologic_regions_ca).features)
       .enter().append("path")
       .attr("d", path)
       .attr("class", "hydro_reg")
+      .attr("fill-opacity", "0.4")
       .on("click", clicked);
 
   g.append("path")
@@ -124,30 +81,14 @@ d3.json("/hydro_regions.json", function(error, hr) {
 
 });
 
-// counties
-// var g = svg.append("g")
-//           .style("stroke-width", "1.5px");
-// d3.json("/caCountiesTopo.json", function(error, ca) {
-//   if (error) throw error;
-//   g.selectAll("path")
-//       .data(topojson.feature(ca, ca.objects.subunits).features)
-//     .enter().append("path")
-//       .attr("d", path)
-//       .attr("class", "county")
-//       .on("click", clicked);
-//   g.append("path")
-//       .datum(topojson.mesh(ca, ca.objects.subunits, function(a, b) { return a !== b; }))
-//       .attr("class", "mesh")
-//       .attr("d", path);
-// });
+
 
 // station point data
-var sta = svg.append("g").attr("id", "sta");
+var sta = svg.append("g").attr("id", "sta").style("stroke-width", ".5px");
 sta.selectAll("path")
   .data(sta_json.features)
   .enter()
-  .append( "circle" )
-  .attr("r", 6)
+  .append( "path" )
   .attr( "d", path )
   // mouseover functions
   .on("mouseover", function(feature) {
@@ -191,10 +132,23 @@ function clicked(d) {
       y = (bounds[0][1] + bounds[1][1]) / 2,
       scale = .9 / Math.max(dx / width, dy / height),
       translate = [width / 2 - scale * x, height / 2 - scale * y];
+  a.transition()
+      .duration(750)
+      .style("stroke-width", 1.5 / scale + "px")
+      .attr("transform", "translate(" + translate + ")scale(" + scale + ")");
   g.transition()
       .duration(750)
       .style("stroke-width", 1.5 / scale + "px")
       .attr("transform", "translate(" + translate + ")scale(" + scale + ")");
+  sta.transition()
+      .duration(750)
+      .style("stroke-width", 1.5 / scale + "px")
+      .attr("transform", "translate(" + translate + ")scale(" + scale + ")");
+  co.transition()
+      .duration(750)
+      .style("stroke-width", 1.5 / scale + "px")
+      .attr("transform", "translate(" + translate + ")scale(" + scale + ")");
+
 }
 
 function reset() {
@@ -204,6 +158,16 @@ function reset() {
       .duration(750)
       .style("stroke-width", "1.5px")
       .attr("transform", "");
+  a.transition()
+      .duration(750)
+      .style("stroke-width", "1.5px")
+      .attr("transform", "");
+  sta.transition()
+      .duration(750)
+      .style("stroke-width", "1.5px")
+      .attr("transform", "");
+  co.transition()
+      .duration(750)
+      .style("stroke-width", "1.5px")
+      .attr("transform", "");
 }
-
-</script>
