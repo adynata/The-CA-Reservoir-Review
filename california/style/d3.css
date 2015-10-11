@@ -2,10 +2,10 @@
   fill: #85C4D3;
   pointer-events: all;
 }
-.feature {
+/*.feature {
   fill: #ccc;
   cursor: pointer;
-}
+}*/
 
 .hydro-reg {
   fill: orange;
@@ -21,15 +21,17 @@
   fill: #9A5B18;
 }
 
-.feature.active {
+.active {
   fill: orange;
 }
+
 .mesh {
   fill: none;
   stroke: #fff;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+
 #sta path {
   fill: #E74A25;
   stroke: #999;
