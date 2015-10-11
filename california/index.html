@@ -3,8 +3,157 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="style/d3.css">
+  <link href="style/dropdown-menu.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="scripts/styling_script.js"></script>
 </head>
+
 <body>
+<div id="dropdown">
+
+<dl class="dropdown_hydro">
+  <dt>
+    <a href="#">
+      <span class="hide">Hydrologic Region</span>
+    </a>
+    </dt>
+
+  <dd>
+    <div class="mutliSelect_hydro">
+      <ul>
+        <li>
+          <input type="checkbox" value="Central Coast" />Central Coast</li>
+        <li>
+          <input type="checkbox" value="Colorado River" />Colorado River</li>
+        <li>
+          <input type="checkbox" value="North Coast" />North Coast</li>
+        <li>
+          <input type="checkbox" value="North Lahontan" />North Lahontan</li>
+        <li>
+          <input type="checkbox" value="Sacramento River" />Sacramento River</li>
+        <li>
+          <input type="checkbox" value="San Francisco Bay" />San Francisco Bay</li>
+        <li>
+          <input type="checkbox" value="San Joaquin River" />San Joaquin River</li>
+        <li>
+          <input type="checkbox" value="South Coast" />South Coast</li>
+        <li>
+          <input type="checkbox" value="South Lahontan" />South Lahontan</li>
+        <li>
+          <input type="checkbox" value="Tulare Lake" />Tulare Lake</li>
+      </ul>
+    </div>
+  </dd>
+</dl>
+
+<dl class="dropdown_station">
+  <dt>
+    <a href="#">
+      <span class="hide">Water Stations</span>
+    </a>
+    </dt>
+
+  <dd>
+    <div class="mutliSelect_station">
+      <ul>
+        <li>
+          <input type="checkbox" value="Trinity Lake" />Trinity Lake</li>
+        <li>
+          <input type="checkbox" value="Whiskeytown Dam" />Whiskeytown Dam</li>
+        <li>
+          <input type="checkbox" value="Lewiston" />Lewiston</li>
+        <li>
+          <input type="checkbox" value="Warm Springs" />Warm Springs</li>
+        <li>
+          <input type="checkbox" value="Coyote" />Coyote</li>
+        <li>
+          <input type="checkbox" value="Shasta Dam" />Shasta Dam</li>
+        <li>
+          <input type="checkbox" value="Keswick Reservoir" />Keswick Reservoir</li>
+        <li>
+          <input type="checkbox" value="Oroville Dam" />Oroville Dam</li>
+        <li>
+          <input type="checkbox" value="Antelope Lake" />Antelope Lake</li>
+        <li>
+          <input type="checkbox" value="Frenchman Dam" />Frenchman Dam</li>
+        <li>
+          <input type="checkbox" value="Lake Davis" />Lake Davis</li>
+        <li>
+          <input type="checkbox" value="New Bullards Bar" />New Bullards Bar</li>
+        <li>
+          <input type="checkbox" value="Englebright" />Englebright</li>
+        <li>
+          <input type="checkbox" value="Folsom Lake" />Folsom Lake</li>
+        <li>
+          <input type="checkbox" value="Union Valley" />Union Valley</li>
+        <li>
+          <input type="checkbox" value="Loon Lake" />Loon Lake</li>
+        <li>
+          <input type="checkbox" value="Ice House" />Ice House</li>
+        <li>
+          <input type="checkbox" value="Lake Natoma" />Lake Natoma</li>
+        <li>
+          <input type="checkbox" value="Indian Valley" />Indian Valley</li>
+        <li>
+          <input type="checkbox" value="Black Butte" />Black Butte</li>
+        <li>
+          <input type="checkbox" value="New Hogan Lake" />New Hogan Lake</li>
+        <li>
+          <input type="checkbox" value="Camanche Reservoir" />Camanche Reservoir</li>
+        <li>
+          <input type="checkbox" value="Pardee" />Pardee</li>
+        <li>
+          <input type="checkbox" value="Donnells" />Donnells</li>
+        <li>
+          <input type="checkbox" value="Beardsley Lake" />Beardsley Lake</li>
+        <li>
+          <input type="checkbox" value="Tulloch" />Tulloch</li>
+        <li>
+          <input type="checkbox" value="New Melones" />New Melones</li>
+        <li>
+          <input type="checkbox" value="Don Pedro Reservoir" />Don Pedro Reservoir</li>
+        <li>
+          <input type="checkbox" value="Hetch Hetchy" />Hetch Hetchy</li>
+        <li>
+          <input type="checkbox" value="Cherry Valley Dam" />Cherry Valley Dam</li>
+        <li>
+          <input type="checkbox" value="New Exchequer-lk Mcclure" />New Exchequer-lk Mcclure</li>
+        <li>
+          <input type="checkbox" value="Buchanan Dam" />Buchanan Dam</li>
+        <li>
+          <input type="checkbox" value="Hidden Dam" />Hidden Dam</li>
+        <li>
+          <input type="checkbox" value="Friant Dam" />Friant Dam</li>
+        <li>
+          <input type="checkbox" value="San Luis Reservoir" />San Luis Reservoir</li>
+        <li>
+          <input type="checkbox" value="Pine Flat Dam" />Pine Flat Dam</li>
+        <li>
+          <input type="checkbox" value="Terminus Dam" />Terminus Dam</li>
+        <li>
+          <input type="checkbox" value="Success Dam" />Success Dam</li>
+        <li>
+          <input type="checkbox" value="Isabella Dam" />Isabella Dam</li>
+        <li>
+          <input type="checkbox" value="Stampede" />Stampede</li>
+        <li>
+          <input type="checkbox" value="Independence Lake" />Independence Lake</li>
+        <li>
+          <input type="checkbox" value="Donner Lake" />Donner Lake</li>
+        <li>
+          <input type="checkbox" value="Cachuma Lake" />Cachuma Lake</li>
+        <li>
+          <input type="checkbox" value="Pyramid" />Pyramid</li>
+        <li>
+          <input type="checkbox" value="Castaic" />Castaic</li>
+        <li>
+          <input type="checkbox" value="Perris" />Perris</li>
+      </ul>
+    </div>
+  </dd>
+</dl>
+</div>
+
 <div id="map"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.min.js"></script>
