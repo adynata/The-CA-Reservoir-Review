@@ -89,7 +89,7 @@ sta.selectAll("path")
   .data(sta_json.features)
   .enter()
   .append( "path" )
-  .attr( "d", path )
+  .attr( "d", path.pointRadius(3) )
   // mouseover functions
   .on("mouseover", function(feature) {
     var props = feature.properties;
