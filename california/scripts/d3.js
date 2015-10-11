@@ -113,7 +113,6 @@ sta.selectAll("path")
   var div = d3.select("#map").append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);
-// end of edits
 
 // var zoom = d3.behavior.zoom()
 //     .translate([0, 0])
