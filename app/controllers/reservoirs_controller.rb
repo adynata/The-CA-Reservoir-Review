@@ -1,7 +1,7 @@
 class ReservoirsController < ApplicationController
   def index
     @reservoir_list = Reservoir.all
-    render json: @reservoir_list
+    render :index
   end
 
   def show
