@@ -57,6 +57,7 @@ class Reservoir < ActiveRecord::Base
       pair << level.level
       by_year[year] << pair
     end
+    return by_year
   end
 
   def daily_by_range(year1, year2)
