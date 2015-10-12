@@ -59,9 +59,6 @@ $(document).ready(function(){
       console.log(this);
     });
 
->>>>>>> dbbc91ba17ab1ba3db221b7bb93569fabc7029c6
-
-
 
   // }));
 
