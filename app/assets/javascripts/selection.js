@@ -5,7 +5,7 @@ $(document).ready(function(){
     $(this).css("fill", "white");
 }else{
 	$(this).css("fill", "red");
-}
+}})
 
 var station_name = $(this)[0].__data__.properties.name
 // console.log($('.multiSelect_station ul li input[value]'))
@@ -24,13 +24,13 @@ $("sta path").on("click", check_dropdown());
 // // $('.multiSelect_station ul li').value(station_name).checked(true)
 
 // console.log($("ul.multiSelect_station").val())
-  $("#sta").on("click", function() {
-    console.log($("#sta"));
-    $('#sta > path').css("fill", "white");
-    console.log(this);
-  });
+  // $("#sta").on("click", function() {
+  //   console.log($("#sta"));
+  //   $('#sta > path').css("fill", "white");
+  //   console.log(this);
+  // });
 
 
 
 
-});
+}));
