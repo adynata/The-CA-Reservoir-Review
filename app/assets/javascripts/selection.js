@@ -5,7 +5,10 @@ $(document).ready(function(){
     console.log(this);
   });
 
-
+  $('.hydro-reg').on("click", function() {
+    console.log(this);
+    console.log(this.props);
+  });
 
 
 
