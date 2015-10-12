@@ -33,16 +33,25 @@ class Reservoir < ActiveRecord::Base
 
   def self.all_coordinates
     @reservoirs = Reservoir.all
-    coordinates = []
+    sta_json = {}
+    sta_json["type"] = "FeatureCollection"
+    sta_json["features"] = []
+
     @reservoirs.each do |res|
       res_obj = {}
-      res_obj[res.name] = {}
-      res_obj[res.name]["latitude"] = res.lat
-      res_obj[res.name]["longitude"] = res.lon
-      res_obj[res.name]["id"] = res.id
-      coordinates << res_obj
+      res_obj["type"] = "Feature"
+      res_obj["properties"] = {}
+      res_obj["properties"]["name"] = res.name
+      res_obj["properties"]["id"] = res.id
+      res_obj["properties"]["county"] = res.county
+      res_obj["geometry"] = {}
+      res_obj["geometry"]["type"] = "Point"
+      res_obj["geometry"]["coordinates"] = []
+      res_obj["geometry"]["coordinates"] << res.lat.to_f
+      res_obj["geometry"]["coordinates"] << res.lon.to_f
+      sta_json["features"] << res_obj
     end
-    p coordinates
+    return sta_json
   end
 
   def daily_by_year(year)
@@ -50,12 +59,13 @@ class Reservoir < ActiveRecord::Base
     by_year = {}
     by_year["id"] = self.id
     by_year["reservoir"] = self.name
-    by_year[year] = []
+    by_year["year"] = year
+    by_year["levels"] = []
     by_year1.each do |level|
       pair = []
       pair << level.date
       pair << level.level
-      by_year[year] << pair
+      by_year["levels"] << pair
     end
     return by_year
   end
@@ -64,9 +74,9 @@ class Reservoir < ActiveRecord::Base
     if year1 == year2
       return daily_by_year(year1)
     elsif year1 < year2
-      range = {}
+      range = []
       (year1..year2).each do |year|
-        range[year] = daily_by_year(year)
+        range << daily_by_year(year)
       end
       return range
     else

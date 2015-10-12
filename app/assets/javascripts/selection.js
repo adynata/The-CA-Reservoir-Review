@@ -24,7 +24,13 @@ $("sta path").on("click", check_dropdown());
 // // $('.multiSelect_station ul li').value(station_name).checked(true)
 
 // console.log($("ul.multiSelect_station").val())
+  $("#sta").on("click", function() {
+    console.log($("#sta"));
+    $('#sta > path').css("fill", "white");
+    console.log(this);
   });
+
+
 
 
 });
