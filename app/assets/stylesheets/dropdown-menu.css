@@ -1,0 +1,74 @@
+#dropdown dl{
+  display: inline-block;
+}
+a {
+  color: #fff;
+}
+
+.dropdown_hydro dd, .dropdown_hydro dt, .dropdown_station dd, .dropdown_station dt {
+  margin: 0px;
+  padding: 0px;
+}
+
+.dropdown_hydro ul, .dropdown_station ul {
+  margin: -1px 0 0 0;
+}
+
+.dropdown_hydro dd, .dropdown_station dd { 
+  position: relative;
+}
+
+.dropdown_hydro a, .dropdown_hydro a:visited, .dropdown_station a, .dropdown_station a:visited  {
+  color: #fff;
+  text-decoration: none;
+  outline: none;
+  font-size: 12px;
+}
+
+.dropdown_hydro dt a, .dropdown_station dt a {
+  background-color: #4F6877;
+  display: block;
+  padding: 20px 15px 5px 15px;
+  min-height: 25px;
+  line-height: 24px;
+  overflow: hidden;
+  border: 0;
+  width: 250px;
+  text-align: center;
+}
+
+.dropdown_hydro dt a span, .dropdown_station dt a span{
+  cursor: pointer;
+  font-size: 2em;
+  display: inline-block;
+  padding: 0 3px 2px 0;
+}
+
+.dropdown_hydro dd ul, .dropdown_station dd ul {
+  background-color: #4F6877;
+  opacity: .75;
+  border: 0;
+  color: #fff;
+  display: none;
+  left: 0px;
+  padding: 2px 15px 2px 5px;
+  position: absolute;
+  top: 2px;
+  width: 260px;
+  list-style: none;
+  height: 100px;
+  overflow: auto;
+}
+
+.dropdown_hydro span.value, .dropdown_station span.value {
+  display: none;
+}
+
+.dropdown_hydro dd ul li a, .dropdown_station dd ul li a  {
+  padding: 5px;
+  display: block;
+}
+
+.dropdown_hydro dd ul li a:hover, .dropdown_station dd ul li a:hover {
+  background-color: #fff;
+}
