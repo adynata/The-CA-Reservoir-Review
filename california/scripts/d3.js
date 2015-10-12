@@ -21,8 +21,8 @@ svg.append("rect")
 // counties
 var co = svg.append("g").attr("id", "county");
 
-// d3.json("/json/caCountiesTopo.json", function(error, ca) {
-//   if (error) throw error;
+d3.json("/json/caCountiesTopo.json", function(error, ca) {
+  if (error) throw error;
   // svg.selectAll("path")
   //     .data(topojson.feature(ca, ca.objects.subunits).features)
   //   .enter().append("path")
@@ -31,18 +31,18 @@ var co = svg.append("g").attr("id", "county");
   //     // .on("click", clicked);
 
   co.append("path")
-      .datum(topojson.mesh(caCountiesTopo, caCountiesTopo.objects.subunits, function(a, b) { return a !== b; }))
+      .datum(topojson.mesh(ca, ca.objects.subunits, function(a, b) { return a !== b; }))
       .attr("class", "mesh")
       // .attr("class", "county-line")
       .attr("d", path);
-// });
+});
 
 // statelines
 var a = svg.append("a")
     .style("stroke-width", "1px");
 
-// d3.json("/json/us.json", function(error, us) {
-//   if (error) throw error;
+d3.json("/json/us.json", function(error, us) {
+  if (error) throw error;
 
   a.selectAll("path")
       .data(topojson.feature(us, us.objects.states).features)
@@ -56,7 +56,7 @@ var a = svg.append("a")
       .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
       .attr("class", "mesh")
       .attr("d", path);
-// });
+});
 
 
 
@@ -64,10 +64,10 @@ var a = svg.append("a")
 var g = svg.append("g")
           .style("stroke-width", "1.5px");
 
-// d3.json("/json/hydro_regions.json", function(error, hr) {
-//   if (error) throw error;
+d3.json("/json/hydro_regions.json", function(error, hr) {
+  if (error) throw error;
   g.selectAll("path")
-      .data(topojson.feature(hydro_regions, hydro_regions.objects.hydrologic_regions_ca).features)
+      .data(topojson.feature(hr, hr.objects.hydrologic_regions_ca).features)
       .enter().append("path")
       .attr("d", path)
       .attr("class", "hydro_reg")
@@ -75,11 +75,11 @@ var g = svg.append("g")
       .on("click", clicked);
 
   g.append("path")
-      .datum(topojson.mesh(hydro_regions, hydro_regions.objects.hydrologic_regions_ca, function(a, b) { return a !== b; }))
+      .datum(topojson.mesh(hr, hr.objects.hydrologic_regions_ca, function(a, b) { return a !== b; }))
       .attr("class", "mesh")
       .attr("d", path);
 
-// });
+});
 
 
 
@@ -89,8 +89,7 @@ sta.selectAll("path")
   .data(sta_json.features)
   .enter()
   .append( "path" )
-  .attr( "d", path.pointRadius(3) )
-  .attr("class", "station")
+  .attr( "d", path )
   // mouseover functions
   .on("mouseover", function(feature) {
     var props = feature.properties;
@@ -98,13 +97,13 @@ sta.selectAll("path")
     div.transition()
       .duration(200)
       .style("opacity", .9);
-    div.html('Name: ' + props.name, 'County: ' + props.county)
+    div.html('Name: ' + props.name)
       .style("left", (d3.event.pageX) + 10 + "px")
       .style("top", (d3.event.pageY - 30) + "px");
   })
   .on("mouseout", function(d) {
     div.transition()
-      // .duration(500)
+      .duration(500)
       .style("opacity", 0.0);
   })
   .on("click", clickedSta);
@@ -170,6 +169,7 @@ function reset() {
       .style("stroke-width", "1.5px")
       .attr("transform", "");
 }
+
 
 function clickedSta(d) {
   if (active.node() === this) return resetSta();
