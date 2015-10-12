@@ -103,11 +103,11 @@ sta.selectAll("path")
   })
   .on("mouseout", function(d) {
     div.transition()
-      .duration(500)
+      // .duration(500)
       .style("opacity", 0.0);
   })
   .on("click", function(d){
-
+    
   })
   // tooltip information
   var div = d3.select("#map").append("div")
