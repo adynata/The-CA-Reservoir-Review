@@ -90,6 +90,7 @@ sta.selectAll("path")
   .enter()
   .append( "path" )
   .attr( "d", path.pointRadius(3) )
+  .attr("class", "station")
   // mouseover functions
   .on("mouseover", function(feature) {
     var props = feature.properties;
@@ -106,9 +107,8 @@ sta.selectAll("path")
       // .duration(500)
       .style("opacity", 0.0);
   })
-  .on("click", function(d){
-    
-  })
+  .on("click", clickedSta);
+
   // tooltip information
   var div = d3.select("#map").append("div")
     .attr("class", "tooltip")
@@ -169,4 +169,14 @@ function reset() {
       .duration(750)
       .style("stroke-width", "1.5px")
       .attr("transform", "");
+}
+
+function clickedSta(d) {
+  if (active.node() === this) return resetSta();
+  active.classed("active", false);
+}
+
+function resetSta() {
+  active.classed("active", false);
+  active = d3.select(null);
 }

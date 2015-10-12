@@ -21,9 +21,10 @@
   fill: #9A5B18;
 }
 
-.feature.active {
+.active {
   fill: orange;
 }
+
 .mesh {
   fill: none;
   stroke: #fff;
