@@ -5,7 +5,9 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Trinity Lake"
+                "name": "Trinity Lake",
+                "id":1,
+                "county":"Trinity"
             },
             "geometry": {
                 "type": "Point",
@@ -18,7 +20,9 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Whiskeytown Damn"
+                "name": "Whiskeytown Dam",
+                "id":2,
+                "county":"Shasta"
             },
             "geometry": {
                 "type": "Point",
@@ -31,7 +35,9 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Lewiston"
+                "name": "Lewiston",
+                "id":3,
+                "county":"Trinity"
             },
             "geometry": {
                 "type": "Point",
@@ -44,7 +50,9 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Warm Springs"
+                "name": "Warm Springs",
+                "id":4,
+                "county":"Sonoma"
             },
             "geometry": {
                 "type": "Point",
@@ -57,7 +65,9 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Coyote"
+                "name": "Coyote",
+                "id":5,
+                "county":"Mendocino"
             },
             "geometry": {
                 "type": "Point",
@@ -70,7 +80,9 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Shasta Dam"
+                "name": "Shasta Dam",
+                "id":6,
+                "county":"Shasta"
             },
             "geometry": {
                 "type": "Point",
@@ -83,7 +95,9 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Keswick Reservoir"
+                "name": "Keswick Reservoir",
+                "id":7,
+                "county":"Shasta"
             },
             "geometry": {
                 "type": "Point",
@@ -96,7 +110,9 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Oroville Dam"
+                "name": "Oroville Dam",
+                "id":8,
+                "county":"Butte"
             },
             "geometry": {
                 "type": "Point",
@@ -109,7 +125,9 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Antelope Lake"
+                "name": "Antelope Lake",
+                "id":9,
+                "county":"Plumas"
             },
             "geometry": {
                 "type": "Point",
@@ -122,7 +140,9 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Frenchman Dam"
+                "name": "Frenchman Dam",
+                "id":10,
+                "county":"Plumas"
             },
             "geometry": {
                 "type": "Point",
@@ -135,7 +155,9 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Lake Davis"
+                "name": "Lake Davis",
+                "id":11,
+                "county":"Plumas"
             },
             "geometry": {
                 "type": "Point",
@@ -148,7 +170,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "New Bullards Bar"
+                "name": "New Bullards Bar",
+                "id":12,"county":"Yuba"
             },
             "geometry": {
                 "type": "Point",
@@ -161,7 +184,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Englebright"
+                "name": "Englebright",
+                "id":13,"county":"Nevada"
             },
             "geometry": {
                 "type": "Point",
@@ -174,7 +198,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Folsom Lake"
+                "name": "Folsom Lake",
+                "id":14,"county":"Sacramento"
             },
             "geometry": {
                 "type": "Point",
@@ -187,7 +212,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Union Valley"
+                "name": "Union Valley",
+                "id":15,"county":"El Dorado"
             },
             "geometry": {
                 "type": "Point",
@@ -200,7 +226,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Loon Lake"
+                "name": "Loon Lake",
+                "id":16,"county":"El Dorado"
             },
             "geometry": {
                 "type": "Point",
@@ -213,7 +240,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Ice House"
+                "name": "Ice House",
+                "id":17,"county":"El Dorado"
             },
             "geometry": {
                 "type": "Point",
@@ -226,7 +254,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Lake Natoma"
+                "name": "Lake Natoma",
+                "id":18,"county":"Sacramento"
             },
             "geometry": {
                 "type": "Point",
@@ -239,7 +268,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Indian Valley"
+                "name": "Indian Valley",
+                "id":19,"county":"Lake"
             },
             "geometry": {
                 "type": "Point",
@@ -252,7 +282,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Black Butte"
+                "name": "Black Butte",
+                "id":20,"county":"Tehama"
             },
             "geometry": {
                 "type": "Point",
@@ -265,7 +296,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "New Hogan Lake"
+                "name": "New Hogan Lake",
+                "id":21,"county":"Calaveras"
             },
             "geometry": {
                 "type": "Point",
@@ -278,7 +310,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Camanche Reservoir"
+                "name": "Camanche Reservoir",
+                "id":22,"county":"San Joaquin"
             },
             "geometry": {
                 "type": "Point",
@@ -291,7 +324,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Pardee"
+                "name": "Pardee",
+                "id":23,"county":"Calaveras"
             },
             "geometry": {
                 "type": "Point",
@@ -304,7 +338,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Donnells"
+                "name": "Donnells",
+                "id":24,"county":"Tuolumne"
             },
             "geometry": {
                 "type": "Point",
@@ -317,7 +352,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Beardsley Lake"
+                "name": "Beardsley Lake",
+                "id":25,"county":"Tuolumne"
             },
             "geometry": {
                 "type": "Point",
@@ -330,7 +366,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Tulloch"
+                "name": "Tulloch",
+                "id":26,"county":"Calaveras"
             },
             "geometry": {
                 "type": "Point",
@@ -343,7 +380,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "New Melones"
+                "name": "New Melones",
+                "id":27,"county":"Calaveras"
             },
             "geometry": {
                 "type": "Point",
@@ -356,7 +394,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Don Pedro Reservoir"
+                "name": "Don Pedro Reservoir",
+                "id":28,"county":"Tuolumne"
             },
             "geometry": {
                 "type": "Point",
@@ -369,7 +408,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Hetch Hetchy"
+                "name": "Hetch Hetchy",
+                "id":29,"county":"Tuolumne"
             },
             "geometry": {
                 "type": "Point",
@@ -382,7 +422,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Cherry Valley Dam"
+                "name": "Cherry Valley Dam",
+                "id":30,"county":"Tuolumne"
             },
             "geometry": {
                 "type": "Point",
@@ -395,7 +436,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "New Exchequer-lk Mcclure"
+                "name": "New Exchequer-lk Mcclure",
+                "id":31,"county":"Mariposa"
             },
             "geometry": {
                 "type": "Point",
@@ -408,7 +450,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Buchanan Dam"
+                "name": "Buchanan Dam",
+                "id":32,"county":"Madera"
             },
             "geometry": {
                 "type": "Point",
@@ -421,7 +464,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Hidden Dam"
+                "name": "Hidden Dam",
+                "id":33,"county":"Madera"
             },
             "geometry": {
                 "type": "Point",
@@ -434,7 +478,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Friant Dam"
+                "name": "Friant Dam",
+                "id":34,"county":"Fresno"
             },
             "geometry": {
                 "type": "Point",
@@ -447,7 +492,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "San Luis Reservoir"
+                "name": "San Luis Reservoir",
+                "id":35,"county":"Merced"
             },
             "geometry": {
                 "type": "Point",
@@ -460,7 +506,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Pine Flat Dam"
+                "name": "Pine Flat Dam",
+                "id":36,"county":"Fresno"
             },
             "geometry": {
                 "type": "Point",
@@ -473,7 +520,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Terminus Dam"
+                "name": "Terminus Dam",
+                "id":37,"county":"Tulare"
             },
             "geometry": {
                 "type": "Point",
@@ -486,7 +534,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Success Dam"
+                "name": "Success Dam",
+                "id":38,"county":"Tulare"
             },
             "geometry": {
                 "type": "Point",
@@ -499,7 +548,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Isabella Dam"
+                "name": "Isabella Dam",
+                "id":39,"county":"Kern"
             },
             "geometry": {
                 "type": "Point",
@@ -512,7 +562,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Stampede"
+                "name": "Stampede",
+                "id":40,"county":"Sierra"
             },
             "geometry": {
                 "type": "Point",
@@ -525,7 +576,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Independence Lake"
+                "name": "Independence Lake",
+                "id":41,"county":"Sierra"
             },
             "geometry": {
                 "type": "Point",
@@ -538,7 +590,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Donner Lake"
+                "name": "Donner Lake",
+                "id":42,"county":"Nevada"
             },
             "geometry": {
                 "type": "Point",
@@ -551,7 +604,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Cachuma Lake"
+                "name": "Cachuma Lake",
+                "id":43,"county":"Santa Barbara"
             },
             "geometry": {
                 "type": "Point",
@@ -564,7 +618,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Pyramid"
+                "name": "Pyramid",
+                "id":44,"county":"Los Angeles"
             },
             "geometry": {
                 "type": "Point",
@@ -577,7 +632,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Castaic"
+                "name": "Castaic",
+                "id":45,"county":"Los Angeles"
             },
             "geometry": {
                 "type": "Point",
@@ -590,7 +646,8 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Perris"
+                "name": "Perris",
+                "id":46,"county":"Riverside"
             },
             "geometry": {
                 "type": "Point",

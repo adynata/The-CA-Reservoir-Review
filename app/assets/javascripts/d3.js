@@ -97,7 +97,7 @@ sta.selectAll("path")
     div.transition()
       .duration(200)
       .style("opacity", .9);
-    div.html('Name: ' + props.name)
+    div.html('Name: ' + props.name, 'County: ' + props.county)
       .style("left", (d3.event.pageX) + 10 + "px")
       .style("top", (d3.event.pageY - 30) + "px");
   })
