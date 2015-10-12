@@ -18,7 +18,7 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "Whiskeytown Damn"
+                "name": "Whiskeytown Dam"
             },
             "geometry": {
                 "type": "Point",
