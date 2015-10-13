@@ -1,25 +1,25 @@
 $(document).ready(function(){
 
 $(".dropdown_hydro dt a").on('click', function(e) {
-  // e.stopImmediatePropagation();
+  e.stopImmediatePropagation();
 
   $(".dropdown_hydro dd ul").slideToggle('fast');
 });
 
 $(".dropdown_hydro dd ul li a").on('click', function(e) {
-  // e.stopImmediatePropagation();
+  e.stopImmediatePropagation();
 
   $(".dropdown_hydro dd ul").hide();
 });
 
 $(".dropdown_station dt a").on('click', function(e) {
-  // e.stopImmediatePropagation();
+  e.stopImmediatePropagation();
 
   $(".dropdown_station dd ul").slideToggle('fast');
 });
 
 $(".dropdown_station dd ul li a").on('click', function(e) {
-  // e.stopImmediatePropagation();
+  e.stopImmediatePropagation();
 
   $(".dropdown_station dd ul").hide();
 });
