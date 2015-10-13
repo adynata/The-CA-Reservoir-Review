@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/radar/by_star
+  revision: d2d997c98b43999283d6c443351dfae3815c02b4
+  specs:
+    by_star (2.2.1)
+      activesupport
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -153,6 +160,7 @@ DEPENDENCIES
   annotate
   better_errors
   binding_of_caller
+  by_star!
   byebug
   coffee-rails (~> 4.1.0)
   d3-rails

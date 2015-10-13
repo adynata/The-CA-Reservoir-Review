@@ -52,6 +52,12 @@ class ReservoirsController < ApplicationController
       render json: stations_by_hr
     end
 
+    def monthly_by_year
+      reservoir = Reservoir.find(params[:id])
+      year = params[:year]
+      render json: reservoir.monthly_by_year(year)
+    end
+
 
     private
 

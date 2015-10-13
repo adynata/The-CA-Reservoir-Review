@@ -110,7 +110,7 @@ number_of_days = "365"
     date = pair[0]
     level = pair[1]
     Level.create(reservoir_id: Reservoir.find_by(station_id: station).id,
-                date: Date.strptime(pair[0], '%m/%d/%Y'),
+                date: DateTime.strptime(pair[0], '%m/%d/%Y'),
                 level: pair[1])
   end
 

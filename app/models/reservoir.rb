@@ -70,6 +70,25 @@ class Reservoir < ActiveRecord::Base
     return by_year
   end
 
+  def monthly_by_year(year)
+    monthly_av = {}
+    monthly_av["id"] = self.id
+    monthly_av["reservoir"] = self.name
+    monthly_av["year"] = year
+    monthly_av["levels"] = []
+    (1..12).each do |month|
+      average = []
+      by_year = levels.where('extract(year from date) = ?', year).by_month(month, field: :date)
+      average << month
+      average << by_year.average(:level).to_f
+      monthly_av["levels"] << average
+    end
+    return monthly_av
+  end
+
+
+
+
   def daily_by_range(year1, year2)
     if year1 == year2
       return daily_by_year(year1)
