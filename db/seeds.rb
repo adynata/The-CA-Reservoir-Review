@@ -13,8 +13,7 @@ require 'csv'
 
 # This returns only the stations that have daily levels taken
 
-@res_doc = Nokogiri::HTML(open("http://cdec.water.ca.gov/cgi-progs/reservoirs/RES
-"))
+@res_doc = Nokogiri::HTML(open("http://cdec.water.ca.gov/cgi-progs/reservoirs/RES"))
 
 @select_station_ids = []
 
@@ -85,7 +84,7 @@ end
 # @select_station_ids = ["DON", "ORO"]
 
 
-number_of_days = "365"
+number_of_days = "3650"
 
 @select_station_ids.each do |station|
   @doc = Nokogiri::HTML(open("http://cdec.water.ca.gov/cgi-progs/queryDaily?" + station + "&d=25-Sept-2015+11:19&span=" + number_of_days + "days"))
