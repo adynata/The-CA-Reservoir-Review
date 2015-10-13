@@ -36,7 +36,7 @@ $(document).ready(function(){
   //   console.log(this.props);
   // });
 
-  var station_name = $(this)[0].__data__.properties.name
+  // var station_name = $(this)[0].__data__.properties.name
   // console.log($('.multiSelect_station ul li input[value]'))
   // function check_dropdown() {
   // $.each($('.multiSelect_station ul li input [value='']'), function(){
@@ -50,14 +50,14 @@ $(document).ready(function(){
   // 	$(this).prop("checked")
   // }
 
-  $('.multiSelect_station ul li').value(station_name).checked(true)
-
-    console.log($("ul.multiSelect_station").val())
-    $("#sta").on("click", function() {
-      console.log($("#sta"));
-      $('#sta > path').css("fill", "white");
-      console.log(this);
-    });
+  // $('.multiSelect_station ul li').value(station_name).checked(true)
+  //
+  //   console.log($("ul.multiSelect_station").val())
+  //   $("#sta").on("click", function() {
+  //     console.log($("#sta"));
+  //     $('#sta > path').css("fill", "white");
+  //     console.log(this);
+  //   });
 
 
   // }));

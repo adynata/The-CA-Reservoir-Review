@@ -5,7 +5,11 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag    'd3', media: 'all', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag    'dropdown-menu', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'nvd3.css', media: 'all', 'data-turbolinks-track' => true %>
+
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+
   <%= csrf_meta_tags %>
   <meta charset="utf-8">
   <!-- <link rel="stylesheet" href="style/d3.css"> -->
@@ -15,9 +19,13 @@
 </head>
 <body>
 
-<%= yield %>
+  <%= yield %>
+  <%= javascript_include_tag 'jquery', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'nv.d3.min', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'd3.min', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'd3', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'selection', 'data-turbolinks-track' => true %>
+
   <%= javascript_include_tag 'styling_script', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'hydro_regions.json', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'us.json', 'data-turbolinks-track' => true %>
