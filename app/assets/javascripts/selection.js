@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
   // $("#sta path").on("click", function() {
   //   console.log($(this).data)
   // 	$(this).data("pin", !$(this).data("pin"))
@@ -59,8 +58,6 @@ $(document).ready(function(){
       $('#sta > path').css("fill", "white");
       console.log(this);
     });
-
-
 
 
   // }));
