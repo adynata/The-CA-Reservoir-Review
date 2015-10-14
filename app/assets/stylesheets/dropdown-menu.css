@@ -1,6 +1,14 @@
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+}
+
 #content{
   overflow: hidden;
 }
+
+
 
 #title{
   font-family: 'Source Sans Pro';
@@ -106,4 +114,104 @@ a {
 
 .dropdown_hydro dd ul li a:hover, .dropdown_station dd ul li a:hover {
   background-color: #fff;
+}
+
+.wrapper-dropdown {
+    /* Size and position */
+    position: relative; /* Enable absolute positioning for children and pseudo elements */
+    width: 200px;
+    padding: 10px;
+    margin: 0 auto;
+
+    /* Styles */
+    background: #9bc7de;
+    color: #fff;
+    outline: none;
+    cursor: pointer;
+
+    /* Font settings */
+    font-weight: bold;
+}
+
+.wrapper-dropdown:after {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    margin-top: -6px;
+    border-width: 6px 0 6px 6px;
+    border-style: solid;
+    border-color: transparent #fff;
+}
+.wrapper-dropdown-1 .dropdown {
+	/* Size & position */
+    position: absolute;
+    top: 100%;
+    left: 0; /* Size */
+    right: 0; /* Size */
+
+    /* Styles */
+    background: #fff;
+    font-weight: normal; /* Overwrites previous font-weight: bold; */
+
+    /* Hiding */
+    opacity: 0;
+    pointer-events: none;
+}
+.wrapper-dropdown-1 .dropdown li a {
+    display: block;
+    text-decoration: none;
+    color: #9e9e9e;
+    padding: 10px 20px;
+}
+
+/* Hover state */
+.wrapper-dropdown-1 .dropdown li:hover a {
+    background: #f3f8f8;
+}
+
+.wrapper-dropdown-1.active .dropdown {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.wrapper-dropdown-1.active:after {
+    border-color: #9bc7de transparent;
+    border-width: 6px 6px 0 6px ;
+    margin-top: -3px;
+}
+
+.wrapper-dropdown-1.active {
+  background: #9bc7de;
+  background: linear-gradient(to right, #9bc7de 0%, #9bc7de 78%, #ffffff 78%, #ffffff 100%);
+}
+
+#render, #year-input {
+  display: inline;
+  float: left;
+  height: 25px;
+
+}
+
+#year-input {
+  padding-left:5%;
+}
+
+#render {
+  background: #4e2b47;
+  text-align: center;
+  padding-top: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  color: white;
+  width: 26px
+  line-height: 25px;
+}
+.year-input {
+  margin-left: 25px;
+
+  width: 100%;
 }
