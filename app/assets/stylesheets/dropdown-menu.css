@@ -1,3 +1,40 @@
+#content{
+  overflow: hidden;
+}
+
+#title{
+  font-family: 'Source Sans Pro';
+  font-weight: 700;
+  font-size: 2em;
+  text-align: center;
+}
+
+svg{
+  float:left ;
+  width: 100%;
+  background-color: #85C4D3;
+  border: 2px solid gray;
+  border-radius: 3px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#chart-view{
+  z-index: 1;
+  display: block;
+  position: absolute;
+  background-size: 100%;
+  background: white;
+  float: right;
+  top: 0;
+  right: 0;
+  width: 55%;
+  height: 100%;
+  background-color: white;
+  opacity: .6;
+
+}
 #dropdown dl{
   display: inline-block;
 }
