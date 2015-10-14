@@ -48,7 +48,7 @@ svg {
 
 .title  {
   width: 100%;
-  height: auto;
+  height: 80px;
   display: block;
 }
 .dropdown_hydro, .dropdown_station {
@@ -57,7 +57,7 @@ svg {
 }
 
 .chart-container {
-  width: 49%;
+  width: 95%;
 }
 
 #chart {
