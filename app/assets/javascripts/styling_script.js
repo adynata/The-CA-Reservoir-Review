@@ -20,8 +20,6 @@ $(".dropdown_station dt a").on('click', function(e) {
 
 $(".dropdown_station dd ul li a").on('click', function(e) {
   e.stopImmediatePropagation();
-
-  $(".dropdown_station dd ul").hide();
 });
 
 // function getSelectedValue(id) {
