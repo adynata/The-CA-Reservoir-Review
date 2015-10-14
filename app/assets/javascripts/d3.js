@@ -120,7 +120,7 @@ $(document).ready(function() {
   //     .scaleExtent([1, 8])
   //     .on("zoom", zoomed);
 
-});
+
 
 function clicked(d) {
   if (active.node() === this) return reset();
@@ -182,3 +182,5 @@ function resetSta() {
   active.classed("active", false);
   active = d3.select(null);
 }
+
+});
