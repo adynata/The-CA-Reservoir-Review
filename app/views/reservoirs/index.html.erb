@@ -3,14 +3,42 @@
 
 
 <!-- <div id="dropdown">
+=======
+<div class="map-container">
+  <div id="dropdown">
+    <dl class="dropdown_hydro">
+      <dt>
+        <a href="#"><span class="hide">Hydrologic Region</span></a>
+      </dt>
+      <dd>
+        <div class="mutliSelect_hydro">
+          <ul>
+            <% @regions.each do |region| %>
+            <li><input type="checkbox" value="<%= region %>"><%= region %></li>
+            <% end %>
+          </ul>
+        </div>
+      </dd>
+    </dl>
+>>>>>>> master
 
-<dl class="dropdown_hydro">
-  <dt>
-    <a href="#">
-      <span class="hide">Hydrologic Region</span>
-    </a>
-    </dt>
+    <dl class="dropdown_station">
+      <dt>
+        <a href="#"><span class="hide">Water Stations</span></a>
+      </dt>
+      <dd>
+        <div class="mutliSelect_station">
+          <ul>
+            <% @stations.each do |station| %>
+            <li><input type="checkbox" value="<%= station %>"><%= station %></li>
+            <% end %>
+          </ul>
+        </div>
+      </dd>
+    </dl>
+  </div>
 
+<<<<<<< HEAD
   <dd>
     <div class="mutliSelect_hydro">
       <ul>
@@ -147,8 +175,16 @@
 </dl>
 </div> -->
 <div id="content">
-<div id="map"></div>
-<div id="chart-view"><p id="title">RESERVOIR REVIEW</p></div>
+  <div id="map"></div>
+  <div id="chart-view">
+    <div class="chart-container">
+      <div class="title"><p id="title">RESERVOIR REVIEW</p></div>
+
+      <div id="chart">
+        <svg></svg>
+      </div>
+    </div>
+  </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.min.js"></script> -->

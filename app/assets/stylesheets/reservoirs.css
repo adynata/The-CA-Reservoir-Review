@@ -1,0 +1,65 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+svg {
+  display: block;
+}
+
+.map-container, .chart-container {
+  display: inline-block;
+  vertical-align: top;
+}
+
+#dropdown {
+  font-size: 0;
+  height: 60px;
+}
+
+#map {
+  width: 500px;
+}
+
+#chart {
+  width: calc(100vw - 500px);
+  height: calc(100vw - 800px);
+}
+
+#map, #chart {
+  height: calc(100vh - 60px);
+  max-height: 600px;
+}
+
+#map svg, #map rect {
+  height: 100%;
+  width: 100%;
+}
+
+#chart svg {
+  display: block;
+  margin-left: 5%;
+  margin-right: 5%;
+  height: 70%;
+  width: 90%;
+  margin-top: 15%;
+}
+
+.title  {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.dropdown_hydro, .dropdown_station {
+  font-size: initial;
+  width: 50%;
+}
+
+.chart-container {
+  width: 49%;
+}
+
+#chart {
+  /*background-color: red;*/
+}

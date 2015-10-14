@@ -31,9 +31,7 @@ svg{
   right: 0;
   width: 55%;
   height: 100%;
-  background-color: white;
-  opacity: .6;
-
+  background-color: rgba(255, 255, 255, 0.6);
 }
 #dropdown dl{
   display: inline-block;
@@ -51,7 +49,7 @@ a {
   margin: -1px 0 0 0;
 }
 
-.dropdown_hydro dd, .dropdown_station dd { 
+.dropdown_hydro dd, .dropdown_station dd {
   position: relative;
 }
 
