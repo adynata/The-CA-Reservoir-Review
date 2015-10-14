@@ -55,7 +55,7 @@ $(document).ready(function() {
       chartData.push({
         key: data.reservoir,
         values: levels
-      }); 
+      });
     });
 
     if (i === numCharts) {
