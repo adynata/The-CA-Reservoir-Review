@@ -192,20 +192,27 @@ a {
   display: inline;
   float: left;
   height: 25px;
+  font-family: 'Source Sans Pro';
+
 
 }
 
+
+
+.input-cont {
+  width: 100%;
+}
 #year-input {
   padding-left:5%;
 }
 
 #render {
-  background: #4e2b47;
+  background: #9bc7de;
   text-align: center;
   padding-top: 3px;
   padding-left: 10px;
   padding-right: 10px;
-
+  #9bc7de;
   color: white;
   width: 26px
   line-height: 25px;
