@@ -40,7 +40,7 @@ $(document).ready(function() {
   chartData = [];
 
   for (var i = 1; i <= numCharts; i++) {
-    endpoint = 'api/reservoirs/daily_by_year/' + i + '/2014';
+    endpoint = 'api/reservoirs/daily_by_year/' + i + '/2012';
     d3.json(endpoint, function(error, data) {
 
       var levels = data.levels.map(function(level) {

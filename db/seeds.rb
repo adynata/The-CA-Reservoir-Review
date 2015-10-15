@@ -9,6 +9,7 @@
 require 'nokogiri'
 require 'open-uri'
 require 'csv'
+require 'date'
 
 
 # This returns only the stations that have daily levels taken
@@ -24,9 +25,13 @@ require 'csv'
   end
 end
 
+@select_station_ids.delete("INP")
+@select_station_ids.delete("DNN")
+
 puts "The count of all station ids is #{@select_station_ids.count}"
 
 # next, we use all of the station ids to generate profiles for all of the major reservoirs listed
+# TODO: find averages for the followign stations so we can reinclude them in the set: DNN, and INP
 
 @select_station_ids.each do |station|
   # gets most of the information specific to each reservoir
@@ -37,6 +42,14 @@ puts "The count of all station ids is #{@select_station_ids.count}"
   # the last essential data element is capacity, which is housed on a separate page
 
   reservoir_capacity_doc = Nokogiri::HTML(open("http://cdec.water.ca.gov/cgi-progs/profile?s="+ station +"&type=res"))
+
+  monthly_avg = {}
+  (3..14).each do |num|
+    average = reservoir_capacity_doc.css('tr')[num].xpath('./td').map(&:text)
+    monthly_avg[average[0]] = average[1][0..-5].to_i
+  end
+  # p station
+  p monthly_avg
 
   reservoir_name = @reservoir_page.css('h2')[0].text.split.map(&:capitalize).join(' ')
   reservoir_capacity = reservoir_capacity_doc.css('tr')[1].xpath('./td').map(&:text)[3][0..-3].delete(',').to_i
@@ -57,6 +70,7 @@ puts "The count of all station ids is #{@select_station_ids.count}"
     river_basin: river_basin,
     location: city,
     max_capacity: reservoir_capacity,
+    averages_by_month: monthly_avg,
     county: county,
     lat: latitude,
     lon: longitude,
@@ -64,6 +78,7 @@ puts "The count of all station ids is #{@select_station_ids.count}"
     operator: operator
   )
   reservoir.save!
+
 
   puts "The name of the reservoir is #{reservoir_name}"
   puts "The capacity is #{reservoir_capacity}"
@@ -83,11 +98,14 @@ end
 #This is for testing purposes only, please comment it out!
 # @select_station_ids = ["DON", "ORO"]
 
+# start = Date.today
+# start_date = Date.parse(1/1/1990)
+#
 
-number_of_days = "3650"
+number_of_days = "5000"
 
 @select_station_ids.each do |station|
-  @doc = Nokogiri::HTML(open("http://cdec.water.ca.gov/cgi-progs/queryDaily?" + station + "&d=25-Sept-2015+11:19&span=" + number_of_days + "days"))
+  @doc = Nokogiri::HTML(open("http://cdec.water.ca.gov/cgi-progs/queryDaily?" + station + "&d=13-Oct-2015+11:19&span=" + number_of_days + "days"))
 
   levels_arr = []
   @doc.css('tr').each do |row|
@@ -103,14 +121,28 @@ number_of_days = "3650"
 
   levels_arr = levels_arr[3..-1]
 
-  # create a level in the db for each pair:
+  last_level = "default"
+
+  counter = 0
 
   levels_arr.each do |pair|
     date = pair[0]
-    level = pair[1]
-    Level.create(reservoir_id: Reservoir.find_by(station_id: station).id,
-                date: DateTime.strptime(pair[0], '%m/%d/%Y'),
-                level: pair[1])
+    level = pair[1].to_i
+    # p level
+    if level > 0  && level != nil
+      last_level = level
+      Level.create(reservoir_id: Reservoir.find_by(station_id: station).id,
+                  date: DateTime.strptime(pair[0], '%m/%d/%Y'),
+                  level: level)
+    else
+      Level.create(reservoir_id: Reservoir.find_by(station_id: station).id,
+                  date: DateTime.strptime(pair[0], '%m/%d/%Y'),
+                  level: last_level)
+    end
+    counter += 1
+    if counter % 100 == 0
+      p counter
+    end
   end
 
 

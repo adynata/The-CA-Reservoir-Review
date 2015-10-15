@@ -197,7 +197,9 @@ a {
 
 }
 
-
+input {
+  outline: none;
+}
 
 .input-cont {
   width: 100%;
@@ -221,4 +223,103 @@ a {
   margin-left: 25px;
 
   width: 100%;
+}
+
+
+.c-dropdown {
+  position: relative;
+  display: inline-block;
+  text-align: left;
+}
+
+.c-dropdown__list {
+  margin: 5px 0 0 0;
+  padding: 6px 0;
+  list-style: none;
+  position: absolute;
+  top: 125%;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  border-radius: 3px;
+  background: #fff;
+  transition: opacity .25s linear, top .25s linear;
+  .c-dropdown.is-open & {
+    opacity: 1;
+    visibility: visible;
+    top: 100%;
+  }
+}
+
+.c-dropdown__item {
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 20px;
+  cursor: pointer;
+  color: #434A54;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background-color .25s linear;
+  &:hover {
+    background-color: #E6E9ED;
+  }
+}
+
+/**
+ * Component: Button
+ * --------------------------------------------------
+ */
+
+.c-button {
+  -webkit-appearance: none;
+  margin: 0;
+  border: 0;
+  overflow: visible;
+  font: inherit;
+  text-transform: none;
+  display: inline-block;
+  vertical-align: middle;
+  text-decoration: none;
+  text-align: center;
+  user-select: none;
+  &:hover,
+  &:focus {
+    outline: none;
+    text-decoration: none;
+  }
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+/**
+ * Component: Button
+ * Modifier: Dropdown
+ * --------------------------------------------------
+ */
+
+.c-button--dropdown {
+  padding: 6px 34px 6px 12px;
+  background-color: #967ADC;
+  color: #E6E9ED;
+  font-size: 14px;
+  line-height: 20px;
+  min-height: 32px;
+  border-radius: 3px;
+  transition: background-color .2s linear;
+  &:hover {
+    background-color: #AC92EC;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    top: 14px;
+    right: 11px;
+    width: 0;
+    height: 0;
+    border: 5px solid transparent;
+    border-top-color: #E6E9ED;
+  }
 }
