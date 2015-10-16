@@ -23,9 +23,11 @@ $(document).ready(function() {
         $(station).css("fill", "lightblue");
         makeData(chartYear, station_id);
 
-      } else {
+      } else if ($(station).attr("class") === "station clicked_sta") {
         $(station).attr("class", "station");
-        $(station).css("fill", "orange")
+        $(station).css("fill", "orange");
+      } else {
+        console.log("clicked something else");
       }
       console.log(document.getElementsByClassName('clicked_sta'));
       });
