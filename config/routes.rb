@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get 'api/reservoirs/average_by_year/:id/:year' => 'reservoirs#average_by_year'
   get 'api/reservoirs/by_hydrologic/:hr/' => 'reservoirs#by_hydrologic'
   get 'api/reservoirs/monthly_av_by_year/:id/:year' => 'reservoirs#monthly_by_year'
+  get 'api/reservoirs/monthly_av_vs_capacity/:id/:year' => 'reservoirs#av_of_capacity_monthly'
 
   # get 'reservoirs/:id' => 'reservoirs#show'
 

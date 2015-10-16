@@ -59,6 +59,13 @@ class ReservoirsController < ApplicationController
     render json: reservoir.monthly_by_year(year)
   end
 
+  def av_of_capacity_monthly
+    reservoir = Reservoir.find(params[:id])
+    year = params[:year]
+    render json: reservoir.monthly_percent_by_year(year)
+  end
+
+
 
   private
 

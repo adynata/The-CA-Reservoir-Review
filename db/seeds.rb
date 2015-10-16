@@ -104,7 +104,17 @@ end
 
 number_of_days = "5000"
 
-@select_station_ids.each do |station|
+@station_ids_limited_data = ["BRD", "DON", "CHV"]
+
+# these need to be started two index places over or you'll store elevation
+@station_ids_broader_data = ["ORO", "CCH","MIL", "ANT", "BUC", "WRS", "SCC", "LEW",  "DNP", "FOL", "PRR", "CMN", "HTH", "NHG", "CLE", "KES", "DAV", "INV", "PAR", "EXC", "PNF", "ICH", "BUL", "TUL", "FRD", "BLB",  "ENG", "SHA", "SNL", "WHI", "NML", "ORO", "UNV", "LON", "COY", "PYM", "HID", "CAS", "ISB", "TRM", "STP", "NAT"]
+# start = Date.today
+# start_date = Date.parse(1/1/1990)
+@stations_need_parsing = []
+#HTH - no data? check
+
+
+@station_ids_limited_data.each do |station|
   @doc = Nokogiri::HTML(open("http://cdec.water.ca.gov/cgi-progs/queryDaily?" + station + "&d=13-Oct-2015+11:19&span=" + number_of_days + "days"))
 
   levels_arr = []
@@ -113,7 +123,48 @@ number_of_days = "5000"
     date = row.xpath('./td').map(&:text)[0]
     level = row.xpath('./td').map(&:text)[1]
     one_entry << date
-    one_entry << level
+    one_entry << level.to_i
+    levels_arr << one_entry
+  end
+
+  # some of the pages returned have tables that are formatted differently, so slightly more is clipped from the data to ensure that what's returned is only levels.
+
+  levels_arr = levels_arr[3..-1]
+
+  last_level = "default"
+
+  counter = 0
+
+  levels_arr.each do |pair|
+    date = pair[0]
+    level = pair[1].to_i
+    if level > 0  && level != nil
+      last_level = level
+      Level.create(reservoir_id: Reservoir.find_by(station_id: station).id,
+                  date: DateTime.strptime(pair[0], '%m/%d/%Y'),
+                  level: level)
+    else
+        Level.create(reservoir_id: Reservoir.find_by(station_id: station).id,
+                    date: DateTime.strptime(pair[0], '%m/%d/%Y'),
+                    level: last_level)
+    end
+    counter += 1
+    if counter % 100 == 0
+      p counter
+    end
+  end
+end
+
+@station_ids_broader_data.each do |station|
+  @doc = Nokogiri::HTML(open("http://cdec.water.ca.gov/cgi-progs/queryDaily?" + station + "&d=13-Oct-2015+11:19&span=" + number_of_days + "days"))
+
+  levels_arr = []
+  @doc.css('tr').each do |row|
+    one_entry = []
+    date = row.xpath('./td').map(&:text)[0]
+    level = row.xpath('./td').map(&:text)[3]
+    one_entry << date
+    one_entry << level.to_i
     levels_arr << one_entry
   end
 
@@ -135,15 +186,14 @@ number_of_days = "5000"
                   date: DateTime.strptime(pair[0], '%m/%d/%Y'),
                   level: level)
     else
-      Level.create(reservoir_id: Reservoir.find_by(station_id: station).id,
-                  date: DateTime.strptime(pair[0], '%m/%d/%Y'),
-                  level: last_level)
+        Level.create(reservoir_id: Reservoir.find_by(station_id: station).id,
+                    date: DateTime.strptime(pair[0], '%m/%d/%Y'),
+                    level: last_level)
     end
     counter += 1
     if counter % 100 == 0
       p counter
     end
   end
-
 
 end

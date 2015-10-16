@@ -78,17 +78,49 @@ class Reservoir < ActiveRecord::Base
     monthly_av["year"] = year
     monthly_av["levels"] = []
     (1..12).each do |month|
+      int = month.to_s + "/" + year.to_s
       average = []
-      by_year = levels.where('extract(year from date) = ?', year).by_month(month, field: :date)
+      by_year = levels.by_month(month, field: :date)
       average << month
+      puts by_year.average(:level).to_f
       average << by_year.average(:level).to_f
       monthly_av["levels"] << average
     end
+    # p monthly_av
     return monthly_av
   end
 
+  def monthly_percent_by_year(year)
+    monthly_av_year = monthly_by_year(year)["levels"]
+    monthly_av_overall = averages_to_arr
+    monthly_by_av_v_capacity = {}
+    overall_monthly_by_av_v_capacity = {}
+    monthly_percent_spec = []
+    monthly_percent_overall = []
+    (0..11).each do |i|
+      spec_pair = []
+      overall_pair = []
+      average_specific_month = monthly_av_year[i][1]
+      average_overall_month = monthly_av_overall[i][1]
+      spec_pair << i + 1
+      overall_pair << i + 1
+      spec_pair << (average_specific_month.to_f/max_capacity.to_f)
+      overall_pair << (average_overall_month.to_f/max_capacity.to_f)
+      monthly_percent_spec << spec_pair
+      monthly_percent_overall << overall_pair
+    end
+    monthly_by_av_v_capacity["key"] = name + " percentage of capacity"
+    monthly_by_av_v_capacity["nonStackable"] = true
+    monthly_by_av_v_capacity["values"] = monthly_percent_spec
 
+    overall_monthly_by_av_v_capacity["key"] = name + " average percentage of capacity"
+    overall_monthly_by_av_v_capacity["nonStackable"] = true
+    overall_monthly_by_av_v_capacity["values"] = monthly_percent_overall
 
+    return [monthly_by_av_v_capacity, overall_monthly_by_av_v_capacity]
+  end
+
+# by_month(1).include(:levels).where('extract(year from date) = ?', 2002)
 
   def daily_by_range(year1, year2)
     if year1 == year2
@@ -134,6 +166,17 @@ class Reservoir < ActiveRecord::Base
     end
   end
 
+  def averages_to_arr
+    months = averages_by_month.keys
+    arrayed = []
+    (1..12).each do |i|
+      pair = []
+      pair << i
+      pair << averages_by_month[months[i - 1]].to_f
+      arrayed << pair
+    end
+    return arrayed
+  end
 
 
 end
