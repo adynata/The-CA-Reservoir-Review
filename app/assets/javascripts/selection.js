@@ -12,6 +12,8 @@ $(document).ready(function(){
   $(".station").on("click", function(e) {
     e.stopImmediatePropagation();
     console.log($(this)[0].__data__.properties.name);
+    console.log($(this)[0].__data__.properties.id);
+
     console.log("first:" + $(this).attr("class"));
     if ($(this).attr("class") === "station") {
       $(this).css("fill", "white");

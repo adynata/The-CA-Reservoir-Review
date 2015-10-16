@@ -32,12 +32,12 @@
   stroke-linejoin: round;
 }
 #sta path {
-  fill: #E74A25;
+  fill: orange;
   stroke: #999;
 }
 #sta path:hover {
   opacity: 1;
-  fill: red;
+  fill: white;
 }
 
 #sta path:active {

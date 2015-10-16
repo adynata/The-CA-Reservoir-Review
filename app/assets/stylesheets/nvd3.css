@@ -511,7 +511,7 @@ svg.nvd3-svg {
     color: rgba(0,0,0,1.0);
     padding: 1px;
     border: 1px solid rgba(0,0,0,.2);
-    z-index: 10000;
+    z-index: 9000;
     display: block;
 
     font-family: Arial;

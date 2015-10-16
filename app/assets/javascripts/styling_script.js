@@ -1,54 +1,27 @@
 $(document).ready(function(){
+//
+// $(".dropdown_hydro dt a").on('click', function(e) {
+//   e.stopImmediatePropagation();
+//
+//   $(".dropdown_hydro dd ul").slideToggle('fast');
+// });
+//
+// $(".dropdown_hydro dd ul li a").on('click', function(e) {
+//   e.stopImmediatePropagation();
+//
+//   $(".dropdown_hydro dd ul").hide();
+// });
+//
+// $(".dropdown_station dt a").on('click', function(e) {
+//   e.stopImmediatePropagation();
+//
+//   $(".dropdown_station dd ul").slideToggle('fast');
+// });
+//
+// $(".dropdown_station dd ul li a").on('click', function(e) {
+//   e.stopImmediatePropagation();
+// });
 
-$(".dropdown_hydro dt a").on('click', function(e) {
-  e.stopImmediatePropagation();
-
-  $(".dropdown_hydro dd ul").slideToggle('fast');
-});
-
-$(".dropdown_hydro dd ul li a").on('click', function(e) {
-  e.stopImmediatePropagation();
-
-  $(".dropdown_hydro dd ul").hide();
-});
-
-$(".dropdown_station dt a").on('click', function(e) {
-  e.stopImmediatePropagation();
-
-  $(".dropdown_station dd ul").slideToggle('fast');
-});
-
-$(".dropdown_station dd ul li a").on('click', function(e) {
-  e.stopImmediatePropagation();
-});
-
-;(function($, window, document, undefined) {
-
-  'use strict';
-
-	var $html = $('html');
-
-  $html.on('click.ui.dropdown tap.ui.dropdown', '.js-dropdown', function(e) {
-    e.preventDefault();
-    $(this).toggleClass('is-open');
-  });
-
-  $html.on('click.ui.dropdown tap.ui.dropdown', '.js-dropdown [data-dropdown-value]', function(e) {
-    e.preventDefault();
-    var $self = $(this);
-    var $dropdown = $self.parents('.js-dropdown');
-    $dropdown.find('.js-dropdown__input').val($self.data('dropdown-value'));
-    $dropdown.find('.js-dropdown__current').text($self.text());
-  });
-
-  $html.on('click.ui.dropdown tap.ui.dropdown', function(e) {
-    var $target = $(e.target);
-    if (!$target.parents().hasClass('js-dropdown')) {
-      $('.js-dropdown').removeClass('is-open');
-    }
-  });
-
-})(jQuery, window, document);
 //
 // obj.dd.on('click', function(event){
 //   $(this).toggleClass('active');
@@ -124,4 +97,4 @@ $(".dropdown_station dd ul li a").on('click', function(e) {
 
 //   }
 // });
-})
+});
