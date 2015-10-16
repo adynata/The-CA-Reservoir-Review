@@ -573,39 +573,39 @@ var sta_json =
                 ]
             }
         },
-        {
-            "type": "Feature",
-            "properties": {
-                "name": "Independence Lake",
-                "id":41,"county":"Sierra"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -120.28986318631864,
-                    39.4518401840184
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "name": "Donner Lake",
-                "id":42,"county":"Nevada"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -120.2502394239424,
-                    39.33310301030103
-                ]
-            }
-        },
+        // {
+        //     "type": "Feature",
+        //     "properties": {
+        //         "name": "Independence Lake",
+        //         "id":41,"county":"Sierra"
+        //     },
+        //     "geometry": {
+        //         "type": "Point",
+        //         "coordinates": [
+        //             -120.28986318631864,
+        //             39.4518401840184
+        //         ]
+        //     }
+        // },
+        // {
+        //     "type": "Feature",
+        //     "properties": {
+        //         "name": "Donner Lake",
+        //         "id":42,"county":"Nevada"
+        //     },
+        //     "geometry": {
+        //         "type": "Point",
+        //         "coordinates": [
+        //             -120.2502394239424,
+        //             39.33310301030103
+        //         ]
+        //     }
+        // },
         {
             "type": "Feature",
             "properties": {
                 "name": "Cachuma Lake",
-                "id":43,"county":"Santa Barbara"
+                "id":41,"county":"Santa Barbara"
             },
             "geometry": {
                 "type": "Point",
@@ -619,7 +619,7 @@ var sta_json =
             "type": "Feature",
             "properties": {
                 "name": "Pyramid",
-                "id":44,"county":"Los Angeles"
+                "id":42,"county":"Los Angeles"
             },
             "geometry": {
                 "type": "Point",
@@ -633,7 +633,7 @@ var sta_json =
             "type": "Feature",
             "properties": {
                 "name": "Castaic",
-                "id":45,"county":"Los Angeles"
+                "id":43,"county":"Los Angeles"
             },
             "geometry": {
                 "type": "Point",
@@ -647,7 +647,7 @@ var sta_json =
             "type": "Feature",
             "properties": {
                 "name": "Perris",
-                "id":46,"county":"Riverside"
+                "id":44,"county":"Riverside"
             },
             "geometry": {
                 "type": "Point",

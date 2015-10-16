@@ -9,28 +9,23 @@ $(document).ready(function(){
   // 	$(this).css("fill", "red");
   //   });
 
-  $(".station").on("click", function(e) {
-    e.stopImmediatePropagation();
-    console.log($(this)[0].__data__.properties.name);
-    console.log($(this)[0].__data__.properties.id);
-
-    console.log("first:" + $(this).attr("class"));
-    if ($(this).attr("class") === "station") {
-      $(this).css("fill", "white");
-      $(this).attr("class", "station clicked_sta");
-      console.log("second:" + $(this).attr("class"));
-      // changeStationClass(this);
-    } else {
-      console.log("third:" + $(this).attr("class"));
-      $(this).attr("class", "station");
-
-      // $(this).attr("class", "station");
-      $(this).css("fill", "red")
-    }
-
-    console.log(document.getElementsByClassName('clicked_sta'));
-
-  });
+  // $(".station").on("click", function(e) {
+  //   e.stopImmediatePropagation();
+  //   console.log($(this)[0].__data__.properties.name);
+  //   console.log($(this)[0].__data__.properties.id);
+  //   var station = $(this)[0].__data__.properties.id;
+  //   if ($(this).attr("class") === "station") {
+  //     $('.clicked_sta').attr("class", "station");
+  //     $('.station').css("fill", "orange");
+  //     $(this).attr("class", "station clicked_sta");
+  //     $(this).css("fill", "lightblue");
+  //   } else {
+  //     $(this).attr("class", "station");
+  //     $(this).css("fill", "orange")
+  //   }
+  //   console.log(document.getElementsByClassName('clicked_sta'));
+  //
+  // });
 
 
   // $('.hydro-reg').on("click", function() {

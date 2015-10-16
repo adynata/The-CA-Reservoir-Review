@@ -94,7 +94,7 @@ $(document).ready(function() {
     // mouseover functions
     .on("mouseover", function(feature) {
       var props = feature.properties;
-      console.log(feature)
+      // console.log(feature)
       div.transition()
         .duration(200)
         .style("opacity", .9);

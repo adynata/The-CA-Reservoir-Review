@@ -10,6 +10,26 @@ $(document).ready(function() {
       $(this).toggleClass('is-open');
     });
 
+    $html.on('click.station', function(e) {
+      e.preventDefault();
+      // console.log($(this).data);
+      var station = e.target;
+      console.log(station.__data__.properties.name);
+      var station_id = station.__data__.properties.id;
+      if ($(station).attr("class") === "station") {
+        $('.clicked_sta').attr("class", "station");
+        $('.station').css("fill", "orange");
+        $(station).attr("class", "station clicked_sta");
+        $(station).css("fill", "lightblue");
+        makeData(chartYear, station_id);
+
+      } else {
+        $(station).attr("class", "station");
+        $(station).css("fill", "orange")
+      }
+      console.log(document.getElementsByClassName('clicked_sta'));
+      });
+
     $html.on('click.ui.dropdown tap.ui.dropdown', '.js-dropdown [data-dropdown-value]', function(e) {
       e.preventDefault();
       var $self = $(this);
@@ -17,7 +37,7 @@ $(document).ready(function() {
       $dropdown.find('.js-dropdown__input').val($self.data('dropdown-value'));
       var year = $self.data('dropdown-value');
       $dropdown.find('.js-dropdown__current').text($self.text());
-      makeData(year);
+      makeData(year, chartStation);
 
     });
 
@@ -34,8 +54,6 @@ $(document).ready(function() {
   });
 
   })(jQuery, window, document);
-
-  // var chartYear = "2014";
 
 
   function makeChart(data) {
@@ -77,9 +95,12 @@ $(document).ready(function() {
     });
   }
   var endpoint, chartData, numCharts;
+  var chartYear = 2014;
+  var chartStation = 8;
 
-  function makeData(chartYear) {
-
+  function makeData(year, station) {
+    chartYear = year;
+    chartStation = station;
     // console.log( typeof chartYear);
     numCharts = 3;
     chartData = [];
@@ -123,7 +144,8 @@ $(document).ready(function() {
 
     return levels;
   }
-  makeData(2014);
-  // makeChart(chartData);
+
+  makeData(2014, 8);
+  makeChart(chartData);
 
 });
