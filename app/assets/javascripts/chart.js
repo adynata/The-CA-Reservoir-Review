@@ -105,8 +105,8 @@ $(document).ready(function() {
     numCharts = 3;
     chartData = [];
 
-    for (var i = 1; i <= numCharts; i++) {
-      endpoint = 'api/reservoirs/daily_by_year/' + i + '/' + chartYear;
+    // for (var i = 1; i <= numCharts; i++) {
+      endpoint = 'api/reservoirs/daily_by_year/' + chartStation + '/' + chartYear;
       // console.log(endpoint);
       d3.json(endpoint, function(error, data) {
 
@@ -117,18 +117,16 @@ $(document).ready(function() {
           key: data.reservoir,
           values: levels
         });
-        console.log(chartData);
+        // console.log(chartData);
       });
 
-      if (i === numCharts) {
+      // if (i === numCharts) {
         setTimeout( function () {
           makeChart(chartData);
           console.log("waiting")}, 1000);
-        console.log("last" );
-        console.log( chartData);
 
-      }
-    };
+      // }
+    // };
 
   }
 
