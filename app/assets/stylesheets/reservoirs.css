@@ -14,7 +14,7 @@ svg {
   /*overflow: hidden;*/
 }
 
-.map-container, .chart-container {
+.map-container {
   position: relative;
   width: auto;
   height: auto;
@@ -32,13 +32,15 @@ svg {
 }
 
 #chart {
-  width: calc(100vw - 500px);
-  height: calc(100vw - 800px);
+  width: 100%;
+  height: auto;
+  /*width: calc(100vw - 500px);
+  height: calc(100vw - 800px);*/
 }
 
 #map, #chart {
   height: calc(100vh - 60px);
-
+  float: left;
   max-height: 600px;
 }
 
@@ -53,7 +55,7 @@ svg {
   margin-right: 5%;
   height: 60%;
   width: 90%;
-  margin-top: 15%;
+  margin-top: 105px;
 }
 
 .title  {
@@ -70,14 +72,17 @@ svg {
   width: 50%;
 }
 
-.chart-container {
+/*.chart-container {
   position: relative;
   height: auto;
-  width: 95%;
-}
+  width: 100%;
+}*/
 
 #chart {
   /*background-color: red;*/
   width: auto;
   height: auto;
 }
+
+
+/* 1100px is about where things start to break */
