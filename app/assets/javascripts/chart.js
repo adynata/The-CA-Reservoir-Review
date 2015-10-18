@@ -104,7 +104,7 @@ $(document).ready(function() {
     chartYear = year;
     chartStation = station;
     // console.log( typeof chartYear);
-    numCharts = 3;
+    // numCharts = 3;
     chartData = [];
 
     // for (var i = 1; i <= numCharts; i++) {
@@ -125,7 +125,7 @@ $(document).ready(function() {
       // if (i === numCharts) {
         setTimeout( function () {
           makeChart(chartData);
-          console.log("waiting")}, 1000);
+          console.log("waiting")}, 2000);
 
       // }
     // };
@@ -146,7 +146,6 @@ $(document).ready(function() {
   }
 
   makeData(2014, 8);
-  makeChart(chartData);
 
 //   nv.addGraph(function() {
 //     var chart = nv.models.multiBarChart()

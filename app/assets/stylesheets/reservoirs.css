@@ -8,7 +8,16 @@ svg {
   display: block;
 }
 
-.map-container, .chart-container {
+#content {
+  width: 100%;
+  height: 100%;
+  /*overflow: hidden;*/
+}
+
+.map-container {
+  position: relative;
+  width: auto;
+  height: auto;
   display: inline-block;
   vertical-align: top;
 }
@@ -23,12 +32,15 @@ svg {
 }
 
 #chart {
-  width: calc(100vw - 500px);
-  height: calc(100vw - 800px);
+  width: 100%;
+  height: auto;
+  /*width: calc(100vw - 500px);
+  height: calc(100vw - 800px);*/
 }
 
 #map, #chart {
   height: calc(100vh - 60px);
+  float: left;
   max-height: 600px;
 }
 
@@ -41,27 +53,36 @@ svg {
   display: block;
   margin-left: 5%;
   margin-right: 5%;
-  height: 70%;
+  height: 60%;
   width: 90%;
-  margin-top: 15%;
+  margin-top: 105px;
 }
 
 .title  {
+  position: relative;
   width: 100%;
   height: 70px;
   line-height: 60px;
   color: #293971;
   display: block;
 }
+
 .dropdown_hydro, .dropdown_station {
   font-size: initial;
   width: 50%;
 }
 
-.chart-container {
-  width: 95%;
-}
+/*.chart-container {
+  position: relative;
+  height: auto;
+  width: 100%;
+}*/
 
 #chart {
   /*background-color: red;*/
+  width: auto;
+  height: auto;
 }
+
+
+/* 1100px is about where things start to break */
