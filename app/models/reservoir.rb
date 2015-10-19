@@ -98,14 +98,15 @@ class Reservoir < ActiveRecord::Base
     monthly_percent_spec = []
     monthly_percent_overall = []
     (0..11).each do |i|
-      spec_pair = []
-      overall_pair = []
-      average_specific_month = monthly_av_year[i][1]
-      average_overall_month = monthly_av_overall[i][1]
-      spec_pair << i + 1
-      overall_pair << i + 1
-      spec_pair << (average_specific_month.to_f/max_capacity.to_f)
-      overall_pair << (average_overall_month.to_f/max_capacity.to_f)
+      date = (i+1).to_s + "-" + year.to_s
+      spec_pair = {}
+      overall_pair = {}
+      average_specific_month = date
+      average_overall_month = date
+      spec_pair["x"] = (i+1).to_s + "-" + year.to_s
+      overall_pair["x"] = (i+1).to_s + "-" + year.to_s
+      spec_pair["y"] = (average_specific_month.to_f/max_capacity.to_f)
+      overall_pair["y"] = (average_overall_month.to_f/max_capacity.to_f)
       monthly_percent_spec << spec_pair
       monthly_percent_overall << overall_pair
     end
