@@ -67,6 +67,10 @@ svg {
   display: block;
 }
 
+text {
+  fill: #293971;
+}
+
 .dropdown_hydro, .dropdown_station {
   font-size: initial;
   width: 50%;
@@ -80,8 +84,8 @@ svg {
 
 #chart {
   /*background-color: red;*/
-  width: auto;
-  height: auto;
+  /*width: auto;
+  height: auto;*/
 }
 
 

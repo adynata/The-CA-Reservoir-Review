@@ -6,7 +6,7 @@
 
 .nvd3 .nv-axis path {
     fill: none;
-    stroke: #000;
+    stroke: #212121;
     stroke-opacity: .75;
     shape-rendering: crispEdges;
 }
@@ -277,6 +277,7 @@ svg.nvd3-svg {
 
 .nvd3 text {
     font: normal 12px Arial;
+    color: navy;
 }
 
 .nvd3 .title {
@@ -508,7 +509,7 @@ svg.nvd3-svg {
 .nvtooltip {
     position: absolute;
     background-color: rgba(255,255,255,1.0);
-    color: rgba(0,0,0,1.0);
+    color: rgba(90, 90, 90, 1);
     padding: 1px;
     border: 1px solid rgba(0,0,0,.2);
     z-index: 9000;
@@ -559,7 +560,7 @@ svg.nvd3-svg {
     line-height: 18px;
     font-weight: normal;
     background-color: rgba(247,247,247,0.75);
-    color: rgba(0,0,0,1.0);
+    color: rgba(95,95,95,1.0);
     text-align: center;
 
     border-bottom: 1px solid #ebebeb;

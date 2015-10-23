@@ -21,7 +21,8 @@ $(document).ready(function() {
         $('.station').css("fill", "orange");
         $(station).attr("class", "station clicked_sta");
         $(station).css("fill", "lightblue");
-        makeData(chartYear, station_id);
+        // makeCumLinData(chartYear, station_id);
+        makeMultiBarChartData(chartYear, station_id);
 
       } else if ($(station).attr("class") === "station clicked_sta") {
         $(station).attr("class", "station");
@@ -39,7 +40,7 @@ $(document).ready(function() {
       $dropdown.find('.js-dropdown__input').val($self.data('dropdown-value'));
       var year = $self.data('dropdown-value');
       $dropdown.find('.js-dropdown__current').text($self.text());
-      makeData(year, chartStation);
+      makeMultiBarChartData(year, chartStation);
 
     });
 
@@ -58,7 +59,7 @@ $(document).ready(function() {
   })(jQuery, window, document);
 
 
-  function makeChart(data) {
+  function makecCumulativeLineChart(data) {
     console.log( data );
 
     nv.addGraph(function() {
@@ -88,26 +89,19 @@ $(document).ready(function() {
 
       nv.utils.windowResize(chart.update);
 
-      // chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
-      // chart.state.dispatch.on('change', function(state){
-      //   nv.log('state', JSON.stringify(state));
-      // });
-
       return chart;
     });
   }
+
   var endpoint, chartData, numCharts;
   var chartYear = 2014;
   var chartStation = 8;
 
-  function makeData(year, station) {
+  function makeCumLinData(year, station) {
     chartYear = year;
     chartStation = station;
-    // console.log( typeof chartYear);
-    // numCharts = 3;
     chartData = [];
 
-    // for (var i = 1; i <= numCharts; i++) {
       endpoint = 'api/reservoirs/daily_by_year/' + chartStation + '/' + chartYear;
       // console.log(endpoint);
       d3.json(endpoint, function(error, data) {
@@ -122,14 +116,26 @@ $(document).ready(function() {
         // console.log(chartData);
       });
 
-      // if (i === numCharts) {
-        setTimeout( function () {
-          makeChart(chartData);
-          console.log("waiting")}, 2000);
+      setTimeout( function () {
+        makeCumulativeLineChart(chartData);
+        console.log("waiting")}, 2000);
 
-      // }
-    // };
+  }
 
+  function makeMultiBarChartData(year, station) {
+    chartYear = year;
+    chartStation = station;
+
+    endpoint = 'http://localhost:3000/api/reservoirs/monthly_av_vs_capacity/' + chartStation + '/' + chartYear;
+    console.log(endpoint);
+    d3.json(endpoint, function(error, data) {
+
+      console.log( data );
+
+    setTimeout( function () {
+      makeMultiBarChart(data);
+      console.log("waiting")}, 2000);
+    });
   }
 
   function formatLevels(data) {
@@ -145,46 +151,51 @@ $(document).ready(function() {
     return levels;
   }
 
-  makeData(2014, 8);
+  function makeMultiBarChart(data) {
+    console.log( data );
+    nv.addGraph({
 
-//   nv.addGraph(function() {
-//     var chart = nv.models.multiBarChart()
-//       // .transitionDuration(350)
-//       .reduceXTicks(true)   //If 'false', every single x-axis tick label will be rendered.
-//       .rotateLabels(0)      //Angle to rotate x-axis labels.
-//       .showControls(true)   //Allow user to switch between 'Grouped' and 'Stacked' mode.
-//       .groupSpacing(0.1)    //Distance between each group of bars.
-//     ;
-//
-//     chart.xAxis
-//         .tickFormat(d3.format(',f'));
-//
-//     chart.yAxis
-//         .tickFormat(d3.format(',.1f'));
-//
-//     d3.select('#chart1 svg')
-//         .datum(exampleData())
-//         .call(chart);
-//
-//     nv.utils.windowResize(chart.update);
-//
-//     return chart;
-// });
-//
-// //Generate some nice data.
-// function exampleData() {
-//   return stream_layers(3,10+Math.random()*100,.1).map(function(data, i) {
-//     return {
-//       key: 'Stream #' + i,
-//       values: data
-//     };
-//   });
-// }
-//
-//
-//
-//
-//
-//
+          generate: function() {
+              var width = ($('#chart').attr('width')),
+                  height = ($('#chart').attr('height'));
+
+                  id = "averagesByMonth"
+
+              var chart = nv.models.multiBarChart()
+                  .width(width)
+                  .height(height)
+                  .stacked(false)
+                  .showControls(false)
+                  .yDomain([0,1]);
+              chart.reduceXTicks(false);
+              chart.color([ '#06939c', '#263344']);
+
+              chart.yAxis
+                  .tickFormat(d3.format('%'));
+
+              chart.dispatch.on('renderEnd', function(){
+                  console.log('Render Complete');
+              });
+              var svg = d3.select('#chart svg').datum(data);
+              console.log('calling chart');
+              svg.transition().duration(0).call(chart);
+              return chart;
+          },
+          callback: function(graph) {
+              nv.utils.windowResize(function() {
+                  var width = ($('#chart').attr('width'));
+                  var height = ($('#chart').attr('height'));
+                  graph.width(width).height(height);
+                  d3.select('#chart svg')
+                      .attr('width', width)
+                      .attr('height', height)
+                      .transition().duration(0)
+                      .call(graph);
+              });
+          }
+      });
+    }
+
+  makeMultiBarChartData(2014, 8);
 
 });

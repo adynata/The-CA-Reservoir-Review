@@ -6,12 +6,11 @@ Rails.application.routes.draw do
   root "reservoirs#index"
 
   # root 'welcome#index'
-  get 'reservoirs/coordinates' => 'reservoirs#coordinates'
+  get 'api/reservoirs/coordinates' => 'reservoirs#coordinates'
 
   # TODO: make api the prefix to all of the routes serving data
 
-  resources :reservoirs
-  resources :levels
+
   get 'api/reservoirs/:id/daily' => 'reservoirs#all_daily'
   get 'api/reservoirs/daily_by_range/:id/:year1/:year2' => 'reservoirs#daily_by_range'
   get 'api/reservoirs/daily_by_year/:id/:year' => 'reservoirs#daily_by_year'

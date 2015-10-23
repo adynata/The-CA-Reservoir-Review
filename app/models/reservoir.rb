@@ -22,6 +22,8 @@
 class Reservoir < ActiveRecord::Base
   has_many :levels
 
+  MONTHS = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ]
+
   def all_daily_levels
     daily_levels = []
     levels.each do |level|
@@ -78,9 +80,8 @@ class Reservoir < ActiveRecord::Base
     monthly_av["year"] = year
     monthly_av["levels"] = []
     (1..12).each do |month|
-      int = month.to_s + "/" + year.to_s
       average = []
-      by_year = levels.by_month(month, field: :date)
+      by_year = levels.by_month(month, year: year, field: :date)
       average << month
       puts by_year.average(:level).to_f
       average << by_year.average(:level).to_f
@@ -98,14 +99,19 @@ class Reservoir < ActiveRecord::Base
     monthly_percent_spec = []
     monthly_percent_overall = []
     (0..11).each do |i|
-      spec_pair = []
-      overall_pair = []
-      average_specific_month = monthly_av_year[i][1]
-      average_overall_month = monthly_av_overall[i][1]
-      spec_pair << i + 1
-      overall_pair << i + 1
-      spec_pair << (average_specific_month.to_f/max_capacity.to_f)
-      overall_pair << (average_overall_month.to_f/max_capacity.to_f)
+      date = (i+1).to_s + "-" + year.to_s
+      spec_pair = {}
+      overall_pair = {}
+      average_specific_month = monthly_av_year[i]
+      average_overall_month = monthly_av_overall[i]
+      spec_pair["label"] = MONTHS[i] + "-" + year
+      overall_pair["label"] = "average for " + MONTHS[i]
+      spec_pair["x"] = MONTHS[i]
+      overall_pair["x"] = MONTHS[i]
+      spec_pair["y"] = (average_specific_month[1].to_f/max_capacity.to_f)
+      p average_specific_month
+      overall_pair["y"] = (average_overall_month[1].to_f/max_capacity.to_f)
+      p average_overall_month
       monthly_percent_spec << spec_pair
       monthly_percent_overall << overall_pair
     end
@@ -168,6 +174,7 @@ class Reservoir < ActiveRecord::Base
 
   def averages_to_arr
     months = averages_by_month.keys
+    puts months
     arrayed = []
     (1..12).each do |i|
       pair = []
