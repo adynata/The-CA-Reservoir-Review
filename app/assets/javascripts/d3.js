@@ -106,7 +106,7 @@ $(document).ready(function() {
     })
     .on("mouseout", function(d) {
       div.transition()
-        // .duration(500)
+        .duration(500)
         .style("opacity", 0.0);
     })
     .on("click", clickedSta);
@@ -116,14 +116,6 @@ $(document).ready(function() {
       .attr("class", "tooltip")
       .style("opacity", 0);
 
-(function volume() {
-    svg.append("g")
-        .attr("class", "bubble")
-      .selectAll("sta")
-      .enter().append("circle")
-        .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
-        .attr("r", function(d) { return radius(10); });
-})();
 
 function clicked(d) {
   if (active.node() === this) return reset();
