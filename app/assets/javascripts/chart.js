@@ -94,7 +94,7 @@ $(document).ready(function() {
   }
 
   var endpoint, chartData, numCharts;
-  var chartYear = 2014;
+  var chartYear = 2015;
   var chartStation = 8;
 
   function makeCumLinData(year, station) {
@@ -196,6 +196,6 @@ $(document).ready(function() {
       });
     }
 
-  makeMultiBarChartData(2014, 8);
+  makeMultiBarChartData(chartYear, chartStation);
 
 });

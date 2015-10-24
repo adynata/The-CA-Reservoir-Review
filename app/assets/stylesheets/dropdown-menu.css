@@ -9,14 +9,6 @@
 }
 
 
-
-#title{
-  font-family: 'Source Sans Pro';
-  font-weight: 700;
-  font-size: 2em;
-  text-align: center;
-}
-
 svg{
   float:left ;
   width: 100%;
@@ -117,6 +109,7 @@ a {
 }
 
 #render, #year-input {
+  font-weight: normal;
   display: inline;
   float: left;
   height: 25px;
@@ -131,6 +124,7 @@ a {
   margin-left: 5%;
 }
 #year-input {
+  margin-top: 75px;
   margin-bottom: 5px;
   width: auto;
   margin-left: 5%
@@ -152,7 +146,7 @@ a {
   top: 125%;
   left: 0;
   width: 100%;
-  height: 300px;
+  height: 350px;
   overflow-y: scroll;
   opacity: 0;
   visibility: hidden;
@@ -229,7 +223,7 @@ a {
           transition: background-color .2s linear;
 }
 .c-button--dropdown:hover {
-  background-color: #5d385b;
+  opacity: .7;
 }
 .c-button--dropdown:after {
   content: "";

@@ -4,11 +4,103 @@
   padding: 0;
 }
 
+body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Source Sans Pro';
+  font-weight: lighter;
+}
+
+.title {
+  position: fixed;
+  backound:#eee;
+  left:0;
+  width:100%;
+  top:0;
+  line-height: 140px;
+  height: 18%;
+  color: #293971;
+  display: block;
+  z-index: 50;
+}
+
+
+header {
+  width: 100%;
+  height: calc(100vh);
+  background-color: #4F6877;
+  color: white;
+  position: relative;
+  float: left;
+  font-family: 'Source Sans Pro';
+  font-size: 1em;
+  font-weight: lighter;
+  padding-top: 12%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.header-nav {
+  width: 100%;
+  height: 5%;
+  text-align: center;
+}
+
+.about-link, .how-to-link, .about-us-link {
+  font-weight: 400;
+  font-size: 1.4em;
+  width: 33%;
+  color: #d1bf71;
+  height: auto;
+  display: inline-block;
+}
+
+.about-link:hover, .how-to-link:hover, .about-us-link:hover {
+  color: #f6d544;
+}
+
+article {
+  margin: 15px;
+  line-height: 20px;
+  font-size: 1.2em;
+}
+
+
+h1 {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  background-color: #b9eadc;
+  font-size: 4em;
+  position: relative;
+  line-height: inherit;
+  /*padding: 40px 0 40px 0;*/
+  float: left;
+}
+
+.about, .how-to, .us {
+  position: relative;
+  width: 80%;
+  height: 80%;
+  /*float: left;*/
+  /*display: block;*/
+  margin-left: auto;
+  margin-right: auto;
+  background-color: red;
+}
+
+.about, .how-to {
+  display: none;
+}
+
+
 svg {
   display: block;
 }
 
 #content {
+  position: relative;
+  float: left;
   width: 100%;
   height: 100%;
   /*overflow: hidden;*/
@@ -58,34 +150,23 @@ svg {
   margin-top: 105px;
 }
 
-.title  {
-  position: relative;
-  width: 100%;
-  height: 70px;
-  line-height: 60px;
-  color: #293971;
-  display: block;
-}
 
 text {
   fill: #293971;
 }
 
-.dropdown_hydro, .dropdown_station {
-  font-size: initial;
-  width: 50%;
-}
-
-/*.chart-container {
-  position: relative;
-  height: auto;
-  width: 100%;
-}*/
-
 #chart {
   /*background-color: red;*/
   /*width: auto;
   height: auto;*/
+}
+
+.footer {
+  position: relative;
+  height: 60px;
+  width: 100%;
+  background-color: #4F6877;
+  float: left;
 }
 
 

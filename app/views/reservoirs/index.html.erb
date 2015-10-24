@@ -1,188 +1,39 @@
 <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700' rel='stylesheet' type='text/css'>
 
+<div class="title"><h1>THE CALIFORNIA RESERVOIR REVIEW</h1></div>
 
-
-<!-- <div id="dropdown">
-=======
-<div class="map-container">
-  <div id="dropdown">
-    <dl class="dropdown_hydro">
-      <dt>
-        <a href="#"><span class="hide">Hydrologic Region</span></a>
-      </dt>
-      <dd>
-        <div class="mutliSelect_hydro">
-          <ul>
-            <% @regions.each do |region| %>
-            <li><input type="checkbox" value="<%= region %>"><%= region %></li>
-            <% end %>
-          </ul>
-        </div>
-      </dd>
-    </dl>
-
-    <dl class="dropdown_station">
-      <dt>
-        <a href="#"><span class="hide">Water Stations</span></a>
-      </dt>
-      <dd>
-        <div class="mutliSelect_station">
-          <ul>
-            <% @stations.each do |station| %>
-            <li><input type="checkbox" value="<%= station %>"><%= station %></li>
-            <% end %>
-          </ul>
-        </div>
-      </dd>
-    </dl>
+<header>
+  <div class="header-nav">
+    <div class="about-link">
+      About The Reservoir Review
+    </div>
+    <div class="how-to-link">
+      How to use this map
+    </div>
+    <div class="about-us-link">
+      Credits
+    </div>
+  </div>
+  <div class="us"><article>Created by Claire Woods for Hackbright's Front End Development course in Fall of 2015, with contributions from Karly Bryerman and Paula Chiu, The California Reservoir Review was built with Ruby/Rails, D3, NVD3, CSS, JavaScript, JQuery, public data, and a more than standard quantity of coffee.
+  <br>
+  Here's a link to our repo if you'd like to inspect our work: https://github.com/adynata/The-CA-Reservoir-Review
+  <br>
+  <div class="about"><article>Water in California is a deep and complicated domain. This map was created as a way to make one element of the California drought a little less opaque - our state's major reservoirs. There are over 1,300 named reservoirs in the state. The stations depicted here are only those that there are publically available daily levels for, representing 27,292,765 acre feet of possible reservoir capacity, or more than 13.4 million olympic swimming pools, or 8.07 cubic miles of water, of 22.4% of Lake Tahoe.  </article></div>
+  <div class="how-to"><article>Shown is information sourced from the California Data Exchange Center, reporting reservoir level information that in many cases goes back to 1990. The graph can be scoped by <a href="#">individual station</a>, <a href="#">hydrologic region</a>, or by <a href="#">all mapped stations</a>. California's current drought has been ongoing since 2012, and is the most severe drought in the state in recorded history. Previous major drought events in the state in the last 30 years include a drought that lasted from 1987 to 1992 and a drought that lasted from 2007 to 2009.</article>
   </div>
 
-<<<<<<< HEAD
-  <dd>
-    <div class="mutliSelect_hydro">
-      <ul>
-        <li>
-          <input type="checkbox" value="Central Coast" />Central Coast</li>
-        <li>
-          <input type="checkbox" value="Colorado River" />Colorado River</li>
-        <li>
-          <input type="checkbox" value="North Coast" />North Coast</li>
-        <li>
-          <input type="checkbox" value="North Lahontan" />North Lahontan</li>
-        <li>
-          <input type="checkbox" value="Sacramento River" />Sacramento River</li>
-        <li>
-          <input type="checkbox" value="San Francisco Bay" />San Francisco Bay</li>
-        <li>
-          <input type="checkbox" value="San Joaquin River" />San Joaquin River</li>
-        <li>
-          <input type="checkbox" value="South Coast" />South Coast</li>
-        <li>
-          <input type="checkbox" value="South Lahontan" />South Lahontan</li>
-        <li>
-          <input type="checkbox" value="Tulare Lake" />Tulare Lake</li>
-      </ul>
-    </div>
-  </dd>
-</dl>
 
-<dl class="dropdown_station">
-  <dt>
-    <a href="#">
-      <span class="hide">Water Stations</span>
-    </a>
-    </dt>
-
-  <dd>
-    <div class="mutliSelect_station">
-      <ul>
-        <li>
-          <input type="checkbox" value="Trinity Lake" />Trinity Lake</li>
-        <li>
-          <input type="checkbox" value="Whiskeytown Dam" />Whiskeytown Dam</li>
-        <li>
-          <input type="checkbox" value="Lewiston" />Lewiston</li>
-        <li>
-          <input type="checkbox" value="Warm Springs" />Warm Springs</li>
-        <li>
-          <input type="checkbox" value="Coyote" />Coyote</li>
-        <li>
-          <input type="checkbox" value="Shasta Dam" />Shasta Dam</li>
-        <li>
-          <input type="checkbox" value="Keswick Reservoir" />Keswick Reservoir</li>
-        <li>
-          <input type="checkbox" value="Oroville Dam" />Oroville Dam</li>
-        <li>
-          <input type="checkbox" value="Antelope Lake" />Antelope Lake</li>
-        <li>
-          <input type="checkbox" value="Frenchman Dam" />Frenchman Dam</li>
-        <li>
-          <input type="checkbox" value="Lake Davis" />Lake Davis</li>
-        <li>
-          <input type="checkbox" value="New Bullards Bar" />New Bullards Bar</li>
-        <li>
-          <input type="checkbox" value="Englebright" />Englebright</li>
-        <li>
-          <input type="checkbox" value="Folsom Lake" />Folsom Lake</li>
-        <li>
-          <input type="checkbox" value="Union Valley" />Union Valley</li>
-        <li>
-          <input type="checkbox" value="Loon Lake" />Loon Lake</li>
-        <li>
-          <input type="checkbox" value="Ice House" />Ice House</li>
-        <li>
-          <input type="checkbox" value="Lake Natoma" />Lake Natoma</li>
-        <li>
-          <input type="checkbox" value="Indian Valley" />Indian Valley</li>
-        <li>
-          <input type="checkbox" value="Black Butte" />Black Butte</li>
-        <li>
-          <input type="checkbox" value="New Hogan Lake" />New Hogan Lake</li>
-        <li>
-          <input type="checkbox" value="Camanche Reservoir" />Camanche Reservoir</li>
-        <li>
-          <input type="checkbox" value="Pardee" />Pardee</li>
-        <li>
-          <input type="checkbox" value="Donnells" />Donnells</li>
-        <li>
-          <input type="checkbox" value="Beardsley Lake" />Beardsley Lake</li>
-        <li>
-          <input type="checkbox" value="Tulloch" />Tulloch</li>
-        <li>
-          <input type="checkbox" value="New Melones" />New Melones</li>
-        <li>
-          <input type="checkbox" value="Don Pedro Reservoir" />Don Pedro Reservoir</li>
-        <li>
-          <input type="checkbox" value="Hetch Hetchy" />Hetch Hetchy</li>
-        <li>
-          <input type="checkbox" value="Cherry Valley Dam" />Cherry Valley Dam</li>
-        <li>
-          <input type="checkbox" value="New Exchequer-lk Mcclure" />New Exchequer-lk Mcclure</li>
-        <li>
-          <input type="checkbox" value="Buchanan Dam" />Buchanan Dam</li>
-        <li>
-          <input type="checkbox" value="Hidden Dam" />Hidden Dam</li>
-        <li>
-          <input type="checkbox" value="Friant Dam" />Friant Dam</li>
-        <li>
-          <input type="checkbox" value="San Luis Reservoir" />San Luis Reservoir</li>
-        <li>
-          <input type="checkbox" value="Pine Flat Dam" />Pine Flat Dam</li>
-        <li>
-          <input type="checkbox" value="Terminus Dam" />Terminus Dam</li>
-        <li>
-          <input type="checkbox" value="Success Dam" />Success Dam</li>
-        <li>
-          <input type="checkbox" value="Isabella Dam" />Isabella Dam</li>
-        <li>
-          <input type="checkbox" value="Stampede" />Stampede</li>
-        <li>
-          <input type="checkbox" value="Independence Lake" />Independence Lake</li>
-        <li>
-          <input type="checkbox" value="Donner Lake" />Donner Lake</li>
-        <li>
-          <input type="checkbox" value="Cachuma Lake" />Cachuma Lake</li>
-        <li>
-          <input type="checkbox" value="Pyramid" />Pyramid</li>
-        <li>
-          <input type="checkbox" value="Castaic" />Castaic</li>
-        <li>
-          <input type="checkbox" value="Perris" />Perris</li>
-      </ul>
-    </div>
-  </dd>
-</dl>
-</div> -->
+</header>
 <div id="content">
   <div id="map"></div>
   <div id="chart-view">
-      <div class="title"><p id="title">RESERVOIR REVIEW</p></div>
       <div id="input-cont">
         <div id="year-input">
           <div class="c-dropdown js-dropdown">
               <input type="hidden" name="Year" id="year_to_render" class="js-dropdown__input">
-              <span class="c-button c-button--dropdown js-dropdown__current">2014</span>
+              <span class="c-button c-button--dropdown js-dropdown__current">2015</span>
               <ul class="c-dropdown__list">
+                <li class="c-dropdown__item" data-dropdown-value="2015">2015</li>
                 <li class="c-dropdown__item" data-dropdown-value="2014">2014</li>
                 <li class="c-dropdown__item" data-dropdown-value="2013">2013</li>
                 <li class="c-dropdown__item" data-dropdown-value="2012">2012</li>
@@ -217,6 +68,6 @@
           <svg></svg>
         </div>
       </div>
-    </div>
   </div>
 </div>
+<div class="footer"></div>

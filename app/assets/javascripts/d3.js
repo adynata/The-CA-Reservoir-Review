@@ -16,7 +16,9 @@ $(document).ready(function() {
   svg.append("rect")
       .attr("class", "background")
       .on("click", reset);
-
+  var radius = d3.scale.sqrt()
+    .domain([0, 1e6])
+    .range([0, 15]);
 
   // counties
   var co = svg.append("g").attr("id", "county");
@@ -98,7 +100,7 @@ $(document).ready(function() {
       div.transition()
         .duration(200)
         .style("opacity", .9);
-      div.html('Name: ' + props.name, 'County: ' + props.county)
+      div.html('Reservoir: ' + props.name, 'County: ' + props.county)
         .style("left", (d3.event.pageX) + 10 + "px")
         .style("top", (d3.event.pageY - 30) + "px");
     })
@@ -114,13 +116,14 @@ $(document).ready(function() {
       .attr("class", "tooltip")
       .style("opacity", 0);
 
-  // var zoom = d3.behavior.zoom()
-  //     .translate([0, 0])
-  //     .scale(1)
-  //     .scaleExtent([1, 8])
-  //     .on("zoom", zoomed);
-
-
+(function volume() {
+    svg.append("g")
+        .attr("class", "bubble")
+      .selectAll("sta")
+      .enter().append("circle")
+        .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
+        .attr("r", function(d) { return radius(10); });
+})();
 
 function clicked(d) {
   if (active.node() === this) return reset();
