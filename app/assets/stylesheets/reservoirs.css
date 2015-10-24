@@ -76,6 +76,7 @@ h1 {
   line-height: inherit;
   /*padding: 40px 0 40px 0;*/
   float: left;
+  border-bottom: 8px solid #4F6877;
 }
 
 .about, .how-to, .us {
@@ -102,7 +103,7 @@ svg {
   position: relative;
   float: left;
   width: 100%;
-  height: 100%;
+  height: calc(100vw - 880px);
   /*overflow: hidden;*/
 }
 
@@ -112,6 +113,35 @@ svg {
   height: auto;
   display: inline-block;
   vertical-align: top;
+}
+
+#map-selection {
+  position: relative;
+  display: block;
+  height: 40px;
+  width: 399px;
+  background-color: red;
+  z-index: 9;
+}
+
+#map-selection ul {
+  display: block;
+  width: 100%;
+}
+
+#map-selection ul li {
+  display: inline-block;
+  float: left;
+  width: 33.3%;
+  line-height: 40px;
+  background-color: powderblue;
+  color: #293971;
+  font-weight: normal;
+  text-align: center;
+}
+
+#map-selection ul li:hover {
+  opacity: .5;
 }
 
 #dropdown {

@@ -32,17 +32,18 @@
   stroke-linejoin: round;
 }
 #sta path {
-  fill: orange;
-  stroke: #999;
+  fill: #fed352;
+  stroke: #293971;
 }
 #sta path:hover {
   opacity: 1;
   fill: white;
 }
 
-#sta path:active {
-  height: 3px;
+.station path:hover {
+  fill: red;
 }
+
 
 .tooltip {
   position: absolute;
@@ -50,8 +51,8 @@
   padding: 10px;
   font: 12px sans-serif;
   color: white;
-  background: black;
+  background: #293971;
   border: 0px;
-  border-radius: 8px;
+  border-radius: 3px;
   pointer-events: none;
 }
