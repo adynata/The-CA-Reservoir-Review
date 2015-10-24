@@ -4,13 +4,106 @@
   padding: 0;
 }
 
+body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Source Sans Pro';
+  font-weight: lighter;
+}
+
+.title {
+  position: fixed;
+  backound:#eee;
+  left:0;
+  width:100%;
+  top:0;
+  line-height: 140px;
+  height: 18%;
+  color: #293971;
+  display: block;
+  z-index: 50;
+}
+
+
+header {
+  width: 100%;
+  height: 800px;
+  background-color: #4F6877;
+  color: white;
+  position: relative;
+  float: left;
+  font-family: 'Source Sans Pro';
+  font-size: 1em;
+  font-weight: lighter;
+  padding-top: 12%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.header-nav {
+  width: 100%;
+  height: 5%;
+  text-align: center;
+}
+
+.about-link, .how-to-link, .about-us-link {
+  font-weight: 400;
+  font-size: 1.4em;
+  width: 33%;
+  color: #d1bf71;
+  height: auto;
+  display: inline-block;
+}
+
+.about-link:hover, .how-to-link:hover, .about-us-link:hover {
+  color: #f6d544;
+}
+
+article {
+  margin: 15px;
+  line-height: 20px;
+  font-size: 1.2em;
+}
+
+
+h1 {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  background-color: #b9eadc;
+  font-size: 4em;
+  position: relative;
+  line-height: inherit;
+  /*padding: 40px 0 40px 0;*/
+  float: left;
+  border-bottom: 8px solid #4F6877;
+}
+
+.about, .how-to, .us {
+  position: relative;
+  width: 80%;
+  height: 80%;
+  /*float: left;*/
+  /*display: block;*/
+  margin-left: auto;
+  margin-right: auto;
+  background-color: red;
+}
+
+.about, .how-to {
+  display: none;
+}
+
+
 svg {
   display: block;
 }
 
 #content {
+  position: relative;
+  float: left;
   width: 100%;
-  height: 100%;
+  height: calc(100vw - 880px);
   /*overflow: hidden;*/
 }
 
@@ -20,6 +113,35 @@ svg {
   height: auto;
   display: inline-block;
   vertical-align: top;
+}
+
+#map-selection {
+  position: relative;
+  display: block;
+  height: 40px;
+  width: 399px;
+  background-color: red;
+  z-index: 9;
+}
+
+#map-selection ul {
+  display: block;
+  width: 100%;
+}
+
+#map-selection ul li {
+  display: inline-block;
+  float: left;
+  width: 33.3%;
+  line-height: 40px;
+  background-color: powderblue;
+  color: #293971;
+  font-weight: normal;
+  text-align: center;
+}
+
+#map-selection ul li:hover {
+  opacity: .5;
 }
 
 #dropdown {
@@ -58,34 +180,23 @@ svg {
   margin-top: 105px;
 }
 
-.title  {
-  position: relative;
-  width: 100%;
-  height: 70px;
-  line-height: 60px;
-  color: #293971;
-  display: block;
-}
 
 text {
   fill: #293971;
 }
 
-.dropdown_hydro, .dropdown_station {
-  font-size: initial;
-  width: 50%;
-}
-
-/*.chart-container {
-  position: relative;
-  height: auto;
-  width: 100%;
-}*/
-
 #chart {
   /*background-color: red;*/
   /*width: auto;
   height: auto;*/
+}
+
+.footer {
+  position: relative;
+  height: 60px;
+  width: 100%;
+  background-color: #4F6877;
+  float: left;
 }
 
 

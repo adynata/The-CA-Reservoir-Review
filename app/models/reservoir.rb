@@ -94,38 +94,44 @@ class Reservoir < ActiveRecord::Base
   def monthly_percent_by_year(year)
     monthly_av_year = monthly_by_year(year)["levels"]
     monthly_av_overall = averages_to_arr
-    monthly_by_av_v_capacity = {}
-    overall_monthly_by_av_v_capacity = {}
-    monthly_percent_spec = []
-    monthly_percent_overall = []
-    (0..11).each do |i|
-      date = (i+1).to_s + "-" + year.to_s
-      spec_pair = {}
-      overall_pair = {}
-      average_specific_month = monthly_av_year[i]
-      average_overall_month = monthly_av_overall[i]
-      spec_pair["label"] = MONTHS[i] + "-" + year
-      overall_pair["label"] = "average for " + MONTHS[i]
-      spec_pair["x"] = MONTHS[i]
-      overall_pair["x"] = MONTHS[i]
-      spec_pair["y"] = (average_specific_month[1].to_f/max_capacity.to_f)
-      p average_specific_month
-      overall_pair["y"] = (average_overall_month[1].to_f/max_capacity.to_f)
-      p average_overall_month
-      monthly_percent_spec << spec_pair
-      monthly_percent_overall << overall_pair
-    end
-    monthly_by_av_v_capacity["key"] = name + " percentage of capacity"
-    monthly_by_av_v_capacity["nonStackable"] = true
-    monthly_by_av_v_capacity["values"] = monthly_percent_spec
-
-    overall_monthly_by_av_v_capacity["key"] = name + " average percentage of capacity"
-    overall_monthly_by_av_v_capacity["nonStackable"] = true
-    overall_monthly_by_av_v_capacity["values"] = monthly_percent_overall
+    monthly_by_av_v_capacity = make_stacked_chart_obj_spec(monthly_av_year, year)
+    overall_monthly_by_av_v_capacity = make_stacked_chart_obj_gen(monthly_av_overall)
 
     return [monthly_by_av_v_capacity, overall_monthly_by_av_v_capacity]
   end
 
+  def make_stacked_chart_obj_spec(levels, year)
+    monthly_by_av_v_capacity = {}
+    monthly_percent_spec = []
+    (0..11).each do |i|
+      spec_pair = {}
+      average_specific_month = levels[i]
+      spec_pair["x"] = MONTHS[i]
+      spec_pair["y"] = (average_specific_month[1].to_f/max_capacity.to_f)
+      monthly_percent_spec << spec_pair
+    end
+    monthly_by_av_v_capacity["key"] = name + " % of capacity, " + year.to_s
+    monthly_by_av_v_capacity["nonStackable"] = true
+    monthly_by_av_v_capacity["values"] = monthly_percent_spec
+    monthly_by_av_v_capacity
+  end
+
+  def make_stacked_chart_obj_gen(levels)
+    overall_monthly = {}
+    monthly_percent_overall = []
+    (0..11).each do |i|
+      overall_pair = {}
+      average_overall_month = levels[i]
+      overall_pair["label"] = "average for " + MONTHS[i]
+      overall_pair["x"] = MONTHS[i]
+      overall_pair["y"] = (average_overall_month[1].to_f/max_capacity.to_f)
+      monthly_percent_overall << overall_pair
+    end
+    overall_monthly["key"] = name + " average % of capacity"
+    overall_monthly["nonStackable"] = true
+    overall_monthly["values"] = monthly_percent_overall
+    overall_monthly
+  end
 # by_month(1).include(:levels).where('extract(year from date) = ?', 2002)
 
   def daily_by_range(year1, year2)

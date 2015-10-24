@@ -94,17 +94,18 @@ $(document).ready(function() {
     // mouseover functions
     .on("mouseover", function(feature) {
       var props = feature.properties;
+
       // console.log(feature)
       div.transition()
         .duration(200)
-        .style("opacity", .9);
-      div.html('Name: ' + props.name, 'County: ' + props.county)
-        .style("left", (d3.event.pageX) + 10 + "px")
-        .style("top", (d3.event.pageY - 30) + "px");
+        .style("opacity", .95);
+      div.html('Reservoir: ' + props.name, 'County: ' + props.county)
+        .style("left", (d3.event.pageX) + 16 + "px")
+        .style("top", (d3.event.pageY - 845) + "px");
     })
     .on("mouseout", function(d) {
       div.transition()
-        // .duration(500)
+        .duration(500)
         .style("opacity", 0.0);
     })
     .on("click", clickedSta);
@@ -113,13 +114,6 @@ $(document).ready(function() {
     var div = d3.select("#map").append("div")
       .attr("class", "tooltip")
       .style("opacity", 0);
-
-  // var zoom = d3.behavior.zoom()
-  //     .translate([0, 0])
-  //     .scale(1)
-  //     .scaleExtent([1, 8])
-  //     .on("zoom", zoomed);
-
 
 
 function clicked(d) {

@@ -102,7 +102,7 @@ end
 # start_date = Date.parse(1/1/1990)
 #
 
-number_of_days = "5000"
+number_of_days = "10000"
 
 @station_ids_limited_data = ["BRD", "DON", "CHV"]
 
@@ -115,7 +115,7 @@ number_of_days = "5000"
 
 
 @station_ids_limited_data.each do |station|
-  @doc = Nokogiri::HTML(open("http://cdec.water.ca.gov/cgi-progs/queryDaily?" + station + "&d=13-Oct-2015+11:19&span=" + number_of_days + "days"))
+  @doc = Nokogiri::HTML(open("http://cdec.water.ca.gov/cgi-progs/queryDaily?" + station + "&d=20-Oct-2015+11:19&span=" + number_of_days + "days"))
 
   levels_arr = []
   @doc.css('tr').each do |row|

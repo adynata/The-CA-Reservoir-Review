@@ -33,6 +33,21 @@ $(document).ready(function() {
       console.log(document.getElementsByClassName('clicked_sta'));
       });
 
+    $html.on('mouseover.station', function(e) {
+      var station = e.target;
+      if ($(station).attr("class") === "station") {
+        $(station).css("fill", "white");
+      }
+    });
+
+    $html.on('mouseout.station', function(e) {
+      var station = e.target;
+      if ($(station).attr("class") === "station") {
+        $(station).css("fill", "orange");
+      }
+    });
+
+
     $html.on('click.ui.dropdown tap.ui.dropdown', '.js-dropdown [data-dropdown-value]', function(e) {
       e.preventDefault();
       var $self = $(this);
@@ -94,7 +109,7 @@ $(document).ready(function() {
   }
 
   var endpoint, chartData, numCharts;
-  var chartYear = 2014;
+  var chartYear = 2015;
   var chartStation = 8;
 
   function makeCumLinData(year, station) {
@@ -166,6 +181,7 @@ $(document).ready(function() {
                   .height(height)
                   .stacked(false)
                   .showControls(false)
+                  .showValues(true)
                   .yDomain([0,1]);
               chart.reduceXTicks(false);
               chart.color([ '#06939c', '#263344']);
@@ -196,6 +212,6 @@ $(document).ready(function() {
       });
     }
 
-  makeMultiBarChartData(2014, 8);
+  makeMultiBarChartData(chartYear, chartStation);
 
 });
