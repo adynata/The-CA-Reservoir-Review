@@ -27,7 +27,7 @@ body {
 
 header {
   width: 100%;
-  height: calc(100vh);
+  height: 800px;
   background-color: #4F6877;
   color: white;
   position: relative;

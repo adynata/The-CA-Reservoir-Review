@@ -101,8 +101,8 @@ $(document).ready(function() {
         .duration(200)
         .style("opacity", .9);
       div.html('Reservoir: ' + props.name, 'County: ' + props.county)
-        .style("left", (d3.event.pageX) + 10 + "px")
-        .style("top", (d3.event.pageY - 30) + "px");
+        .style("left", (d3.event.pageX) + 16 + "px")
+        .style("top", (d3.event.pageY - 845) + "px");
     })
     .on("mouseout", function(d) {
       div.transition()
