@@ -58,5 +58,52 @@ $(document).ready(function(){
 
 
   // }));
+  $('.close-button').on("click", function() {
+    $('.how-to').removeClass('slidedown');
+    $('.how-to').addClass('slideup');
+  });
+
+  $('.how-to-link').on("click", function() {
+    $('.how-to').removeClass('slideup');
+    $('.how-to').addClass('slidedown');
+  });
+
+  $('.about-us-link').on("click", function() {
+    $('.about-us-link').css("color", "white");
+    $('.about-link').css("color", "#d1bf71");
+    $('.about').css("display", "none");
+    $('.us').css("display", "block");
+  });
+
+  $('.about-link').on("click", function() {
+    $('.about-link').css("color", "white");
+    $('.about-us-link').css("color", "#d1bf71");
+    $('.us').css("display", "none");
+    $('.about').css("display", "block");
+  });
+
+  $('.ss').addClass('mapclick').css('background-color', '#d1bf71');
+
+  $('.ss').on("click", function(){
+    $('li').removeClass('mapclick');
+    $('li').css('background-color', 'powderblue');
+    $('.ss').addClass('mapclick');
+    $('.ss').css('background-color', '#d1bf71');
+  });
+
+  $('.hr').on("click", function(){
+    $('li').removeClass('mapclick');
+    $('li').css('background-color', 'powderblue');
+    $('.hr').addClass('mapclick');
+    $('.hr').css('background-color', '#d1bf71');
+
+  });
+
+  $('.all').on("click", function(){
+    $('li').removeClass('mapclick');
+    $('li').css('background-color', 'powderblue');
+    $('.all').addClass('mapclick');
+    $('.all').css('background-color', '#d1bf71');
+  });
 
 });

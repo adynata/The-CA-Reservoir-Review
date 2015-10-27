@@ -7,7 +7,7 @@ $(document).ready(function() {
       active = d3.select(null);
   var projection = d3.geo.albers()
       .scale(3000)
-      .translate([width / 2.5, height / 2.5])
+      .translate([width / 1.8, height / 2.5])
       .parallels([34, 40.5])
       .rotate([120,0]);
   var path = d3.geo.path()
@@ -101,7 +101,7 @@ $(document).ready(function() {
         .style("opacity", .95);
       div.html('Reservoir: ' + props.name, 'County: ' + props.county)
         .style("left", (d3.event.pageX) + 16 + "px")
-        .style("top", (d3.event.pageY - 845) + "px");
+        .style("top", (d3.event.pageY - 190) + "px");
     })
     .on("mouseout", function(d) {
       div.transition()

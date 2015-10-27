@@ -1,6 +1,7 @@
 .background {
   fill: #85C4D3;
   pointer-events: all;
+
 }
 .feature {
   fill: #ccc;
@@ -45,12 +46,15 @@
 }
 
 
+
+
 .tooltip {
   position: absolute;
   text-align: left;
   padding: 10px;
-  font: 12px sans-serif;
+  font: 16px sans-serif;
   color: white;
+  font-weight: 300;
   background: #293971;
   border: 0px;
   border-radius: 3px;

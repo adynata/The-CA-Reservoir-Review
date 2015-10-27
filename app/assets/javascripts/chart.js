@@ -181,7 +181,6 @@ $(document).ready(function() {
                   .height(height)
                   .stacked(false)
                   .showControls(false)
-                  .showValues(true)
                   .yDomain([0,1]);
               chart.reduceXTicks(false);
               chart.color([ '#06939c', '#263344']);
