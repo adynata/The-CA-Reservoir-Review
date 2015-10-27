@@ -141,7 +141,7 @@ $(document).ready(function() {
     chartYear = year;
     chartStation = station;
 
-    endpoint = '/api/reservoirs/monthly_av_vs_capacity/' + chartStation + '/' + chartYear;
+    endpoint = 'https://the-ca-reservoir-review.herokuapp.com/api/reservoirs/monthly_av_vs_capacity/' + chartStation + '/' + chartYear;
     console.log(endpoint);
     d3.json(endpoint, function(error, data) {
 
