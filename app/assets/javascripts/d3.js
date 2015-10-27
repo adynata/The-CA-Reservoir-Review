@@ -7,7 +7,7 @@ $(document).ready(function() {
       active = d3.select(null);
   var projection = d3.geo.albers()
       .scale(3000)
-      .translate([width / 1.8, height / 2.5])
+      .translate([width / 1.8, height / 2.7])
       .parallels([34, 40.5])
       .rotate([120,0]);
   var path = d3.geo.path()
