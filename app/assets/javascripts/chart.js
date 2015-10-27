@@ -117,7 +117,7 @@ $(document).ready(function() {
     chartStation = station;
     chartData = [];
 
-      endpoint = 'api/reservoirs/daily_by_year/' + chartStation + '/' + chartYear;
+      endpoint = 'https://the-ca-reservoir-review.herokuapp.com/api/reservoirs/daily_by_year/' + chartStation + '/' + chartYear;
       // console.log(endpoint);
       d3.json(endpoint, function(error, data) {
 
@@ -141,7 +141,7 @@ $(document).ready(function() {
     chartYear = year;
     chartStation = station;
 
-    endpoint = 'http://localhost:3000/api/reservoirs/monthly_av_vs_capacity/' + chartStation + '/' + chartYear;
+    endpoint = 'https://the-ca-reservoir-review.herokuapp.com/api/reservoirs/monthly_av_vs_capacity/' + chartStation + '/' + chartYear;
     console.log(endpoint);
     d3.json(endpoint, function(error, data) {
 

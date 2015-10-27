@@ -60,7 +60,7 @@ a {
   font-size: 12px;
 }
 
-.dropdown_hydro dt a, .dropdown_station dt a {
+/*.dropdown_hydro dt a, .dropdown_station dt a {
   background-color: #4F6877;
   display: block;
   padding: 20px 15px 5px 15px;
@@ -70,7 +70,7 @@ a {
   border: 0;
   width: 250px;
   text-align: center;
-}
+}*/
 
 .dropdown_hydro dt a span, .dropdown_station dt a span{
   cursor: pointer;
@@ -223,7 +223,6 @@ a {
   z-index: 10000;
   font-size: 14px;
   line-height: 20px;
-  /*min-height: 32px;*/
   border-radius: 2px;
   -webkit-transition: background-color .2s linear;
           transition: background-color .2s linear;
