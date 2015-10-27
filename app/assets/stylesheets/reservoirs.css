@@ -1,3 +1,19 @@
+html, body, header, nav, h1, a,
+ul, li, strong, main, button, i,
+section, img, div, h2, p, form,
+fieldset, label, input, textarea,
+span, article, footer, time, small {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: inherit;
+  font: inherit;
+  text-decoration: inherit;
+  color: inherit;
+  background: transparent;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -9,62 +25,173 @@ body {
   height: 100%;
   font-family: 'Source Sans Pro';
   font-weight: lighter;
+  background-color: black;
 }
 
 .title {
-  position: fixed;
-  backound:#eee;
+  position: relative;
+  background-color: #eee;
   left:0;
   width:100%;
   top:0;
   line-height: 140px;
-  height: 18%;
+  height: 140px;
   color: #293971;
   display: block;
-  z-index: 50;
+  font-family: 'Source Sans Pro';
+  font-weight: bold;
+  z-index: 90;
 }
 
 
-header {
+
+.after-map {
   width: 100%;
-  height: 800px;
+  height: auto ;
   background-color: #4F6877;
   color: white;
   position: relative;
   float: left;
   font-family: 'Source Sans Pro';
-  font-size: 1em;
+  font-size: 1.1em;
   font-weight: lighter;
-  padding-top: 12%;
   overflow-x: hidden;
   overflow-y: hidden;
 }
 
-.header-nav {
+.about-nav {
   width: 100%;
   height: 5%;
   text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 4px solid #d1bf71;
 }
 
-.about-link, .how-to-link, .about-us-link {
+.about-link, .about-us-link {
   font-weight: 400;
-  font-size: 1.4em;
-  width: 33%;
+  font-size: 1.7em;
+  width: 40%;
   color: #d1bf71;
   height: auto;
+  line-height: 1.6em;
   display: inline-block;
+  margin-top: 15px;
+  text-align: center;
 }
 
 .about-link:hover, .how-to-link:hover, .about-us-link:hover {
   color: #f6d544;
 }
 
-article {
-  margin: 15px;
-  line-height: 20px;
-  font-size: 1.2em;
+.how-to-bar {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  background-color: #4F6877;
+  z-index: 90;
 }
 
+.how-to-link {
+  font-weight: 400;
+  font-size: 1.4em;
+  color: #d1bf71;
+  height: auto;
+  line-height: 1.6em;
+  display: inline-block;
+  text-align: center;
+  float: right;
+  width: auto;
+  margin-right: 3%;
+  background-color: #4F6877;
+  z-index: 90;
+
+}
+
+.how-to {
+  position: absolute;
+  width: 40%;
+  height: auto;
+  background-color: transparent;
+  display: block;
+  z-index: 30;
+  right: 0;
+  float: right;
+  -webkit-transition: 1s ease-in;
+  -moz-transition: 1s ease-in;
+  -o-transition: 1s ease-in;
+  transition: 1s ease-in;
+}
+
+
+
+article {
+  /*margin: 24px;*/
+  line-height: 29px;
+  font-size: 1.4em;
+}
+
+.how-to-article article {
+  float: left;
+  background-color: #293971;
+  opacity: .95;
+  color: #f6d544;
+  padding: 4% 6%;
+  margin: 0;
+}
+
+.how-to-article a {
+  font-weight: 400;
+}
+
+.how-to-article a:hover {
+  color: white;
+}
+
+.how-to-article {
+  background-color: red;
+  width: 100%;
+  height: auto;
+  margin-left: auto;
+  clear: both;
+}
+
+.close-button {
+  position: relative;
+  margin-top: 40px;
+  bottom: 0;
+  font-weight: 400;
+  line-height: 16px;
+  border: 2px solid #f6d544;
+  width: 50px;
+  height: 20px;
+  font-size: 20px;
+  color: #f6d544;
+  padding: 10px;
+  float: right;
+}
+
+.close-button:hover {
+  border: 2px solid white;
+  color: white;
+}
+
+.slideup {
+  -webkit-transform: translate(0,-55em);
+  -moz-transform: translate(0,-55em);
+  -o-transform: translate(0,-55em);
+  -ms-transform: translate(0,-55em);
+  transform: translate(0,-55em);
+
+}
+
+.slidedown {
+  -webkit-transform: translate(0,55em);
+  -moz-transform: translate(0,55em);
+  -o-transform: translate(0,55em);
+  -ms-transform: translate(0,55em);
+  transform: translate(0,55em);
+
+}
 
 h1 {
   text-align: center;
@@ -76,24 +203,33 @@ h1 {
   line-height: inherit;
   /*padding: 40px 0 40px 0;*/
   float: left;
-  border-bottom: 8px solid #4F6877;
 }
 
-.about, .how-to, .us {
+.about, .us {
   position: relative;
+  margin-top: 0 5%;
   width: 80%;
-  height: 80%;
+  height: 620px;
   /*float: left;*/
   /*display: block;*/
   margin-left: auto;
   margin-right: auto;
-  background-color: red;
+  background-color: #4F6877;
+  color: white;
+  text-align: center;
 }
 
-.about, .how-to {
+.us {
   display: none;
 }
 
+strong {
+  font-weight: 400;
+  color: #f6d544;
+}
+.about article, .us article {
+  margin: 15px;
+}
 
 svg {
   display: block;
@@ -103,14 +239,15 @@ svg {
   position: relative;
   float: left;
   width: 100%;
-  height: calc(100vw - 880px);
+  height: calc(100vw - 960px);
+  min-height: 600px;
   /*overflow: hidden;*/
 }
 
 .map-container {
   position: relative;
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
   display: inline-block;
   vertical-align: top;
 }
@@ -120,7 +257,6 @@ svg {
   display: block;
   height: 40px;
   width: 399px;
-  background-color: red;
   z-index: 9;
 }
 
@@ -128,6 +264,7 @@ svg {
   display: block;
   width: 100%;
 }
+
 
 #map-selection ul li {
   display: inline-block;
@@ -140,8 +277,15 @@ svg {
   text-align: center;
 }
 
+
 #map-selection ul li:hover {
-  opacity: .5;
+  background-color: #d1bf71;
+  opacity: .8;
+  /*color: #f6d544;;*/
+}
+
+.mapclick {
+  background-color: #d1bf71;
 }
 
 #dropdown {
@@ -152,6 +296,8 @@ svg {
 #map {
   width: 500px;
 }
+
+
 
 #chart {
   width: 100%;
@@ -185,18 +331,41 @@ text {
   fill: #293971;
 }
 
+
+
 #chart {
   /*background-color: red;*/
   /*width: auto;
   height: auto;*/
 }
 
+.arrow-down {
+  width: 80px;
+  height: 50px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-clip-path: polygon(57% 0, 100% 0, 50% 40%, 0 0);
+  clip-path: polygon(57% 0, 100% 0, 50% 40%, 0 0);
+  background-color: #d1bf71;;
+  border: none;
+}
+
+.arrow-down:hover {
+  background-color: #f6d544;
+}
+
 .footer {
-  position: relative;
-  height: 60px;
-  width: 100%;
-  background-color: #4F6877;
-  float: left;
+  bottom:0;
+  background-color: #B9EADC;
+  width:100%;
+  height:80px;   /* Height of the footer */
+}
+
+.group:after {
+  content: "";
+  display: block;
+  clear: both;
 }
 
 

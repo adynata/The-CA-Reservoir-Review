@@ -2,34 +2,34 @@
 
 <div class="title"><h1>THE CALIFORNIA RESERVOIR REVIEW</h1></div>
 
-<header>
-  <div class="header-nav">
-    <div class="about-link">
-      About The Reservoir Review
-    </div>
-    <div class="how-to-link">
-      How to use this map
-    </div>
-    <div class="about-us-link">
-      Credits
-    </div>
-  </div>
-  <div class="us"><article>Created by Claire Woods for Hackbright's Front End Development course in Fall of 2015, with contributions from Karly Bryerman and Paula Chiu, The California Reservoir Review was built with Ruby/Rails, D3, NVD3, CSS, JavaScript, JQuery, public data, and a more than standard quantity of coffee.
-  <br>
-  Here's a link to our repo if you'd like to inspect our work: https://github.com/adynata/The-CA-Reservoir-Review
-  <br>
-  <div class="about"><article>Water in California is a deep and complicated domain. This map was created as a way to make one element of the California drought a little less opaque - our state's major reservoirs. There are over 1,300 named reservoirs in the state. The stations depicted here are only those that there are publically available daily levels for, representing 27,292,765 acre feet of possible reservoir capacity, or more than 13.4 million olympic swimming pools, or 8.07 cubic miles of water, of 22.4% of Lake Tahoe.  </article></div>
-  <div class="how-to"><article>Shown is information sourced from the California Data Exchange Center, reporting reservoir level information that in many cases goes back to 1990. The graph can be scoped by <a href="#">individual station</a>, <a href="#">hydrologic region</a>, or by <a href="#">all mapped stations</a>. California's current drought has been ongoing since 2012, and is the most severe drought in the state in recorded history. Previous major drought events in the state in the last 30 years include a drought that lasted from 1987 to 1992 and a drought that lasted from 2007 to 2009.</article>
+<div class="how-to-bar group">
+  <div class="how-to-link">
+    How to use this map
   </div>
 
+</div>
 
-</header>
+<div class="how-to">
+  <div class="how-to-article slideup">
+    <article>  Information shown is sourced from the <a href="http://cdec.water.ca.gov/">California Data Exchange Center</a>, reporting reservoir-level information that in many cases goes back to 1990. The graph can be scoped by <a href="#">individual station</a>, <a href="#">hydrologic region</a>, or by <a href="#">all mapped stations</a>. When looking at individual stations, the chart displays variance of monthly capacity level from the historic average, by percentage of capacity. When looking at hydrologic regions or the state as a whole, the data displayed shows the relative share of its member reservoirs, by acre feet.
+      <br>
+      <br>
+    California's current drought has been ongoing since 2012, and is the most severe drought in the state in recorded history. Average capacity level is affected by previous major drought events in the last 30 years, which include droughts from 1987 to 1992 and from 2007 to 2009.
+
+    <div class="close-button">
+      Close
+    </div>
+    </article>
+  </div>
+</div>
+
+</div>
 <div id="content">
   <div id="map-selection">
     <ul>
-      <li>Single station</li>
-      <li>Hydrologic Region</li>
-      <li>Select All</li>
+      <li class="ss mapclick">Single station</li>
+      <li class="hr">Hydrologic Region</li>
+      <li class="all">Select All</li>
     </ul>
   </div>
   <div id="map"></div>
@@ -77,4 +77,49 @@
       </div>
   </div>
 </div>
-<div class="footer"></div>
+<div class="after-map">
+
+  <div class="arrow-down"></div>
+  <div class="about-nav">
+    <div class="about-link">
+      About The Reservoir Review
+    </div>
+    <div class="about-us-link">
+      Credits
+    </div>
+  </div>
+  <div class="us">
+    <article>Developed by Claire Woods for in collaboration with Paula Chiu and Karly Bryerman.
+    <br> <br>
+    The California Reservoir Review was built with Ruby/Rails, d3.js, NVD3, CSS, JavaScript, JQuery, many divs, public data, and a more than standard quantity of coffee.
+    <br><br>
+    <a href="https://github.com/adynata/The-CA-Reservoir-Review">
+    Here's a link to our repo if you'd like to inspect our work.</a>
+    <br>
+    </article>
+  </div>
+  <div class="about">
+    <article>
+    Water in California is a deep and complicated domain. This map was created as a way to make one element of the California drought a little less opaque - our state's major reservoirs. While there are over 1,300 named reservoirs in the state, the stations depicted here are the forty-four considered important enough by the Department of Water Resources to merit publicly available measurements on a daily basis.
+    <br> <br>
+    While it would be impossible to view the entire state water system at once (groundwater management, for instance, is only in its infancy), this data set provides a robust source of fairly representative information about the resources we have and how available water has fluctuated over the last 25 years.
+    <br> <br>
+    These reservoirs combined represent <strong>27,292,765 acre feet</strong> of possible reservoir capacity.
+    <br> <br>
+    That’s equivalent to more than <strong>13.4 million</strong> olympic swimming pools,
+    <br> <br>
+    or <strong>22.4%</strong> of Lake Tahoe,
+    <br> <br>
+    (It’s a very deep lake.)
+    <br> <br>
+    or <strong>8.07 cubic miles</strong> of water.
+    <br> <br>
+
+
+    </article>
+
+  </div>
+
+  <div class="footer"></div>
+
+</div>
