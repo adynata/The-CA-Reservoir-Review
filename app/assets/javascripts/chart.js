@@ -5,6 +5,47 @@ $(document).ready(function() {
 
   	var $html = $('html');
 
+    $('.ss').css('background-color', '#d1bf71');
+
+    $('.ss').on("click", function(){
+      $('li').css('background-color', 'powderblue');
+      var myClass = $(this).attr("class");
+      stateModule.changeState(myClass);
+      $('.ss').css('background-color', '#d1bf71');
+    });
+
+    $('.hr').on("click", function(){
+      $('li').css('background-color', 'powderblue');
+      var myClass = $(this).attr("class");
+      stateModule.changeState(myClass);
+      $('.hr').css('background-color', '#d1bf71');
+
+    });
+
+    $('.all').on("click", function(){
+      $('li').css('background-color', 'powderblue');
+      var myClass = $(this).attr("class");
+      stateModule.changeState(myClass);
+      $('.all').css('background-color', '#d1bf71');
+    });
+
+    var stateModule = (function () {
+      var state = "ss"; // Private Variable
+
+      var pub = {};// public object - returned at end of module
+
+      pub.changeState = function (newstate) {
+          state = newstate;
+          console.log(state);
+      };
+
+      pub.getState = function() {
+          return state;
+      }
+
+      return pub; // expose externally
+    }());
+
     $html.on('click.ui.dropdown tap.ui.dropdown', '.js-dropdown', function(e) {
       e.preventDefault();
       $(this).toggleClass('is-open');
@@ -12,24 +53,25 @@ $(document).ready(function() {
 
     $html.on('click.station', function(e) {
       e.preventDefault();
-      var station = e.target;
-      console.log(station.__data__.properties.name);
-      var station_id = station.__data__.properties.id;
-      if ($(station).attr("class") === "station") {
-        $('.clicked_sta').attr("class", "station");
-        $('.station').css("fill", "orange");
-        $(station).attr("class", "station clicked_sta");
-        $(station).css("fill", "lightblue");
-        // makeCumLinData(chartYear, station_id);
-        makeMultiBarChartData(chartYear, station_id);
+      if (stateModule.getState() === "ss") {
+        var station = e.target;
+        var station_id = station.__data__.properties.id;
+        if ($(station).attr("class") === "station") {
+          $('.clicked_sta').attr("class", "station");
+          $('.station').css("fill", "orange");
+          $(station).attr("class", "station clicked_sta");
+          $(station).css("fill", "lightblue");
+          // makeCumLinData(chartYear, station_id);
+          makeMultiBarChartData(chartYear, station_id);
 
-      } else if ($(station).attr("class") === "station clicked_sta") {
-        $(station).attr("class", "station");
-        $(station).css("fill", "orange");
-      } else {
-        console.log("clicked something else");
+        } else if ($(station).attr("class") === "station clicked_sta") {
+          $(station).attr("class", "station");
+          $(station).css("fill", "orange");
+        } else {
+          console.log("clicked something else");
+        }
       }
-      });
+    });
 
     $html.on('mouseover.station', function(e) {
       var station = e.target;

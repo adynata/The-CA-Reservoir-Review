@@ -82,28 +82,8 @@ $(document).ready(function(){
     $('.about').css("display", "block");
   });
 
-  $('.ss').addClass('mapclick').css('background-color', '#d1bf71');
-
-  $('.ss').on("click", function(){
-    $('li').removeClass('mapclick');
-    $('li').css('background-color', 'powderblue');
-    $('.ss').addClass('mapclick');
-    $('.ss').css('background-color', '#d1bf71');
-  });
-
-  $('.hr').on("click", function(){
-    $('li').removeClass('mapclick');
-    $('li').css('background-color', 'powderblue');
-    $('.hr').addClass('mapclick');
-    $('.hr').css('background-color', '#d1bf71');
-
-  });
-
-  $('.all').on("click", function(){
-    $('li').removeClass('mapclick');
-    $('li').css('background-color', 'powderblue');
-    $('.all').addClass('mapclick');
-    $('.all').css('background-color', '#d1bf71');
-  });
+// so stateModule.changeState("newstate"); sets the state
+//
+// and var theState = stateModule.getState(); gets the state
 
 });
