@@ -59,13 +59,13 @@ $(document).ready(function(){
 
   // }));
   $('.close-button').on("click", function() {
-    $('.how-to').removeClass('slidedown');
-    $('.how-to').addClass('slideup');
+    $('.how-to').toggleClass('slidedown');
+    // $('.how-to').addClass('slideup');
   });
 
   $('.how-to-link').on("click", function() {
-    $('.how-to').removeClass('slideup');
-    $('.how-to').addClass('slidedown');
+    $('.how-to').toggleClass('slidedown');
+    // $('.how-to').addClass('slidedown');
   });
 
   $('.about-us-link').on("click", function() {

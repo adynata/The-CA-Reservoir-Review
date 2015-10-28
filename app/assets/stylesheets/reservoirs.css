@@ -113,6 +113,7 @@ body {
   height: auto;
   background-color: transparent;
   display: block;
+  margin-top: -500px;
   z-index: 30;
   right: 0;
   float: right;
@@ -185,11 +186,11 @@ article {
 }
 
 .slidedown {
-  -webkit-transform: translate(0,55em);
-  -moz-transform: translate(0,55em);
-  -o-transform: translate(0,55em);
-  -ms-transform: translate(0,55em);
-  transform: translate(0,55em);
+  -webkit-transform: translate(0,500px);
+  -moz-transform: translate(0,500px);
+  -o-transform: translate(0,500px);
+  -ms-transform: translate(0,500px);
+  transform: translate(0,500px);
 
 }
 
@@ -223,7 +224,7 @@ h1 {
   display: none;
 }
 
-strong {
+.about strong {
   font-weight: 400;
   color: #f6d544;
 }
@@ -300,6 +301,13 @@ svg {
 .beachball {
   height: 30px;
   margin-top: 160px;
+  background-color: transparent;
+  z-index: 0;
+}
+
+.beachball img {
+  height: 40px;
+  width: 40px;
 }
 
 

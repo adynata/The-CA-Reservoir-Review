@@ -137,7 +137,7 @@ $(document).ready(function() {
     endpoint = '/api/reservoirs/monthly_av_vs_capacity/' + chartStation + '/' + chartYear;
     d3.json(endpoint, function(error, data) {
 
-
+    $('.beachball').css('z-index', '90');
     setTimeout( function () {
       makeMultiBarChart(data);
       console.log("waiting")}, 2000);
@@ -201,6 +201,7 @@ $(document).ready(function() {
 
               chart.dispatch.on('renderEnd', function(){
                   console.log('Render Complete');
+                  $('.beachball').css('z-index', '0');
               });
               var svg = d3.select('#chart svg').datum(data);
               console.log('calling chart');
