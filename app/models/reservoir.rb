@@ -83,11 +83,10 @@ class Reservoir < ActiveRecord::Base
       average = []
       by_year = levels.by_month(month, year: year, field: :date)
       average << month
-      puts by_year.average(:level).to_f
-      average << by_year.average(:level).to_f
+      average << by_year.average(:level).to_i
       monthly_av["levels"] << average
     end
-    # p monthly_av
+    p monthly_av
     return monthly_av
   end
 
@@ -180,7 +179,6 @@ class Reservoir < ActiveRecord::Base
 
   def averages_to_arr
     months = averages_by_month.keys
-    puts months
     arrayed = []
     (1..12).each do |i|
       pair = []
@@ -189,6 +187,7 @@ class Reservoir < ActiveRecord::Base
       arrayed << pair
     end
     return arrayed
+    p arrayed
   end
 
 

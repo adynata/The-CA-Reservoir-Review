@@ -278,18 +278,39 @@ svg {
 
 }
 
-.toggle {
+.chart-info, .chart-title, .beachball{
   position: relative;
-  width: 49.8%;
+  width: 49.3%;
   height: 70px;
-  margin-right: 2.6%;
+  margin-right: 2.8%;
   background-color: rgba(255, 255, 255, 0.59);
-  margin-top: 430px;
+  margin-top: 170px;
   float: right;
   z-index: 10;
+  color: #293971;;
   text-align: center;
-  font-weight: 400;
-  line-height: 19px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.chart-info span {
+  /*font-weight: 400;*/
+}
+
+.beachball {
+  height: 30px;
+  margin-top: 160px;
+}
+
+
+.chart-title {
+  width: 44.2%;
+  height: 33px;
+  margin-top: 34px;
+  font-weight: bold;
+  font-size: 1.3em;
+  color: teal;
+  line-height: 33px;
 }
 
 #map-selection ul li:hover {
