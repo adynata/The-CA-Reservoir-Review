@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get 'api/reservoirs/monthly_av_by_year/:id/:year' => 'reservoirs#monthly_by_year'
   get 'api/reservoirs/monthly_av_vs_capacity/:id/:year' => 'reservoirs#av_of_capacity_monthly'
 
-  # get 'reservoirs/:id' => 'reservoirs#show'
+  get 'api/reservoirs/:id' => 'reservoirs#show'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -12,7 +12,6 @@ $(document).ready(function() {
 
     $html.on('click.station', function(e) {
       e.preventDefault();
-      // console.log($(this).data);
       var station = e.target;
       console.log(station.__data__.properties.name);
       var station_id = station.__data__.properties.id;
@@ -30,7 +29,6 @@ $(document).ready(function() {
       } else {
         console.log("clicked something else");
       }
-      console.log(document.getElementsByClassName('clicked_sta'));
       });
 
     $html.on('mouseover.station', function(e) {
@@ -75,8 +73,6 @@ $(document).ready(function() {
 
 
   function makecCumulativeLineChart(data) {
-    console.log( data );
-
     nv.addGraph(function() {
       var chart = nv.models.cumulativeLineChart()
         .useInteractiveGuideline(true)
@@ -117,18 +113,15 @@ $(document).ready(function() {
     chartStation = station;
     chartData = [];
 
-      endpoint = 'https://the-ca-reservoir-review.herokuapp.com/api/reservoirs/daily_by_year/' + chartStation + '/' + chartYear;
-      // console.log(endpoint);
+      endpoint = '/api/reservoirs/daily_by_year/' + chartStation + '/' + chartYear;
       d3.json(endpoint, function(error, data) {
 
         var levels = formatLevels(data);
-        // console.log(levels);
 
         chartData.push({
           key: data.reservoir,
           values: levels
         });
-        // console.log(chartData);
       });
 
       setTimeout( function () {
@@ -141,15 +134,34 @@ $(document).ready(function() {
     chartYear = year;
     chartStation = station;
 
-    endpoint = 'https://the-ca-reservoir-review.herokuapp.com/api/reservoirs/monthly_av_vs_capacity/' + chartStation + '/' + chartYear;
-    console.log(endpoint);
+    endpoint = '/api/reservoirs/monthly_av_vs_capacity/' + chartStation + '/' + chartYear;
     d3.json(endpoint, function(error, data) {
 
-      console.log( data );
 
     setTimeout( function () {
       makeMultiBarChart(data);
       console.log("waiting")}, 2000);
+    });
+
+    updateLabel(station, year);
+
+  }
+
+  function updateLabel(station, year) {
+    var stationInfo = '/api/reservoirs/' + station;
+    $.getJSON( stationInfo, function( data ) {
+      console.log(data);
+      $('.res-name').text(data.name);
+      $('.res-year').text(year);
+      $('.res-county').text(data.county + " County");
+      $('.res-max').text(data.max_capacity);
+      $('.res-hr').text(data.hydrologic_area);
+
+
+      // $( "<ul/>", {
+      //   "class": "my-new-list",
+      //   html: items.join( "" )
+      // }).appendTo( "body" );
     });
   }
 
@@ -167,7 +179,6 @@ $(document).ready(function() {
   }
 
   function makeMultiBarChart(data) {
-    console.log( data );
     nv.addGraph({
 
           generate: function() {
