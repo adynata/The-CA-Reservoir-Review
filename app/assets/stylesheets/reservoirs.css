@@ -418,5 +418,11 @@ text {
   clear: both;
 }
 
+.after-map a {
+  width: auto;
+  height: auto;
+  display: block;
+}
+
 
 /* 1100px is about where things start to break */

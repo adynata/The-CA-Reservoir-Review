@@ -73,25 +73,37 @@ class Reservoir < ActiveRecord::Base
     return by_year
   end
 
-  def monthly_by_year(year)
-    monthly_av = {}
-    monthly_av["id"] = self.id
-    monthly_av["reservoir"] = self.name
-    monthly_av["year"] = year
-    monthly_av["levels"] = []
+  def monthly_levels(year)
+    levels_set = []
     (1..12).each do |month|
       average = []
       by_year = levels.by_month(month, year: year, field: :date)
       average << month
       average << by_year.average(:level).to_i
-      monthly_av["levels"] << average
+      levels_set << average
     end
-    p monthly_av
+    return levels_set
+  end
+
+  def monthly_by_year(year)
+    monthly_av = {}
+    monthly_av["id"] = self.id
+    monthly_av["key"] = self.name
+    # monthly_av["year"] = year
+    monthly_av["nonStackable"] = true
+    monthly_av["values"] = []
+    (1..12).each do |month|
+      average = {}
+      by_year = levels.by_month(month, year: year, field: :date)
+      average["x"] = MONTHS[month - 1]
+      average["y"] = by_year.average(:level).to_i
+      monthly_av["values"] << average
+    end
     return monthly_av
   end
 
   def monthly_percent_by_year(year)
-    monthly_av_year = monthly_by_year(year)["levels"]
+    monthly_av_year = monthly_levels(year)
     monthly_av_overall = averages_to_arr
     monthly_by_av_v_capacity = make_stacked_chart_obj_spec(monthly_av_year, year)
     overall_monthly_by_av_v_capacity = make_stacked_chart_obj_gen(monthly_av_overall)

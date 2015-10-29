@@ -1,6 +1,7 @@
+
 $(document).ready(function() {
 
-
+  console.log(stateModule);
 
   var width = 500,
       height = 600,
@@ -72,7 +73,27 @@ $(document).ready(function() {
         .attr("d", path)
         .attr("class", "hydro_reg")
         .attr("fill-opacity", "0.4")
-        .on("click", clicked);
+        .on("click", clicked)
+        .on("mouseover", function(feature) {
+          if (stateModule.getState() === "hr"){
+
+            var props = feature.id;
+            div.transition()
+              .duration(200)
+              .style("opacity", .95)
+              .attr("class", "tooltip hr_toolip")
+              .style("background-color", "black")
+              .style("font", "20px");
+            div.html(props)
+              .style("left", (d3.event.pageX) + 16 + "px")
+              .style("top", (d3.event.pageY - 190) + "px");
+            }
+        })
+        .on("mouseout", function(d) {
+          div.transition()
+            .duration(500)
+            .style("opacity", 0.0);
+        })
 
     g.append("path")
         .datum(topojson.mesh(hydro_regions, hydro_regions.objects.hydrologic_regions_ca, function(a, b) { return a !== b; }))
@@ -93,15 +114,19 @@ $(document).ready(function() {
     .attr("class", "station")
     // mouseover functions
     .on("mouseover", function(feature) {
-      var props = feature.properties;
+      if (stateModule.getState() === "ss"){
+        var props = feature.properties;
 
-      // console.log(feature)
-      div.transition()
-        .duration(200)
-        .style("opacity", .95);
-      div.html('Reservoir: ' + props.name, 'County: ' + props.county)
-        .style("left", (d3.event.pageX) + 16 + "px")
-        .style("top", (d3.event.pageY - 190) + "px");
+        // console.log(feature)
+        div.transition()
+          .duration(200)
+          .style("opacity", .95)
+          .style("background-color", "#293971")
+          .style("font", "16px");
+        div.html('Reservoir: ' + props.name)
+          .style("left", (d3.event.pageX) + 16 + "px")
+          .style("top", (d3.event.pageY - 190) + "px");
+        }
     })
     .on("mouseout", function(d) {
       div.transition()

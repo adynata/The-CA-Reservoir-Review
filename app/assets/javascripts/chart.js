@@ -1,6 +1,4 @@
 $(document).ready(function() {
-  (function($, window, document, undefined) {
-
     'use strict';
 
   	var $html = $('html');
@@ -12,6 +10,7 @@ $(document).ready(function() {
       var myClass = $(this).attr("class");
       stateModule.changeState(myClass);
       $('.ss').css('background-color', '#d1bf71');
+      makeMultiBarChartData(chartYear, chartStation);
     });
 
     $('.hr').on("click", function(){
@@ -29,22 +28,7 @@ $(document).ready(function() {
       $('.all').css('background-color', '#d1bf71');
     });
 
-    var stateModule = (function () {
-      var state = "ss"; // Private Variable
 
-      var pub = {};// public object - returned at end of module
-
-      pub.changeState = function (newstate) {
-          state = newstate;
-          console.log(state);
-      };
-
-      pub.getState = function() {
-          return state;
-      }
-
-      return pub; // expose externally
-    }());
 
     $html.on('click.ui.dropdown tap.ui.dropdown', '.js-dropdown', function(e) {
       e.preventDefault();
@@ -55,6 +39,8 @@ $(document).ready(function() {
       e.preventDefault();
       if (stateModule.getState() === "ss") {
         var station = e.target;
+        console.log(station.__data__.properties.id);
+
         var station_id = station.__data__.properties.id;
         if ($(station).attr("class") === "station") {
           $('.clicked_sta').attr("class", "station");
@@ -70,6 +56,16 @@ $(document).ready(function() {
         } else {
           console.log("clicked something else");
         }
+      }
+    });
+
+    $html.on('click.hydro_reg', function(e) {
+      e.preventDefault();
+      if (stateModule.getState() === "hr" && ($(e.target).attr("class") === "hydro_reg active"))
+      {
+        var region = e.target.__data__.id.replace(/ /g,'');
+        defaultRegion = region;
+        makeHRData();
       }
     });
 
@@ -111,7 +107,7 @@ $(document).ready(function() {
 
   });
 
-  })(jQuery, window, document);
+
 
 
   function makecCumulativeLineChart(data) {
@@ -149,6 +145,7 @@ $(document).ready(function() {
   var endpoint, chartData, numCharts;
   var chartYear = 2015;
   var chartStation = 8;
+  var defaultRegion = "SacramentoRiver";
 
   function makeCumLinData(year, station) {
     chartYear = year;
@@ -189,10 +186,42 @@ $(document).ready(function() {
 
   }
 
+  function makeHRData() {
+
+    endpoint = '/api/reservoirs/by_hydrologic/' + defaultRegion;
+
+    var hr = [];
+    $.get(endpoint, function(data, status){
+      for ( var i = 0; i <= data.length; i++) {
+        (function(){
+          var station_id = data[i].id;
+          var station_endpoint = 'api/reservoirs/monthly_av_by_year/'+ station_id +'/'+ chartYear;
+          (function(){$.get(station_endpoint, function(data, status) {
+                hr.push(data);
+          });})(station_endpoint);
+
+        })(i);
+      }
+    });
+    setTimeout( function () {
+      $('.beachball').css('z-index', '90');
+      console.log("now", hr);
+
+      makeMultiBarChart(hr);
+
+
+      console.log("waiting")}, 2000);
+
+
+
+    // updateLabel(station, year);
+
+  }
+
   function updateLabel(station, year) {
     var stationInfo = '/api/reservoirs/' + station;
     $.getJSON( stationInfo, function( data ) {
-      console.log(data);
+      // console.log(data);
       $('.res-name').text(data.name);
       $('.res-year').text(year);
       $('.res-county').text(data.county + " County");
@@ -227,7 +256,7 @@ $(document).ready(function() {
               var width = ($('#chart').attr('width')),
                   height = ($('#chart').attr('height'));
 
-                  id = "averagesByMonth"
+              var id = "averagesByMonth";
 
               var chart = nv.models.multiBarChart()
                   .width(width)

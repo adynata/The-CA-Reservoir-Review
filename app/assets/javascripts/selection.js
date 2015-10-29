@@ -82,6 +82,10 @@ $(document).ready(function(){
     $('.about').css("display", "block");
   });
 
+  $('.arrow-down').on('click', function() {
+   $(document).scrollTo('.about-nav');
+  });
+
 // so stateModule.changeState("newstate"); sets the state
 //
 // and var theState = stateModule.getState(); gets the state
