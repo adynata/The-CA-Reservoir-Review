@@ -18,7 +18,7 @@ $(document).ready(function() {
       var myClass = $(this).attr("class");
       stateModule.changeState(myClass);
       $('.hr').css('background-color', '#d1bf71');
-
+      makeHRData();
     });
 
     $('.all').on("click", function(){
@@ -63,7 +63,7 @@ $(document).ready(function() {
       e.preventDefault();
       if (stateModule.getState() === "hr" && ($(e.target).attr("class") === "hydro_reg active"))
       {
-        var region = e.target.__data__.id.replace(/ /g,'');
+        var region = e.target.__data__.id;
         defaultRegion = region;
         makeHRData();
       }
@@ -90,6 +90,7 @@ $(document).ready(function() {
       var $dropdown = $self.parents('.js-dropdown');
       $dropdown.find('.js-dropdown__input').val($self.data('dropdown-value'));
       var year = $self.data('dropdown-value');
+      chartYear = year;
       $dropdown.find('.js-dropdown__current').text($self.text());
       if (stateModule.getState() === "ss") {
         makeMultiBarChartData(year, chartStation);
@@ -160,7 +161,7 @@ $(document).ready(function() {
     chartStation = station;
     chartData = [];
 
-      endpoint = '/api/reservoirs/daily_by_year/' + chartStation + '/' + chartYear;
+      endpoint = 'https://the-ca-reservoir-review.herokuapp.com/api/reservoirs/daily_by_year/' + chartStation + '/' + chartYear;
       d3.json(endpoint, function(error, data) {
 
         var levels = formatLevels(data);
@@ -181,7 +182,7 @@ $(document).ready(function() {
     chartYear = year;
     chartStation = station;
 
-    endpoint = '/api/reservoirs/monthly_av_vs_capacity/' + chartStation + '/' + chartYear;
+    endpoint = 'https://the-ca-reservoir-review.herokuapp.com/api/reservoirs/monthly_av_vs_capacity/' + chartStation + '/' + chartYear;
     d3.json(endpoint, function(error, data) {
 
     $('.beachball').css('z-index', '90');
@@ -190,13 +191,13 @@ $(document).ready(function() {
       console.log("waiting")}, 2000);
     });
 
-    updateLabel(station, year);
+    updateLabelSs(station, year);
 
   }
-
+//
   function makeHRData() {
 
-    endpoint = '/api/reservoirs/by_hydrologic/' + defaultRegion;
+    endpoint = 'https://the-ca-reservoir-review.herokuapp.com/api/reservoirs/by_hydrologic/' + defaultRegion.replace(/ /g,'');
 
     var hr = [];
     $.get(endpoint, function(data, status){
@@ -204,7 +205,7 @@ $(document).ready(function() {
         (function(){
           console.log(data[i]);
           var station_id = data[i].id;
-          var station_endpoint = 'api/reservoirs/monthly_av_by_year/'+ station_id +'/'+ chartYear;
+          var station_endpoint = 'https://the-ca-reservoir-review.herokuapp.com/api/reservoirs/monthly_av_by_year/'+ station_id +'/'+ chartYear;
           (function(){$.get(station_endpoint, function(data, status) {
                 hr.push(data);
           });})(station_endpoint);
@@ -223,26 +224,31 @@ $(document).ready(function() {
 
 
 
-    // updateLabel(station, year);
+    updateLabelHr();
 
   }
 
-  function updateLabel(station, year) {
+  function updateLabelSs(station, year) {
     var stationInfo = '/api/reservoirs/' + station;
     $.getJSON( stationInfo, function( data ) {
       // console.log(data);
+      $('.chart-info').css("display", "block");
+
       $('.res-name').text(data.name);
       $('.res-year').text(year);
       $('.res-county').text(data.county + " County");
       $('.res-max').text(data.max_capacity);
       $('.res-hr').text(data.hydrologic_area);
-
-
-      // $( "<ul/>", {
-      //   "class": "my-new-list",
-      //   html: items.join( "" )
-      // }).appendTo( "body" );
     });
+  }
+
+  function updateLabelHr() {
+    $('.res-name').text(defaultRegion);
+    $('.res-year').text(chartYear);
+    $('.res-county').text("");
+    $('.res-max').text("");
+    $('.res-hr').text("");
+    $('.chart-info').css("display", "none");
   }
 
   function formatLevels(data) {
