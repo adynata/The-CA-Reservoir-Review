@@ -192,8 +192,9 @@ $(document).ready(function() {
 
     var hr = [];
     $.get(endpoint, function(data, status){
-      for ( var i = 0; i <= data.length; i++) {
+      for ( var i = 0; i < data.length; i++) {
         (function(){
+          console.log(data[i]);
           var station_id = data[i].id;
           var station_endpoint = 'api/reservoirs/monthly_av_by_year/'+ station_id +'/'+ chartYear;
           (function(){$.get(station_endpoint, function(data, status) {
@@ -207,7 +208,7 @@ $(document).ready(function() {
       $('.beachball').css('z-index', '90');
       console.log("now", hr);
 
-      makeMultiBarChart(hr);
+      makeMultiBarChartHr(hr);
 
 
       console.log("waiting")}, 2000);
@@ -292,6 +293,47 @@ $(document).ready(function() {
               });
           }
       });
+    }
+
+  function makeMultiBarChartHr(data) {
+    nv.addGraph({
+
+        generate: function() {
+          var width = ($('#chart').attr('width')),
+              height = ($('#chart').attr('height'));
+
+            var chart = nv.models.multiBarChart()
+                .width(width)
+                .height(height)
+                .stacked(true)
+                .showControls(true);
+
+            chart.reduceXTicks(false);
+
+            chart.yAxis
+                .tickFormat(d3.format('f'));
+
+            chart.dispatch.on('renderEnd', function(){
+                console.log('Render Complete');
+            });
+            var svg = d3.select('#chart svg').datum(data);
+            console.log('calling chart');
+            svg.transition().duration(0).call(chart);
+            return chart;
+        },
+        callback: function(graph) {
+            nv.utils.windowResize(function() {
+              var width = ($('#chart').attr('width'));
+              var height = ($('#chart').attr('height'));
+                graph.width(width).height(height);
+                d3.select('#test1 svg')
+                    .attr('width', width)
+                    .attr('height', height)
+                    .transition().duration(0)
+                    .call(graph);
+            });
+        }
+    });
     }
 
   makeMultiBarChartData(chartYear, chartStation);
