@@ -262,7 +262,7 @@ $(document).ready(function() {
               var chart = nv.models.multiBarChart()
                   .width(width)
                   .height(height)
-                  .stacked(false)
+                  .stacked(true)
                   .showControls(false)
                   .yDomain([0,1]);
               chart.reduceXTicks(false);
@@ -315,10 +315,12 @@ $(document).ready(function() {
 
             chart.dispatch.on('renderEnd', function(){
                 console.log('Render Complete');
+                $('.beachball').css('z-index', '0');
+
             });
             var svg = d3.select('#chart svg').datum(data);
             console.log('calling chart');
-            svg.transition().duration(0).call(chart);
+            svg.transition().duration(100).call(chart);
             return chart;
         },
         callback: function(graph) {
