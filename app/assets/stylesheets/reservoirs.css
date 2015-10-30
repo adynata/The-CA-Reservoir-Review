@@ -264,6 +264,8 @@ svg {
 #map-selection ul {
   display: block;
   width: 100%;
+  background-color: powderblue;
+
 }
 
 
@@ -275,8 +277,12 @@ svg {
   color: #293971;
   font-weight: normal;
   text-align: center;
-  background-color: powderblue;
+  background-color: inherit;
 
+}
+
+#map-selection ul li:hover {
+  opacity: .8;
 }
 
 .chart-info, .chart-title, .beachball{

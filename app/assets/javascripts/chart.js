@@ -6,7 +6,7 @@ $(document).ready(function() {
     $('.ss').css('background-color', '#d1bf71');
 
     $('.ss').on("click", function(){
-      $('li').css('background-color', 'powderblue');
+      $('#map-selection ul li').css('background-color', 'powderblue');
       var myClass = $(this).attr("class");
       stateModule.changeState(myClass);
       $('.ss').css('background-color', '#d1bf71');
@@ -14,7 +14,7 @@ $(document).ready(function() {
     });
 
     $('.hr').on("click", function(){
-      $('li').css('background-color', 'powderblue');
+      $('#map-selection ul li').css('background-color', 'powderblue');
       var myClass = $(this).attr("class");
       stateModule.changeState(myClass);
       $('.hr').css('background-color', '#d1bf71');
@@ -22,7 +22,7 @@ $(document).ready(function() {
     });
 
     $('.all').on("click", function(){
-      $('li').css('background-color', 'powderblue');
+      $('#map-selection ul li').css('background-color', 'powderblue');
       var myClass = $(this).attr("class");
       stateModule.changeState(myClass);
       $('.all').css('background-color', '#d1bf71');
@@ -91,7 +91,15 @@ $(document).ready(function() {
       $dropdown.find('.js-dropdown__input').val($self.data('dropdown-value'));
       var year = $self.data('dropdown-value');
       $dropdown.find('.js-dropdown__current').text($self.text());
-      makeMultiBarChartData(year, chartStation);
+      if (stateModule.getState() === "ss") {
+        makeMultiBarChartData(year, chartStation);
+      } else if (stateModule.getState() === "hr") {
+        makeHRData();
+      } else if (stateModule.getState() === "hr") {
+        console.log("go make that chart");
+      } else {
+        console.log("why are you in here?");
+      }
 
     });
 
@@ -262,7 +270,7 @@ $(document).ready(function() {
               var chart = nv.models.multiBarChart()
                   .width(width)
                   .height(height)
-                  .stacked(true)
+                  .stacked(false)
                   .showControls(false)
                   .yDomain([0,1]);
               chart.reduceXTicks(false);
