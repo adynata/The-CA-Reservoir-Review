@@ -161,7 +161,7 @@ $(document).ready(function() {
     chartStation = station;
     chartData = [];
 
-      endpoint = 'https://the-ca-reservoir-review.herokuapp.com/api/reservoirs/daily_by_year/' + chartStation + '/' + chartYear;
+      endpoint = '/api/reservoirs/daily_by_year/' + chartStation + '/' + chartYear;
       d3.json(endpoint, function(error, data) {
 
         var levels = formatLevels(data);
@@ -182,7 +182,7 @@ $(document).ready(function() {
     chartYear = year;
     chartStation = station;
 
-    endpoint = 'https://the-ca-reservoir-review.herokuapp.com/api/reservoirs/monthly_av_vs_capacity/' + chartStation + '/' + chartYear;
+    endpoint = '/api/reservoirs/monthly_av_vs_capacity/' + chartStation + '/' + chartYear;
     d3.json(endpoint, function(error, data) {
 
     $('.beachball').css('z-index', '90');
@@ -197,7 +197,7 @@ $(document).ready(function() {
 //
   function makeHRData() {
 
-    endpoint = 'https://the-ca-reservoir-review.herokuapp.com/api/reservoirs/by_hydrologic/' + defaultRegion.replace(/ /g,'');
+    endpoint = '/api/reservoirs/by_hydrologic/' + defaultRegion.replace(/ /g,'');
 
     var hr = [];
     $.get(endpoint, function(data, status){
@@ -205,7 +205,7 @@ $(document).ready(function() {
         (function(){
           console.log(data[i]);
           var station_id = data[i].id;
-          var station_endpoint = 'https://the-ca-reservoir-review.herokuapp.com/api/reservoirs/monthly_av_by_year/'+ station_id +'/'+ chartYear;
+          var station_endpoint = '/api/reservoirs/monthly_av_by_year/'+ station_id +'/'+ chartYear;
           (function(){$.get(station_endpoint, function(data, status) {
                 hr.push(data);
           });})(station_endpoint);
@@ -220,7 +220,7 @@ $(document).ready(function() {
       makeMultiBarChartHr(hr);
 
 
-      console.log("waiting")}, 2000);
+      console.log("waiting")}, 3000);
 
 
 
@@ -265,29 +265,35 @@ $(document).ready(function() {
   }
 
   function makeMultiBarChart(data) {
+    $('#chart2').hide();
+    $('#chart').show();
+
     nv.addGraph({
 
           generate: function() {
               var width = ($('#chart').attr('width')),
                   height = ($('#chart').attr('height'));
 
-              var id = "averagesByMonth";
 
               var chart = nv.models.multiBarChart()
                   .width(width)
                   .height(height)
-                  .stacked(false)
+
+                  chart.stacked(false)
                   .showControls(false)
                   .yDomain([0,1]);
-              chart.reduceXTicks(false);
-              chart.color([ '#06939c', '#263344']);
 
-              chart.yAxis
-                  .tickFormat(d3.format('%'));
+                  chart.yAxis.tickFormat(d3.format('%'));
+
+                  chart.color([ '#06939c', '#263344']);
+
+              chart.reduceXTicks(false);
 
               chart.dispatch.on('renderEnd', function(){
                   console.log('Render Complete');
                   $('.beachball').css('z-index', '0');
+
+
               });
               var svg = d3.select('#chart svg').datum(data);
               console.log('calling chart');
@@ -310,11 +316,14 @@ $(document).ready(function() {
     }
 
   function makeMultiBarChartHr(data) {
+    $('#chart').hide();
+    $('#chart2').show();
+
     nv.addGraph({
 
         generate: function() {
-          var width = ($('#chart').attr('width')),
-              height = ($('#chart').attr('height'));
+          var width = ($('#chart2').attr('width')),
+              height = ($('#chart2').attr('height'));
 
             var chart = nv.models.multiBarChart()
                 .width(width)
@@ -325,24 +334,24 @@ $(document).ready(function() {
             chart.reduceXTicks(false);
 
             chart.yAxis
-                .tickFormat(d3.format('f'));
+                .tickFormat(d3.format('.1f'));
 
             chart.dispatch.on('renderEnd', function(){
                 console.log('Render Complete');
                 $('.beachball').css('z-index', '0');
 
             });
-            var svg = d3.select('#chart svg').datum(data);
+            var svg = d3.select('#chart2 svg').datum(data);
             console.log('calling chart');
-            svg.transition().duration(100).call(chart);
+            svg.transition().duration(0).call(chart);
             return chart;
         },
         callback: function(graph) {
             nv.utils.windowResize(function() {
-              var width = ($('#chart').attr('width'));
-              var height = ($('#chart').attr('height'));
+              var width = ($('#chart2').attr('width'));
+              var height = ($('#chart2').attr('height'));
                 graph.width(width).height(height);
-                d3.select('#test1 svg')
+                d3.select('#chart2 svg')
                     .attr('width', width)
                     .attr('height', height)
                     .transition().duration(0)

@@ -122,13 +122,13 @@ a {
 #input-cont {
   width: 100%;
   position: relative;
-  height: 10%;
+  height: 19.3%;
   display: block;
   /*margin-left: 5%;*/
 }
 #year-input {
   position: relative;
-  margin-top: 75px;
+  margin-top: 18px;
   margin-bottom: 5px;
   width: auto;
   height: auto;

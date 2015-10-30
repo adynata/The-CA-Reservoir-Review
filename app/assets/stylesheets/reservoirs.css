@@ -288,10 +288,10 @@ svg {
 .chart-info, .chart-title, .beachball{
   position: relative;
   width: 49.3%;
-  height: 70px;
+  height: 48px;
   margin-right: 2.8%;
   background-color: rgba(255, 255, 255, 0.59);
-  margin-top: 170px;
+  margin-top: 270px;
   float: right;
   z-index: 10;
   color: #293971;;
@@ -318,9 +318,9 @@ svg {
 
 
 .chart-title {
-  width: 44.2%;
+  width: 44.8%;
   height: 33px;
-  margin-top: 34px;
+  margin-top: -22px;
   font-weight: bold;
   font-size: 1.3em;
   color: teal;
@@ -353,7 +353,7 @@ svg {
 }
 
 
-#chart {
+#chart, #chart2 {
   width: 100%;
   height: auto;
   position: relative;
@@ -361,7 +361,7 @@ svg {
   height: calc(100vw - 800px);*/
 }
 
-#map, #chart {
+#map, #chart, #chart2 {
   height: calc(100vh - 60px);
   float: left;
   max-height: 600px;
@@ -372,14 +372,16 @@ svg {
   width: 100%;
 }
 
-#chart svg {
+#chart svg, #chart2 svg {
   position: relative;
   display: block;
   margin-left: 5%;
   margin-right: 5%;
-  height: 60%;
+  margin-top: -6.5%;
+  height: 77%;
   width: 90%;
 }
+
 
 
 text {
@@ -388,7 +390,7 @@ text {
 
 
 
-#chart {
+#chart, #chart2 {
   position: relative;
   /*background-color: red;*/
   /*width: auto;
