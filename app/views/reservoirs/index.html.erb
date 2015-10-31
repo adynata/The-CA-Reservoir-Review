@@ -72,6 +72,10 @@
               </ul>
           </div>
         </div>
+        <div class="chart-title">
+          <span class="res-name"></span>,
+          <span class="res-year"></span>
+        </div>
       </div>
       <div id="chart-container group">
         <div id="chart">
@@ -81,20 +85,18 @@
           <svg></svg>
         </div>
       </div>
+      <div class="beachball"><img src=<%= asset_path('loading.gif') %>/></div>
+      <div class="chart-info">
+        <span class="chart-type">Average for specific year compared to 40 year average, as percentage of maximum capacity.</span>
+        <br>
+        County: <span class="res-county"></span><br>
+        Reservoir Max Capacity: <span class="res-max"></span> af,
+        Hydrologic Region: <span class="res-hr"></span><br>
+      </div>
 
   </div>
-  <div class="chart-title">
-    <span class="res-name"></span>,
-    <span class="res-year"></span>
-  </div>
-  <div class="beachball"><img src=<%= asset_path('loading.gif') %>/></div>
-  <div class="chart-info">
-    <span class="chart-type">Average for specific year compared to 40 year average, as percentage of maximum capacity.</span>
-    <br>
-    County: <span class="res-county"></span><br>
-    Reservoir Max Capacity: <span class="res-max"></span> af,
-    Hydrologic Region: <span class="res-hr"></span><br>
-  </div>
+
+
 
 </div>
 <div class="after-map">

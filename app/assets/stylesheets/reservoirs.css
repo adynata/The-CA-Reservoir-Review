@@ -113,7 +113,7 @@ body {
   height: auto;
   background-color: transparent;
   display: block;
-  margin-top: -500px;
+  margin-top: -900px;
   z-index: 30;
   right: 0;
   float: right;
@@ -186,11 +186,11 @@ article {
 }
 
 .slidedown {
-  -webkit-transform: translate(0,500px);
-  -moz-transform: translate(0,500px);
-  -o-transform: translate(0,500px);
-  -ms-transform: translate(0,500px);
-  transform: translate(0,500px);
+  -webkit-transform: translate(0,900px);
+  -moz-transform: translate(0,900px);
+  -o-transform: translate(0,900px);
+  -ms-transform: translate(0,900px);
+  transform: translate(0,900px);
 
 }
 
@@ -253,6 +253,20 @@ svg {
   vertical-align: top;
 }
 
+#chart-view{
+  z-index: 1;
+  display: block;
+  position: absolute;
+  background-size: 100%;
+  float: right;
+  top: 0;
+  right: 0;
+  width: 55%;
+  height: 100%;
+  min-width: 600px;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
 #map-selection {
   position: relative;
   display: block;
@@ -285,16 +299,16 @@ svg {
   opacity: .8;
 }
 
-.chart-info, .chart-title, .beachball{
+
+.chart-info {
   position: relative;
-  width: 49.3%;
+  width: 89%;
   height: 48px;
-  margin-right: 2.8%;
+  margin-left: 5%;
   background-color: rgba(255, 255, 255, 0.59);
-  margin-top: 270px;
-  float: right;
+  float: left;
   z-index: 10;
-  color: #293971;;
+  color: #293971;
   text-align: center;
   font-weight: 600;
   line-height: 24px;
@@ -305,10 +319,15 @@ svg {
 }
 
 .beachball {
-  height: 30px;
-  margin-top: 160px;
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  margin-left: calc(50% - 20px);
+  margin-right: calc(50% - 20px);
+  margin-top: 200px;
   background-color: transparent;
   z-index: 0;
+
 }
 
 .beachball img {
@@ -318,12 +337,19 @@ svg {
 
 
 .chart-title {
-  width: 44.8%;
+  position: relative;
+  width: calc(85% - 40px);
   height: 33px;
-  margin-top: -22px;
   font-weight: bold;
+  float: left;
   font-size: 1.3em;
   color: teal;
+  line-height: 33px;
+  background-color: rgba(255, 255, 255, 0.59);
+  z-index: 10;
+  color:teal;
+  text-align: center;
+  font-weight: 600;
   line-height: 33px;
 }
 
@@ -345,41 +371,19 @@ svg {
   width: 500px;
 }
 
-#chart-container {
-  position: relative;
-  width: 100%;
-  height: auto;
-  float: left;
-}
 
-
-#chart, #chart2 {
-  width: 100%;
-  height: auto;
-  position: relative;
-  /*width: calc(100vw - 500px);
-  height: calc(100vw - 800px);*/
-}
-
-#map, #chart, #chart2 {
+#map {
   height: calc(100vh - 60px);
   float: left;
   max-height: 600px;
 }
 
-#map svg, #map rect {
-  height: 100%;
-  width: 100%;
-}
 
 #chart svg, #chart2 svg {
   position: relative;
   display: block;
-  margin-left: 5%;
-  margin-right: 5%;
-  margin-top: -6.5%;
-  height: 77%;
-  width: 90%;
+  height: 455px;
+  width: 94%;
 }
 
 
@@ -391,10 +395,9 @@ text {
 
 
 #chart, #chart2 {
+  margin-left: 5%;
   position: relative;
-  /*background-color: red;*/
-  /*width: auto;
-  height: auto;*/
+
 }
 
 .arrow-down {
@@ -431,6 +434,41 @@ text {
   height: auto;
   display: block;
 }
+
+
+#input-cont {
+  width: 100%;
+  margin-top: 20px;
+  position: relative;
+  height: 34px;
+  display: block;
+}
+
+#year-input {
+  position: relative;
+  margin-left: 5%;
+  float:left;
+  font-weight: normal;
+  float: left;
+  height: 100%;
+  width: auto;
+  font-family: 'Source Sans Pro';
+
+}
+
+#map svg, #map rect {
+  height: 100%;
+  width: 100%;
+}
+
+#chart-container {
+  position: relative;
+  display: block;
+  width: calc(85% + 46px);
+  height: auto;
+  float: left;
+}
+
 
 
 /* 1100px is about where things start to break */

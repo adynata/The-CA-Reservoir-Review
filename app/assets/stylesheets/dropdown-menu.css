@@ -20,19 +20,7 @@ svg{
   left: 0;
 }
 
-#chart-view{
-  z-index: 1;
-  display: block;
-  position: absolute;
-  background-size: 100%;
-  background: white;
-  float: right;
-  top: 0;
-  right: 0;
-  width: 55%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.6);
-}
+
 #dropdown dl{
   display: inline-block;
 }
@@ -108,32 +96,7 @@ a {
   background-color: #fff;
 }
 
-#render, #year-input {
-  font-weight: normal;
-  display: inline;
-  float: left;
-  height: 25px;
-  font-family: 'Source Sans Pro';
 
-
-}
-
-
-#input-cont {
-  width: 100%;
-  position: relative;
-  height: 19.3%;
-  display: block;
-  /*margin-left: 5%;*/
-}
-#year-input {
-  position: relative;
-  margin-top: 18px;
-  margin-bottom: 5px;
-  width: auto;
-  height: auto;
-  margin-left: 5%
-}
 
 
 

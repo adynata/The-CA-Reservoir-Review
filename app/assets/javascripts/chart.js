@@ -2,6 +2,8 @@ $(document).ready(function() {
     'use strict';
 
   	var $html = $('html');
+    var address = "";
+    //  'https://ca-reservoir-review.herokuapp.com';
 
     $('.ss').css('background-color', '#d1bf71');
 
@@ -18,6 +20,8 @@ $(document).ready(function() {
       var myClass = $(this).attr("class");
       stateModule.changeState(myClass);
       $('.hr').css('background-color', '#d1bf71');
+      $('.beachball').show();
+
       makeHRData();
     });
 
@@ -161,7 +165,7 @@ $(document).ready(function() {
     chartStation = station;
     chartData = [];
 
-      endpoint = '/api/reservoirs/daily_by_year/' + chartStation + '/' + chartYear;
+      endpoint = address + '/api/reservoirs/daily_by_year/' + chartStation + '/' + chartYear;
       d3.json(endpoint, function(error, data) {
 
         var levels = formatLevels(data);
@@ -182,10 +186,10 @@ $(document).ready(function() {
     chartYear = year;
     chartStation = station;
 
-    endpoint = '/api/reservoirs/monthly_av_vs_capacity/' + chartStation + '/' + chartYear;
+    endpoint = address + '/api/reservoirs/monthly_av_vs_capacity/' + chartStation + '/' + chartYear;
     d3.json(endpoint, function(error, data) {
 
-    $('.beachball').css('z-index', '90');
+    $('.beachball').show();
     setTimeout( function () {
       makeMultiBarChart(data);
       console.log("waiting")}, 2000);
@@ -197,7 +201,7 @@ $(document).ready(function() {
 //
   function makeHRData() {
 
-    endpoint = '/api/reservoirs/by_hydrologic/' + defaultRegion.replace(/ /g,'');
+    endpoint = address + '/api/reservoirs/by_hydrologic/' + defaultRegion.replace(/ /g,'');
 
     var hr = [];
     $.get(endpoint, function(data, status){
@@ -205,7 +209,7 @@ $(document).ready(function() {
         (function(){
           console.log(data[i]);
           var station_id = data[i].id;
-          var station_endpoint = '/api/reservoirs/monthly_av_by_year/'+ station_id +'/'+ chartYear;
+          var station_endpoint = address + '/api/reservoirs/monthly_av_by_year/'+ station_id +'/'+ chartYear;
           (function(){$.get(station_endpoint, function(data, status) {
                 hr.push(data);
           });})(station_endpoint);
@@ -214,7 +218,7 @@ $(document).ready(function() {
       }
     });
     setTimeout( function () {
-      $('.beachball').css('z-index', '90');
+      $('.beachball').show();
       console.log("now", hr);
 
       makeMultiBarChartHr(hr);
@@ -229,7 +233,7 @@ $(document).ready(function() {
   }
 
   function updateLabelSs(station, year) {
-    var stationInfo = '/api/reservoirs/' + station;
+    var stationInfo = address + '/api/reservoirs/' + station;
     $.getJSON( stationInfo, function( data ) {
       // console.log(data);
       $('.chart-info').css("display", "block");
@@ -291,7 +295,7 @@ $(document).ready(function() {
 
               chart.dispatch.on('renderEnd', function(){
                   console.log('Render Complete');
-                  $('.beachball').css('z-index', '0');
+                  $('.beachball').hide();
 
 
               });
@@ -338,7 +342,7 @@ $(document).ready(function() {
 
             chart.dispatch.on('renderEnd', function(){
                 console.log('Render Complete');
-                $('.beachball').css('z-index', '0');
+                $('.beachball').hide();
 
             });
             var svg = d3.select('#chart2 svg').datum(data);
@@ -360,7 +364,7 @@ $(document).ready(function() {
         }
     });
     }
-
+  $('#chart2').hide();
   makeMultiBarChartData(chartYear, chartStation);
 
 });
