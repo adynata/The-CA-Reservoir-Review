@@ -92,7 +92,7 @@ class Reservoir < ActiveRecord::Base
   def self.all_levels_grouped_by_month(id)
     Reservoir.includes(:levels).find_by(id: 2).levels.where("year = ?", 2002).where("month = ?", 2).average("level").to_i
     Reservoir.includes(:levels).find_by(id: 2).levels.where("year = 2002")
-    Reservoir.includes(:levels).find_by(id: 2).levels.group(:month).where("year = 2002").average("level")
+    Reservoir.includes(:levels).find_by(id: 2).levels.group(:month).where("year = ?", year).average("level")
   end
 
   def injectaverage(arr)
