@@ -48,7 +48,7 @@ $(document).ready(function() {
         var station_id = station.__data__.properties.id;
         if ($(station).attr("class") === "station") {
           $('.clicked_sta').attr("class", "station");
-          $('.station').css("fill", "orange");
+          $('.station').css("fill", "#293971");
           $(station).attr("class", "station clicked_sta");
           $(station).css("fill", "lightblue");
           // makeCumLinData(chartYear, station_id);

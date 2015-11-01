@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151015181052) do
+ActiveRecord::Schema.define(version: 20151031213940) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,9 +23,21 @@ ActiveRecord::Schema.define(version: 20151015181052) do
     t.float    "level",        null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "month"
+    t.integer  "year"
   end
 
   add_index "levels", ["reservoir_id"], name: "index_levels_on_reservoir_id", using: :btree
+
+  create_table "monthly_averages", force: :cascade do |t|
+    t.integer  "reservoir_id", null: false
+    t.date     "date",         null: false
+    t.float    "level",        null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "monthly_averages", ["reservoir_id"], name: "index_monthly_averages_on_reservoir_id", using: :btree
 
   create_table "reservoirs", force: :cascade do |t|
     t.string   "name",                           null: false

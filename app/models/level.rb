@@ -8,14 +8,19 @@
 #  level        :float            not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  month        :integer
+#  year         :integer
 #
 
 class Level < ActiveRecord::Base
   belongs_to :reservoir
-
+  
   def as_gallons
     return ( self.level * 325851.431889 )
   end
+
+
+
 
 
 end

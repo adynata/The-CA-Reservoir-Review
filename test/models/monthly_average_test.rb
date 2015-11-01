@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: levels
+# Table name: monthly_averages
 #
 #  id           :integer          not null, primary key
 #  reservoir_id :integer          not null
@@ -8,13 +8,11 @@
 #  level        :float            not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  month        :integer
-#  year         :integer
 #
 
 require 'test_helper'
 
-class LevelTest < ActiveSupport::TestCase
+class MonthlyAverageTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

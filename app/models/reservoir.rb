@@ -21,8 +21,10 @@
 
 class Reservoir < ActiveRecord::Base
   has_many :levels
+  has_many :monthly_averages
 
   MONTHS = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ]
+
 
   def all_daily_levels
     daily_levels = []
@@ -73,6 +75,8 @@ class Reservoir < ActiveRecord::Base
     return by_year
   end
 
+  # SELECT * FROM clients WHERE (clients.id IN (1,10))
+
   def monthly_levels(year)
     levels_set = []
     (1..12).each do |month|
@@ -83,6 +87,16 @@ class Reservoir < ActiveRecord::Base
       levels_set << average
     end
     return levels_set
+  end
+
+  def self.all_levels_grouped_by_month(id)
+    Reservoir.includes(:levels).find_by(id: 2).levels.where("year = ?", 2002).where("month = ?", 2).average("level").to_i
+    Reservoir.includes(:levels).find_by(id: 2).levels.where("year = 2002")
+    Reservoir.includes(:levels).find_by(id: 2).levels.group(:month).where("year = 2002").average("level")
+  end
+
+  def injectaverage(arr)
+    arr.inject(&:+)/arr.length
   end
 
   def monthly_by_year(year)
@@ -101,6 +115,8 @@ class Reservoir < ActiveRecord::Base
     end
     return monthly_av
   end
+
+
 
   def monthly_percent_by_year(year)
     monthly_av_year = monthly_levels(year)
@@ -187,6 +203,10 @@ class Reservoir < ActiveRecord::Base
       end
       return range
     end
+  end
+
+  def average_for_year(year)
+    levels.where("year = ?", year).average("level").to_i
   end
 
   def averages_to_arr
