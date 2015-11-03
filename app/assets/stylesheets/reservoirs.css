@@ -400,19 +400,25 @@ text {
 
 }
 
-.arrow-down {
+.arrow-down, .arrow-up {
   width: 80px;
   height: 50px;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  -webkit-clip-path: polygon(57% 0, 100% 0, 50% 40%, 0 0);
-  clip-path: polygon(57% 0, 100% 0, 50% 40%, 0 0);
-  background-color: #d1bf71;;
+  -webkit-clip-path: polygon(50% 0, 100% 0, 50% 50%, 0 0);
+  clip-path: polygon(50% 0, 100% 0, 50% 50%, 0 0);
+  background-color: #d1bf71;
   border: none;
 }
 
-.arrow-down:hover {
+.arrow-up {
+  -webkit-clip-path: polygon(50% 50%, 0% 100%, 100% 100%);
+  clip-path: polygon(50% 50%, 0% 100%, 100% 100%);
+  margin-top: 20px;
+}
+
+.arrow-down:hover, .arrow-up:hover {
   background-color: #f6d544;
 }
 
@@ -433,6 +439,8 @@ text {
   width: auto;
   height: auto;
   display: block;
+  color: #f6d544;
+  font-weight: 300;
 }
 
 
@@ -470,8 +478,30 @@ text {
 }
 
 input, textarea {
-  border: 2px solid white;
+  width: 50%;
 }
 
+input, textarea, button {
+  padding: 7px;
+  border: 3px solid #d1bf71;
+  margin: 7px;
+}
+
+button {
+  cursor: pointer;
+  color: #d1bf71;
+  font-weight: 200;
+  margin-bottom: 15px;
+}
+
+button:hover {
+  border: 3px solid #f6d544;
+  color: #f6d544;
+
+}
+
+.station, .about-link, .how-to-link, .about-us-link, .hydro_reg, .ss, .hr, .all {
+  cursor: pointer;
+}
 
 /* 1100px is about where things start to break */

@@ -51,15 +51,17 @@ $(document).ready(function() {
 
 
     $html.on('click.ui.dropdown tap.ui.dropdown', '.js-dropdown', function(e) {
-      e.preventDefault();
+      // e.preventDefault();
       $(this).toggleClass('is-open');
     });
 
     $html.on('click.station', function(e) {
-      e.preventDefault();
-      if (stateModule.getState() === "ss") {
+
         var station = e.target;
-        console.log(station.__data__.properties.id);
+        console.log($(station).attr("class"));
+      if (stateModule.getState() === "ss" &&
+      $(station).attr("class") === ("station" || "station clicked_sta") ) {
+        e.preventDefault();
         var station_id = station.__data__.properties.id;
         if ($(station).attr("class") === "station") {
           lastId = $(station).attr("id");
@@ -80,7 +82,7 @@ $(document).ready(function() {
     });
 
     $html.on('click.hydro_reg', function(e) {
-      e.preventDefault();
+      // e.preventDefault();
       if (stateModule.getState() === "hr" && ($(e.target).attr("class") === "hydro_reg active"))
       {
         if ($(e.target).attr("id") !== 'SacramentoRiver') {
@@ -112,7 +114,7 @@ $(document).ready(function() {
 
 
     $html.on('click.ui.dropdown tap.ui.dropdown', '.js-dropdown [data-dropdown-value]', function(e) {
-      e.preventDefault();
+      // e.preventDefault();
       var $self = $(this);
       var $dropdown = $self.parents('.js-dropdown');
       $dropdown.find('.js-dropdown__input').val($self.data('dropdown-value'));

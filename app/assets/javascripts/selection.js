@@ -1,63 +1,5 @@
 $(document).ready(function(){
-  // $("#sta path").on("click", function() {
-  //   console.log($(this).data)
-  // 	$(this).data("pin", !$(this).data("pin"))
-  //
-  // 	if ($(this).data("pin")) {
-  //     $(this).css("fill", "white");
-  //   } else {
-  // 	$(this).css("fill", "red");
-  //   });
 
-  // $(".station").on("click", function(e) {
-  //   e.stopImmediatePropagation();
-  //   console.log($(this)[0].__data__.properties.name);
-  //   console.log($(this)[0].__data__.properties.id);
-  //   var station = $(this)[0].__data__.properties.id;
-  //   if ($(this).attr("class") === "station") {
-  //     $('.clicked_sta').attr("class", "station");
-  //     $('.station').css("fill", "orange");
-  //     $(this).attr("class", "station clicked_sta");
-  //     $(this).css("fill", "lightblue");
-  //   } else {
-  //     $(this).attr("class", "station");
-  //     $(this).css("fill", "orange")
-  //   }
-  //   console.log(document.getElementsByClassName('clicked_sta'));
-  //
-  // });
-
-
-  // $('.hydro-reg').on("click", function() {
-  //   console.log(this);
-  //   console.log(this.props);
-  // });
-
-  // var station_name = $(this)[0].__data__.properties.name
-  // console.log($('.multiSelect_station ul li input[value]'))
-  // function check_dropdown() {
-  // $.each($('.multiSelect_station ul li input [value='']'), function(){
-  //   if ($(this) === station_name){
-  //   $(this).prop('checked', true);
-  //  }
-  // });
-  // }
-  // $("sta path").on("click", check_dropdown());
-  // if($(".input[type='checkbox']").val().innerText() === station_name){
-  // 	$(this).prop("checked")
-  // }
-
-  // $('.multiSelect_station ul li').value(station_name).checked(true)
-  //
-  //   console.log($("ul.multiSelect_station").val())
-  //   $("#sta").on("click", function() {
-  //     console.log($("#sta"));
-  //     $('#sta > path').css("fill", "white");
-  //     console.log(this);
-  //   });
-
-
-  // }));
   $('.close-button').on("click", function() {
     $('.how-to').toggleClass('slidedown');
     // $('.how-to').addClass('slideup');
@@ -92,8 +34,55 @@ $(document).ready(function(){
   $('.submit').on('click', function() {
    console.log("submit click");
   });
-// so stateModule.changeState("newstate"); sets the state
-//
-// and var theState = stateModule.getState(); gets the state
+
+  $(".scroll").on("click", function( e ) {
+
+    e.preventDefault();
+
+    $("body, html").animate({
+        scrollTop: $( $(this).attr('href') ).offset().top
+    }, 400);
+
+  });
+
+  $(document).ready(
+    function() {
+
+      var contactForm = $('#contact-form');
+
+      contactForm.on('submit', function(e) {
+
+        e.preventDefault();
+
+        $.ajax({
+          url: contactForm.attr('action'),
+          method: contactForm.attr('method'),
+          data: contactForm.serialize(),
+          dataType: 'json',
+          beforeSend: function() {
+            contactForm.append('<div class="alert-loading" >...</div>');
+          },
+          success: function(data) {
+            contactForm.find('.alert-loading').remove();
+            var succesBox = $('<div class="alert alert-success" role="alert">'+ '<strong>Thanks for reaching out!</strong></div>').hide();
+            contactForm.before(succesBox);
+            succesBox.fadeIn("slow");
+            succesBox.fadeTo(2000, 500).slideUp(500, function() {
+              $('input').val('');
+              $('textarea').val('');
+
+            });
+          },
+          error: function(err) {
+            contactForm.find('.alert-loading').remove();
+            var errorBox = $('<div class="alert alert-danger" role="alert">' + '<strong>Error!</strong> Something went wrong' + '</div>').hide();
+            contactForm.before(errorBox);
+            errorBox.fadeIn("slow");
+            errorBox.fadeTo(2000, 500).slideUp(700, function() {
+            });
+          }
+        });
+      });
+    });
 
 });
