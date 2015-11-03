@@ -72,6 +72,9 @@ $(document).ready(function() {
         .enter().append("path")
         .attr("d", path)
         .attr("class", "hydro_reg")
+        .attr("id", function(d){
+          return d.id.replace(/ /g,'');
+        })
         .attr("fill-opacity", "0.4")
         .on("click", clicked)
         .on("mouseover", function(feature) {
@@ -110,13 +113,15 @@ $(document).ready(function() {
     .data(sta_json.features)
     .enter()
     .append( "path" )
-    .attr( "d", path.pointRadius(3) )
+    .attr( "d", path.pointRadius(3.5) )
     .attr("class", "station")
+    .attr("id", function(d) {
+      return d.properties.name.replace(/ /g,'');
+    })
     // mouseover functions
     .on("mouseover", function(feature) {
       if (stateModule.getState() === "ss"){
         var props = feature.properties;
-
         // console.log(feature)
         div.transition()
           .duration(200)
@@ -127,6 +132,8 @@ $(document).ready(function() {
           .style("left", (d3.event.pageX) + 16 + "px")
           .style("top", (d3.event.pageY - 190) + "px");
         }
+
+
     })
     .on("mouseout", function(d) {
       div.transition()
@@ -134,7 +141,6 @@ $(document).ready(function() {
         .style("opacity", 0.0);
     })
     .on("click", clickedSta);
-
     // tooltip information
     var div = d3.select("#map").append("div")
       .attr("class", "tooltip")

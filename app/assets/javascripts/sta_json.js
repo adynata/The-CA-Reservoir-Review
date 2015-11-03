@@ -380,7 +380,7 @@ var sta_json =
         {
             "type": "Feature",
             "properties": {
-                "name": "New Melones",
+                "name": "New Melones Reservoir",
                 "id":27,"county":"Calaveras"
             },
             "geometry": {

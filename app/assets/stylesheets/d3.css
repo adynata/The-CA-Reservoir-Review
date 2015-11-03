@@ -41,11 +41,9 @@
   fill: white;
 }
 
-.station path:hover {
-  fill: red;
+.selected{
+  fill: #2371cc;
 }
-
-
 
 
 .tooltip {

@@ -469,6 +469,9 @@ text {
   float: left;
 }
 
+input, textarea {
+  border: 2px solid white;
+}
 
 
 /* 1100px is about where things start to break */
