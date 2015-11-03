@@ -86,6 +86,12 @@ $(document).ready(function(){
    $(document).scrollTo('.about-nav');
   });
 
+  $('.about-link').css("color", "white");
+
+
+  $('.submit').on('click', function() {
+   console.log("submit click");
+  });
 // so stateModule.changeState("newstate"); sets the state
 //
 // and var theState = stateModule.getState(); gets the state

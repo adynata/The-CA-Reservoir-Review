@@ -125,15 +125,21 @@
         <p>Get in touch if you'd like to know more about this project or want to collaborate on its next phase</p>
          <input type="hidden" name="_next" value="#" />
         <p>
-        <input type="text" placeholder=" Your Name" />
+        <input type="text" name="name" placeholder=" Your Name" />
         </p>
         <p>
         <input type="email" name="_replyto" placeholder=" Your Email " />
         </p>
         <textarea name="message" rows="8" cols="40" placeholder=""></textarea>
         <p>
-          <button type="submit" value="Send">Send</button>
+        <input class="submit" type="submit" value="Send">Send</input>
         </p>
+  </form>
+  <form action="//formspree.io/clairewoods@gmail.com"
+      method="POST">
+    <input type="text" name="name">
+    <input type="email" name="_replyto">
+    <input type="submit" value="Send">
   </form>
 </div>
   </div>

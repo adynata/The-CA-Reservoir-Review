@@ -17,6 +17,7 @@ $(document).ready(function() {
     $('.ss').css('background-color', '#d1bf71');
 
     $('.ss').on("click", function(){
+      $('.selected').attr("class", "station");
       $('.station').css("fill","#fed352");
       $('#' + lastId).css("fill","#2371cc");
       $('.active').d3Click();
@@ -43,6 +44,8 @@ $(document).ready(function() {
       var myClass = $(this).attr("class");
       stateModule.changeState(myClass);
       $('.all').css('background-color', '#d1bf71');
+      $('.active').d3Click();
+      $('.station').css("fill","#2371cc");
     });
 
 
@@ -56,8 +59,7 @@ $(document).ready(function() {
       e.preventDefault();
       if (stateModule.getState() === "ss") {
         var station = e.target;
-        // console.log(station.__data__.properties.id);
-
+        console.log(station.__data__.properties.id);
         var station_id = station.__data__.properties.id;
         if ($(station).attr("class") === "station") {
           lastId = $(station).attr("id");
@@ -82,7 +84,6 @@ $(document).ready(function() {
       if (stateModule.getState() === "hr" && ($(e.target).attr("class") === "hydro_reg active"))
       {
         if ($(e.target).attr("id") !== 'SacramentoRiver') {
-          console.log($(e.target).attr("class"));
           $('#SacramentoRiver').attr("class", "hydro_reg");
 
         }
@@ -97,14 +98,14 @@ $(document).ready(function() {
 
     $html.on('mouseover.station', function(e) {
       var station = e.target;
-      if ($(station).attr("class") === "station") {
+      if ($(station).attr("class") === "station" && stateModule.getState() === "ss") {
         $(station).css("fill", "white");
       }
     });
 
     $html.on('mouseout.station', function(e) {
       var station = e.target;
-      if ($(station).attr("class") === "station") {
+      if ($(station).attr("class") === "station" && stateModule.getState() === "ss") {
         $(station).css("fill", "#fed352");
       }
     });
@@ -215,7 +216,7 @@ $(document).ready(function() {
     $('.beachball').show();
     setTimeout( function () {
       makeMultiBarChart(data);
-      console.log("waiting")}, 2000);
+      console.log("waiting")}, 3000);
     });
 
     updateLabelSs(station, year);
@@ -235,7 +236,7 @@ $(document).ready(function() {
           var idName = data[i].name.replace(/ /g,'').replace(/ *\([^)]*\) */g, "");
           $('#'+idName).attr("class","station selected");
           $('#'+idName).css("fill","#2371cc");
-          console.log($('#'+idName));
+          // console.log($('#'+idName));
           var station_id = data[i].id;
           var station_endpoint = address + '/api/reservoirs/monthly_av_by_year/'+ station_id +'/'+ chartYear;
           (function(){$.get(station_endpoint, function(data, status) {
@@ -263,7 +264,7 @@ $(document).ready(function() {
     var stationInfo = address + '/api/reservoirs/' + station;
     $.getJSON( stationInfo, function( data ) {
       // console.log(data);
-      $('.chart-info').css("display", "block");
+      $('.chart-info').show();
 
       $('.res-name').text(data.name);
       $('.res-year').text(year);
@@ -279,7 +280,7 @@ $(document).ready(function() {
     $('.res-county').text("");
     $('.res-max').text("");
     $('.res-hr').text("");
-    $('.chart-info').css("display", "none");
+    $('.chart-info').hide();
   }
 
   function formatLevels(data) {
