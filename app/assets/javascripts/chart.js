@@ -5,6 +5,9 @@ $(document).ready(function() {
     var address = "";
     //  'https://ca-reservoir-review.herokuapp.com';
 
+    console.log(stateModule);
+
+
     jQuery.fn.d3Click = function () {
       this.each(function (i, e) {
         var evt = document.createEvent("MouseEvents");
@@ -163,7 +166,7 @@ $(document).ready(function() {
       });
 
       chart.xAxis.tickFormat(function(d) {
-        return d3.time.format('%m/%d/%y')(new Date(d))
+        return d3.time.format('%m/%d/%y')(new Date(d));
       });
 
       chart.yAxis.tickFormat(d3.format('d'));
@@ -204,7 +207,7 @@ $(document).ready(function() {
 
       eout( function () {
         makeCumulativeLineChart(chartData);
-        console.log("waiting")}, 2000);
+        console.log("waiting");}, 2000);
 
   }
 
@@ -218,7 +221,7 @@ $(document).ready(function() {
     $('.beachball').show();
     setTimeout( function () {
       makeMultiBarChart(data);
-      console.log("waiting")}, 3000);
+      console.log("waiting");}, 3000);
     });
 
     updateLabelSs(station, year);
@@ -254,7 +257,7 @@ $(document).ready(function() {
       makeMultiBarChartHr(hr);
 
 
-      console.log("waiting")}, 3000);
+      console.log("waiting");}, 3000);
 
 
 
@@ -290,7 +293,7 @@ $(document).ready(function() {
       var date, value;
       date = new Date(level[0]).getTime();
       value = level[1];
-      return [date, value]
+      return [date, value];
     }).sort(function(a, b) {
       return a[0] - b[0];
     });
@@ -311,7 +314,7 @@ $(document).ready(function() {
 
               var chart = nv.models.multiBarChart()
                   .width(width)
-                  .height(height)
+                  .height(height);
 
                   chart.stacked(false)
                   .showControls(false)
@@ -405,6 +408,6 @@ $(document).ready(function() {
     $("#OrovilleDam").click();
 
 
-    console.log("waiting")}, 3000);
+    console.log("waiting");}, 3000);
 
 });

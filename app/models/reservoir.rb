@@ -38,9 +38,9 @@ class Reservoir < ActiveRecord::Base
 
   def self.all_coordinates
     @reservoirs = Reservoir.all
-    sta_json = {}
-    sta_json["type"] = "FeatureCollection"
-    sta_json["features"] = []
+    station_json = {}
+    station_json["type"] = "FeatureCollection"
+    station_json["features"] = []
 
     @reservoirs.each do |res|
       res_obj = {}
@@ -54,9 +54,9 @@ class Reservoir < ActiveRecord::Base
       res_obj["geometry"]["coordinates"] = []
       res_obj["geometry"]["coordinates"] << res.lat.to_f
       res_obj["geometry"]["coordinates"] << res.lon.to_f
-      sta_json["features"] << res_obj
+      station_json["features"] << res_obj
     end
-    return sta_json
+    return station_json
   end
 
   def daily_by_year(year)
