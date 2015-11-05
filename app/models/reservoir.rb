@@ -78,21 +78,26 @@ class Reservoir < ActiveRecord::Base
   # SELECT * FROM clients WHERE (clients.id IN (1,10))
 
   def monthly_levels(year)
-    levels_set = []
-    (1..12).each do |month|
-      average = []
-      by_year = levels.by_month(month, year: year, field: :date)
-      average << month
-      average << by_year.average(:level).to_i
-      levels_set << average
-    end
-    return levels_set
+    # levels_set = []
+    # (1..12).each do |month|
+    #   average = []
+    #   by_year = levels.by_month(month, year: year, field: :date)
+    #   average << month
+    #   average << by_year.average(:level).to_i
+    #   levels_set << average
+    # end
+    # return levels_set
+    levels_set = Reservoir.includes(:levels).find_by(id: self.id).levels.group(:month).where("year = ?", year).average("level")
+    levels_set.each.map {|k, v|  levels_set[k] = v.to_f}
   end
 
+
+
   def self.all_levels_grouped_by_month(id)
-    Reservoir.includes(:levels).find_by(id: 2).levels.where("year = ?", 2002).where("month = ?", 2).average("level").to_i
+    avg_levels_for_spec_month = Reservoir.includes(:levels).find_by(id: 2).levels.where("year = ?", 2002).where("month = ?", 2).average("level").to_i
     Reservoir.includes(:levels).find_by(id: 2).levels.where("year = 2002")
-    Reservoir.includes(:levels).find_by(id: 2).levels.group(:month).where("year = ?", year).average("level")
+    Reservoir.includes(:levels).find_by(id: 2).levels.group(:month).where("year = ?", 2002).average("level")
+    avg_level_for_spec_year = Reservoir.includes(:levels).find_by(id: 2).levels.where("year = ?", 2002).average("level").to_i
   end
 
   def injectaverage(arr)
@@ -120,7 +125,8 @@ class Reservoir < ActiveRecord::Base
 
   def monthly_percent_by_year(year)
     monthly_av_year = monthly_levels(year)
-    monthly_av_overall = averages_to_arr
+    monthly_av_overall = {}
+    averages_by_month.each { |k, v| monthly_av_overall[DateTime.strptime(k, '%B').month] = v }
     monthly_by_av_v_capacity = make_stacked_chart_obj_spec(monthly_av_year, year)
     overall_monthly_by_av_v_capacity = make_stacked_chart_obj_gen(monthly_av_overall)
 
@@ -132,9 +138,9 @@ class Reservoir < ActiveRecord::Base
     monthly_percent_spec = []
     (0..11).each do |i|
       spec_pair = {}
-      average_specific_month = levels[i]
+      average_specific_month = levels[i + 1]
       spec_pair["x"] = MONTHS[i]
-      spec_pair["y"] = (average_specific_month[1].to_f/max_capacity.to_f)
+      spec_pair["y"] = (average_specific_month.to_f/max_capacity.to_f)
       monthly_percent_spec << spec_pair
     end
     monthly_by_av_v_capacity["key"] = name + " % of capacity, " + year.to_s
@@ -148,10 +154,10 @@ class Reservoir < ActiveRecord::Base
     monthly_percent_overall = []
     (0..11).each do |i|
       overall_pair = {}
-      average_overall_month = levels[i]
+      average_overall_month = levels[i + 1]
       overall_pair["label"] = "average for " + MONTHS[i]
       overall_pair["x"] = MONTHS[i]
-      overall_pair["y"] = (average_overall_month[1].to_f/max_capacity.to_f)
+      overall_pair["y"] = (average_overall_month.to_f/max_capacity.to_f)
       monthly_percent_overall << overall_pair
     end
     overall_monthly["key"] = name + " average % of capacity"

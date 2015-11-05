@@ -26,6 +26,7 @@ body {
   font-family: 'Source Sans Pro';
   font-weight: lighter;
   background-color: black;
+  min-width: 1200px;
 }
 
 .title {
@@ -264,7 +265,7 @@ svg {
   width: 55%;
   height: 100%;
   min-width: 600px;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: transparent;
 }
 
 #map-selection {
@@ -302,9 +303,9 @@ svg {
 
 .chart-info {
   position: relative;
-  width: 89%;
-  height: 48px;
-  margin-left: 5%;
+  width: 96.7%;
+  height: 34px;
+  margin-left: .8px;
   background-color: rgba(255, 255, 255, 0.59);
   float: left;
   z-index: 10;
@@ -312,6 +313,7 @@ svg {
   text-align: center;
   font-weight: 600;
   line-height: 24px;
+
 }
 
 .chart-info span {
@@ -326,7 +328,7 @@ svg {
   margin-right: calc(50% - 20px);
   margin-top: 200px;
   background-color: transparent;
-  z-index: 0;
+  z-index: 10;
 
 }
 
@@ -338,20 +340,20 @@ svg {
 
 .chart-title {
   position: relative;
-  width: calc(85% - 40px);
-  height: 33px;
+  width:calc(94.9% - 57px);
+  height: 34px;
   font-weight: bold;
   float: left;
   font-size: 1.3em;
-  color: teal;
-  line-height: 33px;
   background-color: rgba(255, 255, 255, 0.59);
   z-index: 10;
-  color:teal;
+  color:#3b2e66;
   text-align: center;
   font-weight: 600;
   line-height: 33px;
 }
+
+
 
 #map-selection ul li:hover {
   color: black;
@@ -379,11 +381,46 @@ svg {
 }
 
 
-#chart svg, #chart2 svg {
+#chart svg, #chart2 svg, #chart3 svg, #chart4 svg, #blankchart svg {
   position: relative;
   display: block;
   height: 455px;
-  width: 94%;
+  width: 97%;
+  z-index: 1;
+  float: left;
+
+}
+
+#chart3 svg  {
+  width: 35%;
+  margin-left: 10%;
+  border: none;
+}
+
+#chart3 {
+}
+
+#chart4 svg {
+  width: 50%;
+  border: none;
+}
+
+#chartall {
+  position: relative;
+  display: block;
+  height: 455px;
+  width: 97%;
+  z-index: 1;
+  background-color: #a8d6ce;
+  border: 2px solid gray;
+}
+
+
+
+
+#blankchart svg {
+  position: absolute;
+  z-index: 999;
 }
 
 
@@ -394,8 +431,8 @@ text {
 
 
 
-#chart, #chart2 {
-  margin-left: 5%;
+#chart, #chart2, #chart3, #chart4, #chartall, #blankchart {
+  margin-left: 0%;
   position: relative;
 
 }
@@ -454,7 +491,7 @@ text {
 
 #year-input {
   position: relative;
-  margin-left: 5%;
+  margin-left: none;
   float:left;
   font-weight: normal;
   float: left;

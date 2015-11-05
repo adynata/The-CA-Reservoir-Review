@@ -8,7 +8,7 @@ Rails.application.config.assets.precompile += %w( d3.js )
 Rails.application.config.assets.precompile += %w( selection.js )
 Rails.application.config.assets.precompile += %w( sta_json.js )
 Rails.application.config.assets.precompile += %w( styling_script.js )
-Rails.application.config.assets.precompile += %w( hydro_regions.json.js caCountiesTopo.json.js us.json.js)
+Rails.application.config.assets.precompile += %w( hydro_regions.json.js caCountiesTopo.json.js us.json.js chart.js chartall.js)
 Rails.application.config.assets.precompile += %w( d3.min.js jquery.js nv.d3.min.js )
 Rails.application.config.assets.precompile += %w( nvd3.css )
 
