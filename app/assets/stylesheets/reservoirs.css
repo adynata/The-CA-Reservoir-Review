@@ -26,7 +26,7 @@ body {
   font-family: 'Source Sans Pro';
   font-weight: lighter;
   background-color: black;
-  min-width: 1200px;
+  min-width: 1400px;
 }
 
 .title {
@@ -392,17 +392,35 @@ svg {
 }
 
 #chart3 svg  {
-  width: 35%;
-  margin-left: 10%;
+  width: 40%;
   border: none;
+  margin-left: 10%;
+  height: 400px;
+
 }
 
-#chart3 {
+#chart3-sub {
+  position: absolute;
+  display: block;
+  height: 55px;
+  width: 100%;
+  background-color: none;
+  bottom: 0;
 }
 
 #chart4 svg {
   width: 50%;
   border: none;
+  height: 400px;
+
+}
+
+#chart4label, #chart3label {
+  width: 50%;
+  height: 100%;
+  display: inline-block;
+  float: left;
+  text-align: center;
 }
 
 #chartall {

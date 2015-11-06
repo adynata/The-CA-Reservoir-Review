@@ -228,5 +228,31 @@ class Reservoir < ActiveRecord::Base
     p arrayed
   end
 
+  def self.query_year(year)
+    Reservoir.includes(:levels).group(:name).where("year = ?", year).average("level")
+  end
+
+  def self.all_averages(year)
+    json_for_donut_chart = []
+    query_year(year).each do |k, v|
+      station_obj ={}
+      station_obj["label"] = k
+      station_obj["value"] = v.to_i
+      json_for_donut_chart << station_obj
+    end
+    json_for_donut_chart
+  end
+
+  def self.statewide_average_of_capacity(year)
+    summed_capacities = Reservoir.sum("max_capacity")
+    summed_averages = query_year(year).values.inject(&:+)
+    p query_year(year).values.map(&:to_f)
+    yearly_average = summed_averages/summed_capacities
+    return yearly_average.to_f
+
+    # THIS ISN't working yet
+  end
+
+
 
 end
