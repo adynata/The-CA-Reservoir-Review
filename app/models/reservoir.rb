@@ -75,24 +75,13 @@ class Reservoir < ActiveRecord::Base
     return by_year
   end
 
-  # SELECT * FROM clients WHERE (clients.id IN (1,10))
-
   def monthly_levels(year)
-    # levels_set = []
-    # (1..12).each do |month|
-    #   average = []
-    #   by_year = levels.by_month(month, year: year, field: :date)
-    #   average << month
-    #   average << by_year.average(:level).to_i
-    #   levels_set << average
-    # end
-    # return levels_set
     levels_set = Reservoir.includes(:levels).find_by(id: self.id).levels.group(:month).where("year = ?", year).average("level")
     levels_set.each.map {|k, v|  levels_set[k] = v.to_f}
+    levels_set
   end
 
-
-
+  # this is a mess of AR queries that don't really do anything
   def self.all_levels_grouped_by_month(id)
     avg_levels_for_spec_month = Reservoir.includes(:levels).find_by(id: 2).levels.where("year = ?", 2002).where("month = ?", 2).average("level").to_i
     Reservoir.includes(:levels).find_by(id: 2).levels.where("year = 2002")
@@ -100,27 +89,44 @@ class Reservoir < ActiveRecord::Base
     avg_level_for_spec_year = Reservoir.includes(:levels).find_by(id: 2).levels.where("year = ?", 2002).average("level").to_i
   end
 
-  def injectaverage(arr)
-    arr.inject(&:+)/arr.length
-  end
-
-  def monthly_by_year(year)
-    monthly_av = {}
-    monthly_av["id"] = self.id
-    monthly_av["key"] = self.name
-    # monthly_av["year"] = year
-    monthly_av["nonStackable"] = true
-    monthly_av["values"] = []
-    (1..12).each do |month|
-      average = {}
-      by_year = levels.by_month(month, year: year, field: :date)
-      average["x"] = MONTHS[month - 1]
-      average["y"] = by_year.average(:level).to_i
-      monthly_av["values"] << average
+  def monthly_by_year_averaged(year)
+    monthly_av_year = monthly_levels(year)
+    monthly_av = monthly_av_obj
+    (0..11).each do |i|
+      spec_pair = {}
+      average_specific_month = monthly_av_year[i + 1]
+      spec_pair["x"] = MONTHS[i]
+      spec_pair["y"] = (average_specific_month.to_f/max_capacity.to_f)
+      monthly_av["values"] << spec_pair
     end
     return monthly_av
   end
 
+  def self.collection_of_averages(arr, year)
+    arr.map {|station| find_by_id(station).monthly_by_year(year)}
+  end
+
+  def monthly_by_year(year)
+    monthly_av_year = monthly_levels(year)
+    monthly_av = monthly_av_obj
+    (0..11).each do |i|
+      spec_pair = {}
+      average_specific_month = monthly_av_year[i + 1]
+      spec_pair["x"] = MONTHS[i]
+      spec_pair["y"] = (average_specific_month.to_f)
+      monthly_av["values"] << spec_pair
+    end
+    return monthly_av
+  end
+
+  def monthly_av_obj
+    monthly_av = {}
+    monthly_av["id"] = self.id
+    monthly_av["key"] = self.name
+    monthly_av["nonStackable"] = true
+    monthly_av["values"] = []
+    monthly_av
+  end
 
 
   def monthly_percent_by_year(year)
@@ -165,7 +171,7 @@ class Reservoir < ActiveRecord::Base
     overall_monthly["values"] = monthly_percent_overall
     overall_monthly
   end
-# by_month(1).include(:levels).where('extract(year from date) = ?', 2002)
+
 
   def daily_by_range(year1, year2)
     if year1 == year2
@@ -215,6 +221,7 @@ class Reservoir < ActiveRecord::Base
     levels.where("year = ?", year).average("level").to_i
   end
 
+  # reformats store of averages by month to an array
   def averages_to_arr
     months = averages_by_month.keys
     arrayed = []
@@ -225,13 +232,14 @@ class Reservoir < ActiveRecord::Base
       arrayed << pair
     end
     return arrayed
-    p arrayed
   end
 
+  # preminiary db pull for all station averages for a given year
   def self.query_year(year)
     Reservoir.includes(:levels).group(:name).where("year = ?", year).average("level")
   end
 
+  # compiled averages formatted for the nvd3 donut chart
   def self.all_averages(year)
     json_for_donut_chart = []
     query_year(year).each do |k, v|
@@ -243,14 +251,12 @@ class Reservoir < ActiveRecord::Base
     json_for_donut_chart
   end
 
+  # representeative measure for all station averages weighted against all station capacities
   def self.statewide_average_of_capacity(year)
     summed_capacities = Reservoir.sum("max_capacity")
     summed_averages = query_year(year).values.inject(&:+)
-    p query_year(year).values.map(&:to_f)
     yearly_average = summed_averages/summed_capacities
     return yearly_average.to_f
-
-    # THIS ISN't working yet
   end
 
 

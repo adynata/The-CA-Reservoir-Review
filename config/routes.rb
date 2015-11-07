@@ -16,9 +16,11 @@ Rails.application.routes.draw do
   get 'api/reservoirs/daily_by_year/:id/:year' => 'reservoirs#daily_by_year'
   get 'api/reservoirs/average_by_range/:id/:year1/:year2' => 'reservoirs#average_by_range'
   get 'api/reservoirs/average_by_year/:id/:year' => 'reservoirs#average_by_year'
-  get 'api/reservoirs/by_hydrologic/:hr/' => 'reservoirs#by_hydrologic'
+  get 'api/reservoirs/by_hydrologic/:hr/:year' => 'reservoirs#by_hydrologic'
   get 'api/reservoirs/monthly_av_by_year/:id/:year' => 'reservoirs#monthly_by_year'
   get 'api/reservoirs/monthly_av_vs_capacity/:id/:year' => 'reservoirs#av_of_capacity_monthly'
+  get 'api/reservoirs/all_stations_av_for_year/:year' => 'reservoirs#all_stations_av_for_year'
+  get 'api/reservoirs/overall_average/:year' => 'reservoirs#overall_average'
 
   get 'api/reservoirs/:id' => 'reservoirs#show'
 

@@ -12,41 +12,45 @@ $(document).ready(function() {
       this.each(function (i, e) {
         var evt = document.createEvent("MouseEvents");
         evt.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-
+        console.log('d3 click!');
         e.dispatchEvent(evt);
       });
     };
 
-    $('.ss').css('background-color', '#d1bf71');
+    $('.ss').css('border-bottom', '5px solid #dea934');
 
     $('.ss').on("click", function(){
       $('.selected').attr("class", "station");
       $('.station').css("fill","#fed352");
       $('#' + lastId).css("fill","#2371cc");
       $('.active').d3Click();
-      $('#map-selection ul li').css('background-color', 'powderblue');
+      $('#map-selection ul li').css('border-bottom', '5px solid powderblue');
       var myClass = $(this).attr("class");
       stateModule.changeState(myClass);
-      $('.ss').css('background-color', '#d1bf71');
+      $('.ss').css('border-bottom', '5px solid #dea934');
       makeMultiBarChartData(chartYear, chartStation);
     });
 
-    $('.hr').on("click", function(){
-      $('#map-selection ul li').css('background-color', 'powderblue');
+    $('.hr').on('click', function(){
+      console.log('CLICK!');
+      $('#map-selection ul li').css('border-bottom', '5px solid powderblue');
       var myClass = $(this).attr("class");
       stateModule.changeState(myClass);
-      $('.hr').css('background-color', '#d1bf71');
+      $('.hr').css('border-bottom', '5px solid #dea934');
       $('.station').css("fill", "#fed352");
       $('.beachball').show();
       $('#' + defaultRegion).d3Click();
-      makeHRData();
+      // $('#' + defaultRegion).attr("class", "hydro_reg active");
+
+      // console.log('ok, we are calling the function now');
+      // makeHRData();
     });
 
     $('.all').on("click", function(){
-      $('#map-selection ul li').css('background-color', 'powderblue');
+      $('#map-selection ul li').css('border-bottom', '5px solid powderblue');
       var myClass = $(this).attr("class");
       stateModule.changeState(myClass);
-      $('.all').css('background-color', '#d1bf71');
+      $('.all').css('border-bottom', '5px solid #dea934');
       $('.active').d3Click();
       $('.station').css("fill","#2371cc");
       makeAllStationData();
@@ -86,18 +90,16 @@ $(document).ready(function() {
     });
 
     $html.on('click.hydro_reg', function(e) {
-      // e.preventDefault();
-      if (stateModule.getState() === "hr" && ($(e.target).attr("class") === "hydro_reg active"))
+      e.preventDefault();
+      if (stateModule.getState() === "hr" && ($(e.target).attr("class") === ( "hydro_reg active" || "hydro_reg")))
       {
         if ($(e.target).attr("id") !== 'SacramentoRiver') {
           $('#SacramentoRiver').attr("class", "hydro_reg");
-
         }
         $(".hydro_reg active").attr("class", "hydro_reg");
         $(e.target).attr("class",  "hydro_reg active");
         var region = e.target.__data__.id;
         defaultRegion = region.replace(/ /g,'');
-
         makeHRData();
       }
     });
@@ -129,10 +131,6 @@ $(document).ready(function() {
         makeMultiBarChartData(year, chartStation);
       } else if (stateModule.getState() === "hr") {
         makeHRData();
-      } else if (stateModule.getState() === "hr") {
-        console.log("go make that chart");
-      } else {
-        console.log("why are you in here?");
       }
 
     });
@@ -163,7 +161,7 @@ $(document).ready(function() {
         .duration(300)
         .clipVoronoi(false);
       chart.dispatch.on('renderEnd', function() {
-        console.log('render complete: cumulative line with guide line');
+        // console.log('render complete: cumulative line with guide line');
       });
 
       chart.xAxis.tickFormat(function(d) {
@@ -171,12 +169,10 @@ $(document).ready(function() {
       });
 
       chart.yAxis.tickFormat(d3.format('d'));
-      // console.log( data );
 
       d3.select('#chart svg')
         .datum(data)
         .call(chart);
-        // console.log( data );
 
       nv.utils.windowResize(chart.update);
 
@@ -208,7 +204,7 @@ $(document).ready(function() {
 
       eout( function () {
         makeCumulativeLineChart(chartData);
-        console.log("waiting");}, 2000);
+        }, 2000);
 
   }
 
@@ -216,13 +212,10 @@ $(document).ready(function() {
     chartYear = year;
     chartStation = station;
 
-    endpoint = address + '/api/reservoirs/monthly_av_vs_capacity/' + chartStation + '/' + chartYear;
+    var endpoint = address + '/api/reservoirs/monthly_av_vs_capacity/' + chartStation + '/' + chartYear;
     d3.json(endpoint, function(error, data) {
-
-    $('.beachball').show();
-    setTimeout( function () {
+      $('.beachball').show();
       makeMultiBarChart(data);
-      console.log("waiting");}, 3000);
     });
 
     updateLabelSs(station, year);
@@ -231,45 +224,34 @@ $(document).ready(function() {
 //
   function makeHRData() {
 
-    endpoint = address + '/api/reservoirs/by_hydrologic/' + defaultRegion.replace(/ /g,'');
+    var endpoint = address + '/api/reservoirs/by_hydrologic/' + defaultRegion.replace(/ /g,'') + "/" + chartYear;
 
-    var hr = [];
-    $.get(endpoint, function(data, status){
-      $('.station').css("fill","#fed352");
+    var hr;
 
-      for ( var i = 0; i < data.length; i++) {
-        (function(){
-          var idName = data[i].name.replace(/ /g,'').replace(/ *\([^)]*\) */g, "");
-          $('#'+idName).attr("class","station selected");
-          $('#'+idName).css("fill","#2371cc");
-          // console.log($('#'+idName));
-          var station_id = data[i].id;
-          var station_endpoint = address + '/api/reservoirs/monthly_av_by_year/'+ station_id +'/'+ chartYear;
-          (function(){$.get(station_endpoint, function(data, status) {
-                hr.push(data);
-          });})(station_endpoint);
-
-        })(i);
-      }
+    $.get(endpoint, function(data, status) {
+          hr = data;
+          updateStations();
+          $('.beachball').show();
+          makeMultiBarChartHr(hr);
     });
-    setTimeout( function () {
-      $('.beachball').show();
 
-      makeMultiBarChartHr(hr);
+    $('.station').css("fill","#fed352");
 
-
-      console.log("waiting");}, 3000);
-
-
-
+    function updateStations() {
+      for ( var i = 0; i < hr.length; i++) {
+        (function(i){
+          var idName = hr[i].key.replace(/ /g,'').replace(/ *\([^)]*\) */g, "");
+            $('#'+idName).attr("class","station selected");
+            $('#'+idName).css("fill","#2371cc");
+          })(i);
+      }
+    }
     updateLabelHr();
-
   }
 
   function updateLabelSs(station, year) {
     var stationInfo = address + '/api/reservoirs/' + station;
     $.getJSON( stationInfo, function( data ) {
-      // console.log(data);
       $('.res-name').text(data.name);
       $('.res-year').text(year);
       $('.res-county').text(data.county + " County");
@@ -328,13 +310,11 @@ $(document).ready(function() {
               chart.reduceXTicks(false);
 
               chart.dispatch.on('renderEnd', function(){
-                  console.log('Render Complete');
                   $('.beachball').hide();
                   $('#blankchart').css('z-index', '0');
 
               });
               var svg = d3.select('#chart svg').datum(data);
-              console.log('calling chart');
               svg.transition().duration(0).call(chart);
               return chart;
           },
@@ -357,9 +337,7 @@ $(document).ready(function() {
     $('#chart').hide();
     $('#chartall').hide();
     $('#blankchart').show();
-
     $('#blankchart').css('z-index', '9');
-
     $('#chart2').fadeIn(1000);
 
 
@@ -384,14 +362,10 @@ $(document).ready(function() {
 
 
             chart.dispatch.on('renderEnd', function(){
-                console.log('Render Complete');
                 $('.beachball').hide();
                 $('#blankchart').css('z-index', '0');
-
-
             });
             var svg = d3.select('#chart2 svg').datum(data);
-            console.log('calling chart');
             svg.transition().duration(0).call(chart);
             return chart;
         },
@@ -412,74 +386,47 @@ $(document).ready(function() {
 
 
     function makeAllStationData() {
-      makeAllStationChart();
+      var endpoint = address + "/api/reservoirs/all_stations_av_for_year/" + chartYear;
+
+      $.get(endpoint, function(data, status) {
+            $('.beachball').show();
+            makeAllStationChart(data);
+      });
+      var percentage_endpoint = address + "/api/reservoirs/overall_average/" + chartYear;
+      $.get(percentage_endpoint, function(data, status) {
+          loadLiquidFillGauge("fillgauge1", Math.floor(data * 100));
+      });
+
     }
 
-    function makeAllStationChart() {
+    function makeAllStationChart(data) {
       $('#chart2').hide();
       $('#chart').hide();
       $('#blankchart').show();
       $('#blankchart').css('z-index', '9');
       $('#chartall').show();
-      console.log("is this thing working");
-      //Donut chart example
-    nv.addGraph(function() {
-      var chart = nv.models.pieChart()
-          .x(function(d) { return d.label; })
-          .y(function(d) { return d.value; })
-          .showLabels(true)     //Display pie labels
-          .labelThreshold(0.05)  //Configure the minimum slice size for labels to show up
-          .labelType("percent") //Configure what type of data to show in the label. Can be "key", "value" or "percent"
-          .donut(true)          //Turn on Donut mode. Makes pie chart look tasty!
-          .donutRatio(0.35)     //Configure how big you want the donut hole size to be.
-          ;
-          chart.legend.updateState(false);
 
-        d3.select("#chart4 svg")
-            .datum(exampleData())
-            .transition().duration(350)
-            .call(chart);
+      nv.addGraph(function() {
+        var chart = nv.models.pieChart()
+            .x(function(d) { return d.label; })
+            .y(function(d) { return d.value; })
+            .showLabels(true)     //Display pie labels
+            .showLegend(false)
+            .labelThreshold(.05)  //Configure the minimum slice size for labels to show up
+            .labelType("percent") //Configure what type of data to show in the label. Can be "key", "value" or "percent"
+            .donut(true)          //Turn on Donut mode. Makes pie chart look tasty!
+            .donutRatio(0.25)     //Configure how big you want the donut hole size to be.
+            ;
+            chart.legend.updateState(false);
 
-      return chart;
-    });
+            chart.color(['#532971', '#FFC247', '#B87B00', '#734D00', '#01959C', '#3a740c', '#30A4A9', '#016A6F', '#004346', '#FF7600', '#FFC592', '#FF9C47', '#B85500', '#733500', '#1140AC', '#839BD4', '#4165B7', '#0A2C7B', '#041A4D']);
 
-    //Pie chart example data. Note how there is only a single array of key-value pairs.
-    function exampleData() {
-      return  [
-          {
-            "label": "One",
-            "value" : 29.765957771107
-          } ,
-          {
-            "label": "Two",
-            "value" : 0
-          } ,
-          {
-            "label": "Three",
-            "value" : 32.807804682612
-          } ,
-          {
-            "label": "Four",
-            "value" : 196.45946739256
-          } ,
-          {
-            "label": "Five",
-            "value" : 0.19434030906893
-          } ,
-          {
-            "label": "Six",
-            "value" : 98.079782601442
-          } ,
-          {
-            "label": "Seven",
-            "value" : 13.925743130903
-          } ,
-          {
-            "label": "Eight",
-            "value" : 5.1387322875705
-          }
-        ];
-    }
+          d3.select("#chart4 svg")
+              .datum(data)
+              .transition().duration(350)
+              .call(chart);
+        return chart;
+      });
 
       console.log('Render Complete');
       $('.beachball').hide();
@@ -754,7 +701,7 @@ $(document).ready(function() {
 
         return new GaugeUpdater();
     }
-  var gauge1 = loadLiquidFillGauge("fillgauge1", 55);
+  // var gauge1 = loadLiquidFillGauge("fillgauge1", 55);
   var config1 = liquidFillGaugeDefaultSettings();
   config1.circleColor = "#FF7777";
   config1.textColor = "#FF4444";
@@ -762,7 +709,7 @@ $(document).ready(function() {
   config1.waveColor = "#FFDDDD";
   config1.circleThickness = 0.2;
   config1.textVertPosition = 0.2;
-  config1.waveAnimateTime = 1000;
+  config1.waveAnimateTime = 2000;
 
 
   $('#chart2').hide();
@@ -775,6 +722,6 @@ $(document).ready(function() {
     $("#OrovilleDam").click();
 
 
-    console.log("waiting");}, 3000);
+    console.log("waiting");}, 2000);
 
 });

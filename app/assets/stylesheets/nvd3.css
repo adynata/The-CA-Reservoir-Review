@@ -65,7 +65,8 @@
 }
 
 .nvd3 .nv-bars .hover text {
-    fill: rgba(0,0,0,1);
+    fill: white;
+    /*fill: rgb(255, 255, 255);*/
 }
 
 .nvd3 .nv-multibar .nv-groups rect,
@@ -399,7 +400,7 @@ svg.nvd3-svg {
 }
 
 .nvd3.nv-pie .nv-slice text {
-    stroke: #000;
+    stroke: #fff;
     stroke-width: 0;
 }
 

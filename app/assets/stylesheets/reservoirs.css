@@ -25,7 +25,7 @@ body {
   height: 100%;
   font-family: 'Source Sans Pro';
   font-weight: lighter;
-  background-color: black;
+  background-color: grey;
   min-width: 1400px;
 }
 
@@ -271,7 +271,7 @@ svg {
 #map-selection {
   position: relative;
   display: block;
-  height: 40px;
+  height: 36px;
   width: 399px;
   z-index: 9;
 }
@@ -290,6 +290,7 @@ svg {
   width: 33.3%;
   line-height: 36px;
   color: #293971;
+  border-bottom: 5px solid powderblue;
   font-weight: normal;
   text-align: center;
   background-color: inherit;
@@ -312,8 +313,11 @@ svg {
   color: #293971;
   text-align: center;
   font-weight: 600;
-  line-height: 24px;
+  line-height: 18px;
+}
 
+.chart-info-2 {
+  font-size: 1em;
 }
 
 .chart-info span {
@@ -344,7 +348,7 @@ svg {
   height: 34px;
   font-weight: bold;
   float: left;
-  font-size: 1.3em;
+  font-size: 1.1em;
   background-color: rgba(255, 255, 255, 0.59);
   z-index: 10;
   color:#3b2e66;
@@ -482,6 +486,40 @@ text {
   background-color: #B9EADC;
   width:100%;
   height:80px;   /* Height of the footer */
+  text-align: center;
+}
+
+.footer svg {
+  height: 50px;
+  width: 50px;
+  background-color: transparent;
+  border: none;
+  border-radius: none;
+  position: relative;
+}
+
+.soc-li {
+  fill:  #293971;
+}
+
+.footer .soc-li:hover {
+  fill:  rgb(35, 113, 204);
+}
+
+.sociallinks {
+  width: 33%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 80px;
+  color: #293971;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+.sociallinks a {
+  float: right;
+  line-height: 80px;
+  margin-top: 12px;
 }
 
 .group:after {
@@ -557,6 +595,11 @@ button:hover {
 
 .station, .about-link, .how-to-link, .about-us-link, .hydro_reg, .ss, .hr, .all {
   cursor: pointer;
+}
+
+.nv-pieLabels text {
+  text: red;
+  fill: white;
 }
 
 /* 1100px is about where things start to break */

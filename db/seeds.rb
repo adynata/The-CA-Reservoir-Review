@@ -202,12 +202,12 @@ require 'date'
 
 # end
 
-## sets month and year col for levels
-# Level.find_each do |level|
-#   level.month = level.date.strftime('%-m').to_i
-#   level.year = level.date.strftime('%Y').to_i
-#   level.save
-# end
+# sets month and year col for levels
+Level.find_each do |level|
+  level.month = level.date.strftime('%-m').to_i
+  level.year = level.date.strftime('%Y').to_i
+  level.save
+end
 # Level.update_all
 
 # reservoir = Reservoir.include(:levels)

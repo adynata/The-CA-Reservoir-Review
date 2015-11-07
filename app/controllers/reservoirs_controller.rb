@@ -1,9 +1,6 @@
 class ReservoirsController < ApplicationController
+
   def index
-    @reservoir_list = Reservoir.all
-    @regions = ["Central Coast", "Colorado River", "North Coast", "North Lahontan", "Sacramento River", "San Francisco Bay", "San Joaquin River", "South Coast", "South Lahontan", "Tulare Lake"]
-    @stations = ["Trinity Lake", "Whiskeytown Dam", "Lewiston", "Warm Springs", "Coyote", "Shasta Dam", "Keswick Reservoir", "Oroville Dam", "Antelope Lake", "Frenchman Dam", "Lake Davis", "New Bullards Bar", "Englebright", "Folsom Lake", "Union Valley", "Loon Lake", "Ice House", "Lake Natoma", "Indian Valley", "Black Butte", "New Hogan Lake", "Camanche Reservoir", "Pardee", "Donnells", "Beardsley Lake", "Tulloch", "New Melones", "Don Pedro Reservoir", "Hetch Hetchy", "Cherry Valley Dam", "New Exchequer-lk Mcclure", "Buchanan Dam", "Hidden Dam", "Friant Dam", "San Luis Reservoir", "Pine Flat Dam", "Terminus Dam", "Success Dam", "Isabella Dam", "Stampede", "Independence Lake", "Donner Lake", "Cachuma Lake", "Pyramid", "Castaic", "Perris"]
-    render :index
   end
 
   def show
@@ -49,8 +46,11 @@ class ReservoirsController < ApplicationController
 
   def by_hydrologic
     parsed_hr = params[:hr].split(/(?<=[a-z])(?=[A-Z])/).join(' ')
-    stations_by_hr = Reservoir.where("hydrologic_area = ?", parsed_hr)
-    render json: stations_by_hr
+    stations_by_hr = Reservoir.select("id").where("hydrologic_area = ?", parsed_hr)
+    year = params[:year]
+    stations_by_hr.map {|id| id.id}
+    collection_of_hr_records = Reservoir.collection_of_averages(stations_by_hr, year)
+    render json: collection_of_hr_records
   end
 
   def monthly_by_year
@@ -65,7 +65,13 @@ class ReservoirsController < ApplicationController
     render json: reservoir.monthly_percent_by_year(year)
   end
 
+  def all_stations_av_for_year
+    render json: Reservoir.all_averages(params[:year])
+  end
 
+  def overall_average
+    render json: Reservoir.statewide_average_of_capacity(params[:year])
+  end
 
   private
 
