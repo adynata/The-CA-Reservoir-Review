@@ -1,7 +1,7 @@
 
 $(document).ready(function() {
 
-  console.log(stateModule);
+  console.log(chartState);
 
   var width = 500,
       height = 600,
@@ -78,7 +78,7 @@ $(document).ready(function() {
         .attr("fill-opacity", "0.4")
         .on("click", clicked)
         .on("mouseover", function(feature) {
-          if (stateModule.getState() === "hr"){
+          if (chartState.getState() === "hr"){
 
             var props = feature.id;
             div.transition()
@@ -120,12 +120,12 @@ $(document).ready(function() {
     })
     // mouseover functions
     .on("mouseover", function(feature) {
-      if (stateModule.getState() === "ss"){
+      if (chartState.getState() === "ss"){
         var props = feature.properties;
         // console.log(feature)
         div.transition()
           .duration(200)
-          .style("opacity", .95)
+          .style("opacity", 0.95)
           .style("background-color", "#293971")
           .style("font", "16px");
         div.html('Reservoir: ' + props.name)
@@ -156,7 +156,7 @@ function clicked(d) {
       dy = bounds[1][1] - bounds[0][1],
       x = (bounds[0][0] + bounds[1][0]) / 2,
       y = (bounds[0][1] + bounds[1][1]) / 2,
-      scale = .9 / Math.max(dx / width, dy / height),
+      scale = 0.9 / Math.max(dx / width, dy / height),
       translate = [width / 2 - scale * x, height / 2 - scale * y];
   a.transition()
       .duration(750)

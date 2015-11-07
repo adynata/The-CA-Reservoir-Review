@@ -1,16 +1,43 @@
-var stateModule = (function () {
-  var state = "ss"; // Private Variable
+var chartState = (function () {
+  var state = "ss";
+  var lastStation = "";
+  var lastHydro = "";
+  var lastYear = 2015;
 
-  var pub = {};// public object - returned at end of module
+  var pub = {};
 
   pub.changeState = function (newstate) {
       state = newstate;
-      console.log(state);
   };
 
   pub.getState = function() {
       return state;
-  }
+  };
 
-  return pub; // expose externally
-}());
+  pub.changeStation = function(newStation) {
+    lastStation = newStation;
+  };
+
+  pub.changeHR = function(newHR) {
+    lastHydro = newHR;
+  };
+
+  pub.changeYear = function(newYear) {
+    lastYear = newYear;
+  };
+
+  pub.getStation = function() {
+      return lastStation;
+  };
+
+  pub.getHR = function() {
+      return lastHydro;
+  };
+
+  pub.getYear = function() {
+      return lastYear;
+  };
+
+  return pub;
+
+})();

@@ -5,7 +5,7 @@ $(document).ready(function() {
     var address = "";
     //  'https://ca-reservoir-review.herokuapp.com';
 
-    // console.log(stateModule);
+    // console.log(chartState);
 
 
     jQuery.fn.d3Click = function () {
@@ -26,37 +26,40 @@ $(document).ready(function() {
       $('.active').d3Click();
       $('#map-selection ul li').css('border-bottom', '5px solid powderblue');
       var myClass = $(this).attr("class");
-      stateModule.changeState(myClass);
+      chartState.changeState(myClass);
       $('.ss').css('border-bottom', '5px solid #dea934');
-      makeMultiBarChartData(chartYear, chartStation);
+      chartDiagnostic();
+      $('#chart2').hide();
+      $('#chartall').hide();
+      $('#chart').show();
     });
 
     $('.hr').on('click', function(){
-      console.log('CLICK!');
       $('#map-selection ul li').css('border-bottom', '5px solid powderblue');
       var myClass = $(this).attr("class");
-      stateModule.changeState(myClass);
+      chartState.changeState(myClass);
       $('.hr').css('border-bottom', '5px solid #dea934');
       $('.station').css("fill", "#fed352");
       $('.beachball').show();
-      $('#' + defaultRegion).d3Click();
-      // $('#' + defaultRegion).attr("class", "hydro_reg active");
-
-      // console.log('ok, we are calling the function now');
-      // makeHRData();
+      // $('#' + defaultRegion).d3Click();
+      chartDiagnostic();
+      $('#chart').hide();
+      $('#chartall').hide();
+      $('#chart2').show();
     });
 
     $('.all').on("click", function(){
       $('#map-selection ul li').css('border-bottom', '5px solid powderblue');
       var myClass = $(this).attr("class");
-      stateModule.changeState(myClass);
+      chartState.changeState(myClass);
       $('.all').css('border-bottom', '5px solid #dea934');
       $('.active').d3Click();
       $('.station').css("fill","#2371cc");
-      makeAllStationData();
+      $('#chart').hide();
+      $('#chart2').hide();
+      $('#chartall').show();
+      chartDiagnostic();
     });
-
-
 
     $html.on('click.ui.dropdown tap.ui.dropdown', '.js-dropdown', function(e) {
       // e.preventDefault();
@@ -67,31 +70,30 @@ $(document).ready(function() {
 
         var station = e.target;
         console.log($(station).attr("class"));
-      if (stateModule.getState() === "ss" &&
+      if (chartState.getState() === "ss" &&
       $(station).attr("class") === ("station" || "station clicked_sta") ) {
         e.preventDefault();
         var station_id = station.__data__.properties.id;
         if ($(station).attr("class") === "station") {
           lastId = $(station).attr("id");
+          chartStation = station_id;
           $('.clicked_sta').attr("class", "station");
           $('.station').css("fill", "#fed352");
           $(station).attr("class", "station clicked_sta");
           $(station).css("fill", "#2371cc");
           // makeCumLinData(chartYear, station_id);
-          makeMultiBarChartData(chartYear, station_id);
-
+          // makeMultiBarChartData(chartYear, station_id);
+          chartDiagnostic();
         } else if ($(station).attr("class") === "station clicked_sta") {
           $(station).attr("class", "station");
           $(station).css("fill", "#fed352");
-        } else {
-          console.log("clicked something else");
         }
       }
     });
 
     $html.on('click.hydro_reg', function(e) {
       e.preventDefault();
-      if (stateModule.getState() === "hr" && ($(e.target).attr("class") === ( "hydro_reg active" || "hydro_reg")))
+      if (chartState.getState() === "hr" && ($(e.target).attr("class") === ( "hydro_reg active" || "hydro_reg")))
       {
         if ($(e.target).attr("id") !== 'SacramentoRiver') {
           $('#SacramentoRiver').attr("class", "hydro_reg");
@@ -100,22 +102,23 @@ $(document).ready(function() {
         $(e.target).attr("class",  "hydro_reg active");
         var region = e.target.__data__.id;
         defaultRegion = region.replace(/ /g,'');
-        makeHRData();
+        chartDiagnostic();
       }
     });
 
     $html.on('mouseover.station', function(e) {
       var station = e.target;
-      if ($(station).attr("class") === "station" && stateModule.getState() === "ss") {
+      if ($(station).attr("class") === "station" && chartState.getState() === "ss") {
         $(station).css("fill", "white");
       }
     });
 
     $html.on('mouseout.station', function(e) {
       var station = e.target;
-      if ($(station).attr("class") === "station" && stateModule.getState() === "ss") {
+      if ($(station).attr("class") === "station" && chartState.getState() === "ss") {
         $(station).css("fill", "#fed352");
       }
+
     });
 
 
@@ -127,12 +130,7 @@ $(document).ready(function() {
       var year = $self.data('dropdown-value');
       chartYear = year;
       $dropdown.find('.js-dropdown__current').text($self.text());
-      if (stateModule.getState() === "ss") {
-        makeMultiBarChartData(year, chartStation);
-      } else if (stateModule.getState() === "hr") {
-        makeHRData();
-      }
-
+      chartDiagnostic();
     });
 
     $html.on('click.ui.dropdown tap.ui.dropdown', function(e) {
@@ -148,69 +146,13 @@ $(document).ready(function() {
   });
 
 
-
-
-  function makecCumulativeLineChart(data) {
-    nv.addGraph(function() {
-      var chart = nv.models.cumulativeLineChart()
-        .useInteractiveGuideline(true)
-        .x(function(d) { return d[0]; })
-        .y(function(d) { return d[1] })
-        .color(d3.scale.category10().range())
-        // .average(function(d) { return d.mean/100; })
-        .duration(300)
-        .clipVoronoi(false);
-      chart.dispatch.on('renderEnd', function() {
-        // console.log('render complete: cumulative line with guide line');
-      });
-
-      chart.xAxis.tickFormat(function(d) {
-        return d3.time.format('%m/%d/%y')(new Date(d));
-      });
-
-      chart.yAxis.tickFormat(d3.format('d'));
-
-      d3.select('#chart svg')
-        .datum(data)
-        .call(chart);
-
-      nv.utils.windowResize(chart.update);
-
-      return chart;
-    });
-  }
-
   var endpoint, chartData, numCharts;
   var chartYear = 2015;
   var chartStation = 8;
   var defaultRegion = "SacramentoRiver";
   var lastId = "OrovilleDam";
 
-  function makeCumLinData(year, station) {
-    chartYear = year;
-    chartStation = station;
-    chartData = [];
-
-      endpoint = address + '/api/reservoirs/daily_by_year/' + chartStation + '/' + chartYear;
-      d3.json(endpoint, function(error, data) {
-
-        var levels = formatLevels(data);
-
-        chartData.push({
-          key: data.reservoir,
-          values: levels
-        });
-      });
-
-      eout( function () {
-        makeCumulativeLineChart(chartData);
-        }, 2000);
-
-  }
-
-  function makeMultiBarChartData(year, station) {
-    chartYear = year;
-    chartStation = station;
+  function makeMultiBarChartData() {
 
     var endpoint = address + '/api/reservoirs/monthly_av_vs_capacity/' + chartStation + '/' + chartYear;
     d3.json(endpoint, function(error, data) {
@@ -218,10 +160,10 @@ $(document).ready(function() {
       makeMultiBarChart(data);
     });
 
-    updateLabelSs(station, year);
+    updateLabelSs();
 
   }
-//
+
   function makeHRData() {
 
     var endpoint = address + '/api/reservoirs/by_hydrologic/' + defaultRegion.replace(/ /g,'') + "/" + chartYear;
@@ -249,11 +191,11 @@ $(document).ready(function() {
     updateLabelHr();
   }
 
-  function updateLabelSs(station, year) {
-    var stationInfo = address + '/api/reservoirs/' + station;
+  function updateLabelSs() {
+    var stationInfo = address + '/api/reservoirs/' + chartStation;
     $.getJSON( stationInfo, function( data ) {
       $('.res-name').text(data.name);
-      $('.res-year').text(year);
+      $('.res-year').text(changeYear);
       $('.res-county').text(data.county + " County");
       $('.res-max').text(data.max_capacity);
       $('.res-hr').text(data.hydrologic_area);
@@ -282,11 +224,9 @@ $(document).ready(function() {
   }
 
   function makeMultiBarChart(data) {
-    $('#chart2').hide();
-    $('#chartall').hide();
     $('#blankchart').show();
     $('#blankchart').css('z-index', '9');
-    $('#chart').fadeIn(1000);
+
 
     nv.addGraph({
 
@@ -412,7 +352,7 @@ $(document).ready(function() {
             .y(function(d) { return d.value; })
             .showLabels(true)     //Display pie labels
             .showLegend(false)
-            .labelThreshold(.05)  //Configure the minimum slice size for labels to show up
+            .labelThreshold(0.05)  //Configure the minimum slice size for labels to show up
             .labelType("percent") //Configure what type of data to show in the label. Can be "key", "value" or "percent"
             .donut(true)          //Turn on Donut mode. Makes pie chart look tasty!
             .donutRatio(0.25)     //Configure how big you want the donut hole size to be.
@@ -446,7 +386,7 @@ $(document).ready(function() {
             maxValue: 100, // The gauge maximum value.
             circleThickness: 0.05, // The outer circle thickness as a percentage of it's radius.
             circleFillGap: 0.05, // The size of the gap between the outer circle and wave circle as a percentage of the outer circles radius.
-            circleColor: "#178BCA", // The color of the outer circle.
+            circleColor: "#629cb1", // The color of the outer circle.
             waveHeight: 0.05, // The wave height as a percentage of the radius of the wave circle.
             waveCount: 1, // The number of full waves per width of the wave circle.
             waveRiseTime: 1000, // The amount of time in milliseconds for the wave to rise from 0 to it's final height.
@@ -464,6 +404,24 @@ $(document).ready(function() {
             waveTextColor: "#A4DBf8" // The color of the value text when the wave overlaps it.
         };
     }
+    function chartDiagnostic() {
+      console.log(chartState);
+      if ( chartState.getYear() !== chartYear ) {
+        chartState.changeYear(chartYear);
+        updateAllCharts();
+      } else if ( chartState.getState() === "ss" ) {
+        makeMultiBarChartData();
+      } else if ( chartState.getState() === "hr" ) {
+
+      } else if ( chartState.getState() === "all" ) {
+
+      }
+    }
+
+    function updateAllCharts() {
+      console.log("update all the charts");
+    }
+
 
     function loadLiquidFillGauge(elementId, value, config) {
         if(config == null) config = liquidFillGaugeDefaultSettings();
@@ -715,13 +673,10 @@ $(document).ready(function() {
   $('#chart2').hide();
   $('#chartall').hide();
 
-  // makeMultiBarChartData(chartYear, chartStation);
-
-
   setTimeout( function () {
-    $("#OrovilleDam").click();
-
-
-    console.log("waiting");}, 2000);
+    makeAllStationData();
+    makeHRData();
+    $(".ss").click();
+    }, 2000);
 
 });

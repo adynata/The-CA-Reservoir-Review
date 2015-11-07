@@ -396,26 +396,32 @@ svg {
 }
 
 #chart3 svg  {
-  width: 40%;
+  width: 33%;
   border: none;
   margin-left: 10%;
+  /*margin-right: 7%;*/
   height: 400px;
 
 }
 
 #chart3-sub {
-  position: absolute;
+  position: relative;
   display: block;
   height: 55px;
   width: 100%;
   background-color: none;
+  font-weight: bold;
+  text-align: center;
+  color: #293971;
+
   bottom: 0;
 }
 
 #chart4 svg {
-  width: 50%;
+  width: 45%;
   border: none;
   height: 400px;
+  margin-left: 8%;
 
 }
 
@@ -428,7 +434,7 @@ svg {
 }
 
 #chartall {
-  position: relative;
+  position: absolute;
   display: block;
   height: 455px;
   width: 97%;
