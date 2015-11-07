@@ -29,6 +29,16 @@ body {
   min-width: 1400px;
 }
 
+svg {
+  float:left ;
+  width: 100%;
+  border: 3px solid red;
+  border-radius: 3px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  }
+
 .title {
   position: relative;
   background-color: #eee;
@@ -233,9 +243,7 @@ h1 {
   margin: 15px;
 }
 
-svg {
-  display: block;
-}
+
 
 #content {
   position: relative;
@@ -303,8 +311,8 @@ svg {
 
 
 .chart-info {
-  position: relative;
-  width: 96.7%;
+  position:relative;
+  width: 95%;
   height: 34px;
   margin-left: .8px;
   background-color: rgba(255, 255, 255, 0.59);
@@ -314,6 +322,7 @@ svg {
   text-align: center;
   font-weight: 600;
   line-height: 18px;
+  margin-top: 455px;
 }
 
 .chart-info-2 {
@@ -344,7 +353,7 @@ svg {
 
 .chart-title {
   position: relative;
-  width:calc(94.9% - 57px);
+  width: calc(93% - 57px);
   height: 34px;
   font-weight: bold;
   float: left;
@@ -389,7 +398,7 @@ svg {
   position: relative;
   display: block;
   height: 455px;
-  width: 97%;
+  width: 100%;
   z-index: 1;
   float: left;
 
@@ -425,45 +434,49 @@ svg {
 
 }
 
+text {
+  fill: #293971;
+}
+
+#chart, #chart2, #chart3, #chart4, #chartall, #blankchart {
+  margin-left: 0%;
+  position: absolute;
+  display: block;
+  width: 95%;
+  height: 455px;
+  z-index: 0
+}
+
+#chart {
+  background-color: red;
+}
+
+#chart2 {
+  background-color: orange;
+}
+
+#chartall {
+  background-color: yellow;
+}
+
+#chart3, #chart4 {
+  width: 50%
+  background-color: blue;
+}
+
+#blankchart {
+  background-color: green;
+}
+
 #chart4label, #chart3label {
   width: 50%;
   height: 100%;
   display: inline-block;
   float: left;
   text-align: center;
+  background-color: black;
 }
 
-#chartall {
-  position: absolute;
-  display: block;
-  height: 455px;
-  width: 97%;
-  z-index: 1;
-  background-color: #a8d6ce;
-  border: 2px solid gray;
-}
-
-
-
-
-#blankchart svg {
-  position: absolute;
-  z-index: 999;
-}
-
-
-
-text {
-  fill: #293971;
-}
-
-
-
-#chart, #chart2, #chart3, #chart4, #chartall, #blankchart {
-  margin-left: 0%;
-  position: relative;
-
-}
 
 .arrow-down, .arrow-up {
   width: 80px;
@@ -571,7 +584,7 @@ text {
 #chart-container {
   position: relative;
   display: block;
-  width: calc(85% + 46px);
+  width: auto;
   height: auto;
   float: left;
 }

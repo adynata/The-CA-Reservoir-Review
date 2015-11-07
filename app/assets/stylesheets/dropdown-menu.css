@@ -8,19 +8,6 @@
   overflow: hidden;
 }
 
-
-svg {
-  float:left ;
-  width: 100%;
-  background-color: #a8d6ce;
-  border: 2px solid gray;
-  border-radius: 3px;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-
 #dropdown dl{
   display: inline-block;
 }

@@ -29,9 +29,9 @@ $(document).ready(function() {
       chartState.changeState(myClass);
       $('.ss').css('border-bottom', '5px solid #dea934');
       chartDiagnostic();
-      $('#chart2').hide();
-      $('#chartall').hide();
-      $('#chart').show();
+      $('#chart2').css("z-index", "0");
+      $('#chartall').css("z-index", "0");
+      $('#chart').css("z-index", "9");
     });
 
     $('.hr').on('click', function(){
@@ -40,12 +40,12 @@ $(document).ready(function() {
       chartState.changeState(myClass);
       $('.hr').css('border-bottom', '5px solid #dea934');
       $('.station').css("fill", "#fed352");
-      $('.beachball').show();
+      // $('.beachball').css("z-index", "10");
       // $('#' + defaultRegion).d3Click();
       chartDiagnostic();
-      $('#chart').hide();
-      $('#chartall').hide();
-      $('#chart2').show();
+      $('#chart').css("z-index", "0");
+      $('#chartall').css("z-index", "0");
+      $('#chart2').css("z-index", "9");
     });
 
     $('.all').on("click", function(){
@@ -55,9 +55,9 @@ $(document).ready(function() {
       $('.all').css('border-bottom', '5px solid #dea934');
       $('.active').d3Click();
       $('.station').css("fill","#2371cc");
-      $('#chart').hide();
-      $('#chart2').hide();
-      $('#chartall').show();
+      $('#chart').css("z-index", "0");
+      $('#chart2').css("z-index", "0");
+      $('#chartall').css("z-index", "10");
       chartDiagnostic();
     });
 
@@ -68,11 +68,10 @@ $(document).ready(function() {
 
     $html.on('click.station', function(e) {
 
-        var station = e.target;
-        console.log($(station).attr("class"));
       if (chartState.getState() === "ss" &&
       $(station).attr("class") === ("station" || "station clicked_sta") ) {
         e.preventDefault();
+        var station = e.target;
         var station_id = station.__data__.properties.id;
         if ($(station).attr("class") === "station") {
           lastId = $(station).attr("id");
@@ -82,7 +81,6 @@ $(document).ready(function() {
           $(station).attr("class", "station clicked_sta");
           $(station).css("fill", "#2371cc");
           // makeCumLinData(chartYear, station_id);
-          // makeMultiBarChartData(chartYear, station_id);
           chartDiagnostic();
         } else if ($(station).attr("class") === "station clicked_sta") {
           $(station).attr("class", "station");
@@ -156,7 +154,7 @@ $(document).ready(function() {
 
     var endpoint = address + '/api/reservoirs/monthly_av_vs_capacity/' + chartStation + '/' + chartYear;
     d3.json(endpoint, function(error, data) {
-      $('.beachball').show();
+      // $('.beachball').show();
       makeMultiBarChart(data);
     });
 
@@ -173,7 +171,8 @@ $(document).ready(function() {
     $.get(endpoint, function(data, status) {
           hr = data;
           updateStations();
-          $('.beachball').show();
+          // $('.beachball').show();
+
           makeMultiBarChartHr(hr);
     });
 
@@ -195,7 +194,7 @@ $(document).ready(function() {
     var stationInfo = address + '/api/reservoirs/' + chartStation;
     $.getJSON( stationInfo, function( data ) {
       $('.res-name').text(data.name);
-      $('.res-year').text(changeYear);
+      $('.res-year').text(chartYear);
       $('.res-county').text(data.county + " County");
       $('.res-max').text(data.max_capacity);
       $('.res-hr').text(data.hydrologic_area);
@@ -224,7 +223,6 @@ $(document).ready(function() {
   }
 
   function makeMultiBarChart(data) {
-    $('#blankchart').show();
     $('#blankchart').css('z-index', '9');
 
 
@@ -250,7 +248,7 @@ $(document).ready(function() {
               chart.reduceXTicks(false);
 
               chart.dispatch.on('renderEnd', function(){
-                  $('.beachball').hide();
+                  // $('.beachball').css("z-index", "0");
                   $('#blankchart').css('z-index', '0');
 
               });
@@ -274,9 +272,9 @@ $(document).ready(function() {
     }
 
   function makeMultiBarChartHr(data) {
-    $('#chart').hide();
-    $('#chartall').hide();
-    $('#blankchart').show();
+    $('#chart').css("z-index", "0");
+    $('#chartall').css("z-index", "0");
+    $('#blankchart').css("z-index", "9");
     $('#blankchart').css('z-index', '9');
     $('#chart2').fadeIn(1000);
 
@@ -302,7 +300,8 @@ $(document).ready(function() {
 
 
             chart.dispatch.on('renderEnd', function(){
-                $('.beachball').hide();
+                // $('.beachball').hide();
+                console.log("made hr chart")
                 $('#blankchart').css('z-index', '0');
             });
             var svg = d3.select('#chart2 svg').datum(data);
@@ -329,8 +328,9 @@ $(document).ready(function() {
       var endpoint = address + "/api/reservoirs/all_stations_av_for_year/" + chartYear;
 
       $.get(endpoint, function(data, status) {
-            $('.beachball').show();
+            // $('.beachball').show();
             makeAllStationChart(data);
+            console.log("make thing");
       });
       var percentage_endpoint = address + "/api/reservoirs/overall_average/" + chartYear;
       $.get(percentage_endpoint, function(data, status) {
@@ -369,7 +369,7 @@ $(document).ready(function() {
       });
 
       console.log('Render Complete');
-      $('.beachball').hide();
+      // $('.beachball').hide();
       $('#blankchart').hide();
     }
 
@@ -412,14 +412,18 @@ $(document).ready(function() {
       } else if ( chartState.getState() === "ss" ) {
         makeMultiBarChartData();
       } else if ( chartState.getState() === "hr" ) {
-
+        makeHRData();
+        console.log("making hr")
       } else if ( chartState.getState() === "all" ) {
-
+        makeAllStationData();
       }
     }
 
     function updateAllCharts() {
       console.log("update all the charts");
+      makeMultiBarChartData();
+      makeHRData();
+      makeAllStationData();
     }
 
 
@@ -670,13 +674,15 @@ $(document).ready(function() {
   config1.waveAnimateTime = 2000;
 
 
-  $('#chart2').hide();
-  $('#chartall').hide();
+  $('#chart2').css("z-index", "0");
+  $('#chartall').css("z-index", "0");
 
   setTimeout( function () {
-    makeAllStationData();
-    makeHRData();
+    // makeAllStationData();
+    // makeHRData();
     $(".ss").click();
     }, 2000);
+    $('.beachball').hide();
+
 
 });
