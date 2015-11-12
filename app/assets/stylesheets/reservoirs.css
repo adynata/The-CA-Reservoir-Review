@@ -460,7 +460,8 @@ text {
 }
 
 #chart3, #chart4 {
-  width: 50%
+  position: relative;
+  width: 30%
   background-color: blue;
 }
 

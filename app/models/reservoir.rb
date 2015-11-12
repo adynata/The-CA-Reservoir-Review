@@ -87,6 +87,7 @@ class Reservoir < ActiveRecord::Base
     Reservoir.includes(:levels).find_by(id: 2).levels.where("year = 2002")
     Reservoir.includes(:levels).find_by(id: 2).levels.group(:month).where("year = ?", 2002).average("level")
     avg_level_for_spec_year = Reservoir.includes(:levels).find_by(id: 2).levels.where("year = ?", 2002).average("level").to_i
+    returns_collection_by_id = Reservoir.includes(:levels).find_by(id: [2,3]).levels.where("year = 2002")
   end
 
   def monthly_by_year_averaged(year)
@@ -103,7 +104,32 @@ class Reservoir < ActiveRecord::Base
   end
 
   def self.collection_of_averages(arr, year)
-    arr.map {|station| find_by_id(station).monthly_by_year(year)}
+    # arr.map {|station| find_by_id(station).monthly_by_year(year)}
+    collection_of_avgs = where(id: arr).includes(:levels).group(:month, :name, :reservoir_id).where("year = ?", year).average("level").sort
+    # one for every el in arr
+    monthly_av = {}
+    collection_of_avgs.each do |v|
+      station = v[0][2]
+      month_num = v[0][0] - 1
+      station_name = v[0][1]
+      value = v[1].to_f
+      if monthly_av[station]
+        pair = {}
+        pair["x"] = MONTHS[month_num]
+        pair["y"] = value
+        monthly_av[station]["values"] << pair
+      else
+        monthly_av[station] = {}
+        monthly_av[station]["id"] = station
+        monthly_av[station]["key"] = station_name
+        monthly_av[station]["values"] = []
+        pair = {}
+        pair["x"] = MONTHS[month_num]
+        pair["y"] = value
+        monthly_av[station]["values"] << pair
+      end
+    end
+    return monthly_av.values
   end
 
   def monthly_by_year(year)
@@ -259,6 +285,47 @@ class Reservoir < ActiveRecord::Base
     return yearly_average.to_f
   end
 
+  def self.sqlstruggle()
+    # Reservoir.find_by_sql( "
+    # SELECT
+    # reservoir.name, reservoir.id, AVG(level)
+    # FROM
+    #   SELECT
+    #     name, month, AVG(levels.level)
+    #   FROM
+    #     levels
+    #   JOIN
+    #     reservoirs ON levels.reservoir_id=reservoirs.id
+    #   WHERE
+    #     year = 2002
+    #   GROUP BY
+    #     levels.month, name
+    # WHERE
+    # year = 2003 AND reservoirs.id IN (1,2)")
+    # Reservoir.find_by_sql( "
+    # SELECT
+    #   AVG(level)
+    # FROM
+    #   levels
+    # JOIN
+    #   reservoirs ON levels.reservoir_id=reservoirs.id
+    # GROUP BY
+    #   levels.month
+    # WHERE
+    #   year = 2003 AND reservoir_id = 1")
+    # Level.find_by_sql( "
+    # SELECT
+    #   *
+    # FROM
+    #   levels
+    # GROUP BY
+    #   levels.month, reservoir_id, levels.year
+    # WHERE
+    #   month=10")
+    # end
+    Reservoir.includes(:levels).find_by(id: self.id).levels.group(:month).where("year = ?", year).average("level")
 
-
+    # THIS ONE RIGHT here
+    Reservoir.where(id: [1,2,4,5,6,7,8,33]).includes(:levels).group(:month, :name).where("year = ?", 2003).average("level")
+  end
 end

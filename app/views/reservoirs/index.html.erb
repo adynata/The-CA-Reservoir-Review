@@ -73,9 +73,9 @@
           </div>
         </div>
         <div class="chart-title">
-          <span class="res-name"></span>:
-          <span class="chart-type-ss">Monthly averages for <span class="res-year"></span>, vs. 40yr average (as % of max. capacity)</span>
-          <span class="chart-type-hr">Levels in reservoirs in the <span class="hydrologic_name"></span> hydrologic region, <span class="res-year"></span></span>
+          <span class="chart-type-ss"><span class="res-name"></span>:
+          <span class="chart-type-ss">Monthly averages for <span class="res-year"></span>, vs. 40yr average (as % of max. capacity)</span></span>
+          <span class="chart-type-hr">Levels of reservoirs in the <span class="hydrologic_name"></span> hydrologic region, <span class="res-year"></span></span>
           <span class="chart-type-all">Summary of supply for <span class="res-year"></span>, with distribution</span>
         </div>
       </div>
@@ -107,9 +107,11 @@
       <div class="beachball"><img src=<%= asset_path('loading.gif') %>/></div>
       <div class="chart-info">
         <span class=chart-info-2>
-          County: <span class="res-county"></span>
-          Reservoir Max Capacity: <span class="res-max"></span> af,
-          Hydrologic Region: <span class="res-hr"></span><br>
+            <span class="chart-type-ss">
+            County: <span class="res-county"></span>
+            Reservoir Max Capacity: <span class="res-max"></span> af,
+            Hydrologic Region: <span class="res-hr"></span><br>
+          </span>
         </span>
       </div>
 

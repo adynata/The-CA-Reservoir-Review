@@ -202,13 +202,6 @@ require 'date'
 
 # end
 
-# sets month and year col for levels
-Level.find_each do |level|
-  level.month = level.date.strftime('%-m').to_i
-  level.year = level.date.strftime('%Y').to_i
-  level.save
-end
-# Level.update_all
 
 # reservoir = Reservoir.include(:levels)
 #
@@ -218,6 +211,7 @@ end
 #   years.each do |year|
 #     (1..12).each do |month|
 #       average = res.levels.where("year = ?", year).where("month = ?", month).average("level").to_i
+
 #     end
 #   end
 # end

@@ -181,6 +181,7 @@ $(document).ready(function() {
     function updateStations() {
       for ( var i = 0; i < hr.length; i++) {
         (function(i){
+          // grab hr name here
           var idName = hr[i].key.replace(/ /g,'').replace(/ *\([^)]*\) */g, "");
             $('#'+idName).attr("class","station selected");
             $('#'+idName).css("fill","#2371cc");
@@ -193,6 +194,9 @@ $(document).ready(function() {
   function updateLabelSs() {
     var stationInfo = address + '/api/reservoirs/' + chartStation;
     $.getJSON( stationInfo, function( data ) {
+      $('.chart-type-ss').show();
+      $('.chart-type-hr').hide();
+      $('.chart-type-all').hide();
       $('.res-name').text(data.name);
       $('.res-year').text(chartYear);
       $('.res-county').text(data.county + " County");
@@ -202,11 +206,19 @@ $(document).ready(function() {
   }
 
   function updateLabelHr() {
-    $('.res-name').text(defaultRegion);
+    $('.chart-type-hr').show();
+    $('.chart-type-ss').hide();
+    $('.chart-type-all').hide();
+    $('.hydrologic_name').text(defaultRegion);
     $('.res-year').text(chartYear);
-    $('.res-county').text("");
-    $('.res-max').text("");
     $('.res-hr').text("");
+  }
+
+  function updateLabelsAll() {
+    $('.chart-type-hr').hide();
+    $('.chart-type-ss').hide();
+    $('.chart-type-all').show();
+    $('.res-year').text(chartYear);
   }
 
   function formatLevels(data) {
@@ -332,10 +344,14 @@ $(document).ready(function() {
             makeAllStationChart(data);
             console.log("make thing");
       });
+
       var percentage_endpoint = address + "/api/reservoirs/overall_average/" + chartYear;
+
       $.get(percentage_endpoint, function(data, status) {
           loadLiquidFillGauge("fillgauge1", Math.floor(data * 100));
       });
+
+      updateLabelsAll();
 
     }
 
