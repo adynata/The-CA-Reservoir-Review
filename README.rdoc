@@ -1,28 +1,15 @@
-== README
+== The California Reservoir Review
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A visualization of the 44 most important reservoirs in the state of California.
 
-Things you may want to cover:
+The Reservoir Review was built using the following:
 
-* Ruby version
+* D3 and NVD3
 
-* System dependencies
+* public data from the CDEC
 
-* Configuration
+* Rails 4 + nokogiri
 
-* Database creation
+* Postgres
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+The site is hosted at http://www.california-reservoir.info
