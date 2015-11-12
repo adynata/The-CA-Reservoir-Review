@@ -1,7 +1,7 @@
 
 $(document).ready(function() {
 
-  console.log(chartState);
+  // console.log(chartState);
 
   var width = 500,
       height = 600,

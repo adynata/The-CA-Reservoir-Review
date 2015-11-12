@@ -515,6 +515,7 @@ svg.nvd3-svg {
     border: 1px solid rgba(0,0,0,.2);
     z-index: 9000;
     display: block;
+    margin-top: -30px;
 
     font-family: Arial;
     font-size: 13px;
@@ -559,9 +560,10 @@ svg.nvd3-svg {
     margin: 0;
     padding: 4px 14px;
     line-height: 18px;
-    font-weight: normal;
-    background-color: rgba(247,247,247,0.75);
-    color: rgba(95,95,95,1.0);
+    font-weight: lighter;
+    background-color: grey;
+    color: white;
+
     text-align: center;
 
     border-bottom: 1px solid #ebebeb;

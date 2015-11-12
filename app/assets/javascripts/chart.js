@@ -13,28 +13,29 @@ $(document).ready(function() {
       });
     };
 
-    $('.ss').css('border-bottom', '5px solid #dea934');
+    $('.ss').css('border-bottom', '4px solid #263344');
 
     $('.ss').on("click", function(){
       $('.selected').attr("class", "station");
       $('.station').css("fill","#fed352");
       $('#' + lastId).css("fill","#2371cc");
       $('.active').d3Click();
-      $('#map-selection ul li').css('border-bottom', '5px solid powderblue');
+      $('#map-selection ul li').css('border-bottom', '4px solid #d6b86a');
       var myClass = $(this).attr("class");
       chartState.changeState(myClass);
-      $('.ss').css('border-bottom', '5px solid #dea934');
+      $('.ss').css('border-bottom', '4px solid #293971');
       chartDiagnostic();
       $('#chart2').css("z-index", "0");
       $('#chartall').css("z-index", "0");
       $('#chart').css("z-index", "9");
+      updateLabelSs();
     });
 
     $('.hr').on('click', function(){
-      $('#map-selection ul li').css('border-bottom', '5px solid powderblue');
+      $('#map-selection ul li').css('border-bottom', '4px solid #d6b86a');
       var myClass = $(this).attr("class");
       chartState.changeState(myClass);
-      $('.hr').css('border-bottom', '5px solid #dea934');
+      $('.hr').css('border-bottom', '4px solid #293971');
       $('.station').css("fill", "#fed352");
       // $('.beachball').css("z-index", "10");
       // $('#' + defaultRegion).d3Click();
@@ -46,20 +47,20 @@ $(document).ready(function() {
     });
 
     $('.all').on("click", function(){
-      $('#map-selection ul li').css('border-bottom', '5px solid powderblue');
+      $('#map-selection ul li').css('border-bottom', '4px solid #d6b86a');
       var myClass = $(this).attr("class");
       chartState.changeState(myClass);
-      $('.all').css('border-bottom', '5px solid #dea934');
+      $('.all').css('border-bottom', '4px solid #293971');
       $('.active').d3Click();
       $('.station').css("fill","#2371cc");
       $('#chart').css("z-index", "0");
       $('#chart2').css("z-index", "0");
       $('#chartall').css("z-index", "10");
       chartDiagnostic();
+      updateLabelsAll();
     });
 
     $html.on('click.ui.dropdown tap.ui.dropdown', '.js-dropdown', function(e) {
-      // e.preventDefault();
       $(this).toggleClass('is-open');
     });
 
@@ -85,7 +86,7 @@ $(document).ready(function() {
     });
 
     $html.on('click.hydro_reg', function(e) {
-      e.preventDefault();
+      // e.preventDefault();
       if (chartState.getState() === "hr" && ($(e.target).attr("class") === ( "hydro_reg active" || "hydro_reg")))
       {
         $(".hydro_reg active").attr("class", "hydro_reg");
@@ -147,8 +148,6 @@ $(document).ready(function() {
       $('.beachball').show();
       makeMultiBarChart(data);
     });
-
-    updateLabelSs();
 
   }
 
@@ -342,8 +341,6 @@ $(document).ready(function() {
           gauge1.update(Math.floor(data * 100));
       });
 
-      updateLabelsAll();
-
     }
 
     function makeAllStationChart(data) {
@@ -354,10 +351,11 @@ $(document).ready(function() {
             .y(function(d) { return d.value; })
             .showLabels(true)     //Display pie labels
             .showLegend(false)
-            .labelThreshold(0.05)  //Configure the minimum slice size for labels to show up
+            .labelThreshold(0.03)  //Configure the minimum slice size for labels to show up
             .labelType("percent") //Configure what type of data to show in the label. Can be "key", "value" or "percent"
             .donut(true)          //Turn on Donut mode. Makes pie chart look tasty!
             .donutRatio(0.25)     //Configure how big you want the donut hole size to be.
+            .donutLabelsOutside(true)
             ;
             chart.legend.updateState(false);
 

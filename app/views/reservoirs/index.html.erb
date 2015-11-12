@@ -11,10 +11,10 @@
 
 <div class="how-to">
   <div class="how-to-article">
-    <article>  Information shown is sourced from the <a href="http://cdec.water.ca.gov/">California Data Exchange Center</a>, reporting reservoir-level information that in many cases goes back to 1990.
-       <!-- The graph can be scoped by <a href="#">individual station</a>, <a href="#">hydrologic region</a>, or by <a href="#">all mapped stations</a>.  -->
-       When looking at individual stations, the chart displays variance of monthly capacity level from the historic average, by percentage of capacity.
-        <!-- When looking at hydrologic regions or the state as a whole, the data displayed shows the relative share of its member reservoirs, by acre feet. -->
+    <article>  Information shown is sourced from the <a target="_blank" href="http://cdec.water.ca.gov/">California Data Exchange Center</a>, reporting reservoir-level information that in many cases goes back to 1990.
+       The graph can be scoped by <a id="ss-hover" href="#">individual station</a>, <a id="hr-hover" href="#">hydrologic region</a>, or by <a id="all-hover" href="#">all mapped stations</a>.
+       When looking at individual stations, the chart displays variance in monthly capacity level from the historic average, by percentage of capacity.
+       When looking at hydrologic regions or the state as a whole, the data displayed shows the distributionof water in acre feet.
       <br>
       <br>
     California's current drought has been ongoing since 2012, and is the most severe drought in the state in recorded history. Average capacity level is affected by previous major drought events in the last 30 years, which include droughts from 1987 to 1992 and from 2007 to 2009.
@@ -95,8 +95,8 @@
             <svg></svg>
           </div>
           <div id="chart3-sub">
-            <div id="chart3label"><span class="res-year"></span><br>Average percentage of capacity for represented stations.</div>
-            <div id="chart4label">Distribution of water for represented reservoirs<br><span class="res-year"></span></div>
+            <div id="chart3label">For <span class="res-year"></span>, average percentage of capacity for represented stations.</div>
+            <div id="chart4label">Distribution of water for <br>represented reservoirs, <span class="res-year"></span></div>
           </div>
         </div>
 
@@ -134,10 +134,8 @@
   <div class="us">
     <article>Developed by Claire Woods in collaboration with Paula Chiu and Karly Bryerman.
     <br> <br>
-    The California Reservoir Review was built with Ruby/Rails, d3.js, NVD3, CSS, JavaScript, JQuery, many divs, public data, and a more than standard quantity of coffee.
-    <br><br>
-    <a href="https://github.com/adynata/The-CA-Reservoir-Review">
-    Here's a link to our repo if you'd like to inspect our work.</a>
+    <p>
+    The California Reservoir Review was built with Ruby/Rails, d3.js, NVD3, CSS, JavaScript, JQuery, many divs, public data, and a more than standard quantity of coffee. <a target="_blank" href="https://github.com/adynata/The-CA-Reservoir-Review"> Here's a link to our repo if you'd like to inspect our work.</a></p>
     <br>
     <p>Get in touch if you'd like to know more about this project or want to collaborate on its next phase</p>
 
@@ -193,10 +191,10 @@
     		<path class="soc-li" fill="#F63D27" d="M2500,41.7c0-22.9-18.8-41.7-41.7-41.7c0,0-947.2,0-958.3,0C947.7,0,500,447.8,500,1000
     			c0,552.3,447.7,1000,1000,1000c552.2,0,1000-447.7,1000-1000C2500,988.9,2500,41.7,2500,41.7z"/>
     		<g>
-    			<path fill="#FFFFFF" d="M1831.5,1250h53.7c14.4,0,31.5-45,31.5-59.4V1000h183c14.3,0,67-10,67-24.4v-53.8c0-14.4-52.7-5.2-67-5.2
+    			<path class="soc-li-f" class="soc-li-f" fill="#FFFFFF" d="M1831.5,1250h53.7c14.4,0,31.5-45,31.5-59.4V1000h183c14.3,0,67-10,67-24.4v-53.8c0-14.4-52.7-5.2-67-5.2
     				h-183V706.9c0-14.3-17.1-40.2-31.5-40.2h-53.7c-14.4,0,1.9,25.9,1.9,40.2v209.8h-216.5c-14.3,0-33.5-9.2-33.5,5.2v53.8
     				c0,14.4,19.2,24.4,33.5,24.4h216.5v190.6C1833.3,1205,1817,1250,1831.5,1250z"/>
-    			<path fill="#FFFFFF" d="M1089,1545.6c47.7,12.2,99,18.3,152.2,18.3c47.8,0,93.4-6.3,135.6-18.5c131.4-38.2,216.4-135.1,216.4-247
+    			<path class="soc-li-f" class="soc-li-f" fill="#FFFFFF" d="M1089,1545.6c47.7,12.2,99,18.3,152.2,18.3c47.8,0,93.4-6.3,135.6-18.5c131.4-38.2,216.4-135.1,216.4-247
     				c0-107.4-34.4-171.6-126.9-237.2c-39.6-28.1-75.7-69.3-76.3-82c0-23.1,2-34.1,53.7-74.5c66.8-52.3,103.6-102,103.6-174.8
     				c0-66-20.1-146.5-54.5-146.5h26.6c5.5,0,10.9-20.9,15.3-24.1l74.1-63.4c9.2-6.6,13.1,7.3,9.5-3.5c-3.4-10.7-13.5,7.6-24.8,7.6
     				H1262c-36.3,0-73.2-24.2-109.3-11.7C1031.9,530,947.4,617.9,947.4,723.9c0,150,116,256,271.1,259.6c-3,11.9-4.5,19.8-4.5,31.3
@@ -224,9 +222,9 @@
     		<path class="soc-li" fill="#0173B2" d="M2500,41.7c0-22.9-18.8-41.7-41.7-41.7c0,0-947.1,0-958.3,0C947.8,0,500,447.8,500,1000
     			c0,552.3,447.8,1000,1000,1000c552.2,0,1000-447.7,1000-1000C2500,988.8,2500,41.7,2500,41.7z"/>
     		<g>
-    			<rect x="875" y="791.7" fill="#FFFFFF" width="291.7" height="833.3"/>
-    			<circle fill="#FFFFFF" cx="1020.8" cy="520.8" r="145.8"/>
-    			<path fill="#FFFFFF" d="M2125,1167c0-224.9-48.5-375.4-310.6-375.4c-126,0-210.5,46.8-245.1,112.5h-3.6V791.7h-232.3V1625h242.8
+    			<rect x="875" y="791.7" class="soc-li-f" fill="#FFFFFF" width="291.7" height="833.3"/>
+    			<circle class="soc-li-f" fill="#FFFFFF" cx="1020.8" cy="520.8" r="145.8"/>
+    			<path class="soc-li-f" fill="#FFFFFF" d="M2125,1167c0-224.9-48.5-375.4-310.6-375.4c-126,0-210.5,46.8-245.1,112.5h-3.6V791.7h-232.3V1625h242.8
     				v-413c0-108.9,20.6-214.4,155.3-214.4c132.8,0,143.5,124.5,143.5,221.4v406h250L2125,1167L2125,1167z"/>
     		</g>
     	</g>
@@ -245,7 +243,7 @@
     		<path class="soc-li" fill="#3C5B9B" d="M2500,41.7c0-23-18.8-41.7-41.7-41.7c0,0-947.1,0-958.2,0C947.8,0,500,447.7,500,1000
     			c0,552.2,447.8,1000,1000.1,1000c552.1,0,999.9-447.7,999.9-1000C2500,988.8,2500,41.7,2500,41.7z"/>
     		<g>
-    			<path fill="#FFFFFF" d="M1333.3,1625h250c0,0,0-345.1,0-625h185.5l22.8-250H1593V650c0-48.7,32.5-60,55.2-60
+    			<path class="soc-li-f" fill="#FFFFFF" d="M1333.3,1625h250c0,0,0-345.1,0-625h185.5l22.8-250H1593V650c0-48.7,32.5-60,55.2-60
     				c22.8,0,140.2,0,140.2,0V375.8l-193.1-0.8c-214.4,0-263.1,159.8-263.1,262v113h-124v250h125
     				C1333.3,1283.3,1333.3,1625,1333.3,1625z"/>
     		</g>
@@ -265,7 +263,7 @@
 		<path class="soc-li" fill="#2DAAE1" d="M2500,41.7c0-23-18.8-41.7-41.7-41.7c0,0-947.1,0-958.3,0C947.7,0,500,447.7,500,1000
 			c0,552.2,447.7,1000,1000,1000c552.2,0,1000-447.7,1000-1000C2500,988.8,2500,41.7,2500,41.7z"/>
 		<g>
-			<path fill="#FFFFFF" d="M2090.5,518.4c-49.5,29-104.5,50-162.9,61.3c-46.7-49.1-113.4-79.8-187.2-79.8
+			<path class="soc-li-f" fill="#FFFFFF" d="M2090.5,518.4c-49.5,29-104.5,50-162.9,61.3c-46.7-49.1-113.4-79.8-187.2-79.8
 				c-141.6,0-256.4,113-256.4,252.5c0,19.8,2.3,39,6.6,57.5c-213.1-10.5-402.1-111-528.6-263.8c-22,37.2-34.8,80.6-34.8,126.9
 				c0,87.5,45.4,164.8,114.1,210.1c-42-1.3-81.6-12.7-116.2-31.5c0,1,0,2.1,0,3.2c0,122.3,88.4,224.3,205.8,247.6
 				c-21.5,5.8-44.2,8.8-67.6,8.8c-16.5,0-32.5-1.6-48.2-4.5c32.7,100.2,127.4,173.3,239.6,175.3c-87.8,67.7-198.3,108.1-318.5,108.1
@@ -287,18 +285,18 @@
   	 viewBox="0 0 3000 2000" enable-background="new 0 0 3000 2000" xml:space="preserve">
   <g id="Layer_369">
   	<g>
-  		<path class="soc-li"fill="#669C41" d="M2500,37.9C2500,15,2482.7,0,2459.8,0c0,0-947.9,0-959,0C948.1,0,500,446.5,500,999.5
+  		<path class="soc-li" fill="#669C41" d="M2500,37.9C2500,15,2482.7,0,2459.8,0c0,0-947.9,0-959,0C948.1,0,500,446.5,500,999.5
   			C500,1552.6,947.3,2000,1500,2000c552.6,0,1000-449.3,1000-1002.4C2500,986.5,2500,37.9,2500,37.9z"/>
   		<g>
-  			<path fill="#FFFFFF" d="M2043.4,754.1c-2-1.6-3.8-2.3-5.5-3V438.4c0-9.1-7.3-16.5-16.1-16.5h-399.1c-1-1.2-1.8-2.3-3.3-3.6
+  			<path class="soc-li-f" fill="#FFFFFF" d="M2043.4,754.1c-2-1.6-3.8-2.3-5.5-3V438.4c0-9.1-7.3-16.5-16.1-16.5h-399.1c-1-1.2-1.8-2.3-3.3-3.6
   				l-98.7-78.1c-11.4-9-30-9-41.3,0l-98.6,78.1c-1.6,1.2-2.4,2.4-3.3,3.6H979c-8.8,0-16,7.4-16,16.5v312.4c-2,0.7-4.1,1.6-6.3,3.3
   				l-61,48.2c-11.3,9-20.6,28.4-20.6,43.1v711.1c0,14.7,11.7,26.8,26,26.8h1197.9c14.4,0,26.1-12,26.1-26.8V845.5
   				c0-14.7-9.3-34.1-20.7-43.1L2043.4,754.1z M1951.9,951.6c0,9.1-6.3,20.1-14.2,24.3l-423.3,234.2c-7.7,4.2-20.5,4.2-28.2,0
   				L1062.9,976c-7.8-4.2-14.1-15.2-14.1-24.3V509.4c0-9.1,7.2-16.5,16-16.5h871c8.8,0,16.1,7.4,16.1,16.5V951.6z"/>
-  			<rect x="1144.7" y="634.4" fill="#FFFFFF" width="250" height="257"/>
-  			<rect x="1467" y="634.4" fill="#FFFFFF" width="423.3" height="47.4"/>
-  			<rect x="1467" y="730.8" fill="#FFFFFF" width="423.3" height="47.3"/>
-  			<rect x="1467" y="827.1" fill="#FFFFFF" width="172.8" height="47.4"/>
+  			<rect x="1144.7" y="634.4" class="soc-li-f" fill="#FFFFFF" width="250" height="257"/>
+  			<rect x="1467" y="634.4" class="soc-li-f" fill="#FFFFFF" width="423.3" height="47.4"/>
+  			<rect x="1467" y="730.8" class="soc-li-f" fill="#FFFFFF" width="423.3" height="47.3"/>
+  			<rect x="1467" y="827.1" class="soc-li-f" fill="#FFFFFF" width="172.8" height="47.4"/>
   		</g>
   	</g>
   </g>

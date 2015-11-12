@@ -32,7 +32,6 @@ body {
 svg {
   float:left ;
   width: 100%;
-  border: 3px solid red;
   border-radius: 3px;
   position: absolute;
   top: 0;
@@ -65,6 +64,7 @@ svg {
   float: left;
   font-family: 'Source Sans Pro';
   font-size: 1.1em;
+  line-height: 1.2em;
   font-weight: lighter;
   overflow-x: hidden;
   overflow-y: hidden;
@@ -138,8 +138,8 @@ svg {
 
 article {
   /*margin: 24px;*/
-  line-height: 29px;
-  font-size: 1.4em;
+  line-height: 27px;
+  font-size: 1.2em;
 }
 
 .how-to-article article {
@@ -153,6 +153,7 @@ article {
 
 .how-to-article a {
   font-weight: 400;
+  cursor: default;
 }
 
 .how-to-article a:hover {
@@ -221,7 +222,7 @@ h1 {
   position: relative;
   margin-top: 0 5%;
   width: 80%;
-  height: 620px;
+  height: 560px;
   /*float: left;*/
   /*display: block;*/
   margin-left: auto;
@@ -241,6 +242,7 @@ h1 {
 }
 .about article, .us article {
   margin: 15px;
+  margin-bottom: 0px;
 }
 
 
@@ -282,12 +284,13 @@ h1 {
   height: 36px;
   width: 399px;
   z-index: 9;
+  background-color: white;
 }
 
 #map-selection ul {
   display: block;
   width: 100%;
-  background-color: powderblue;
+  background-color: #d6b86a;
 
 }
 
@@ -298,7 +301,7 @@ h1 {
   width: 33.3%;
   line-height: 36px;
   color: #293971;
-  border-bottom: 5px solid powderblue;
+  border-bottom: 4px solid #d6b86a;
   font-weight: normal;
   text-align: center;
   background-color: inherit;
@@ -321,7 +324,7 @@ h1 {
   color: #293971;
   text-align: center;
   font-weight: 600;
-  line-height: 18px;
+  line-height: 32px;
   margin-top: 455px;
 }
 
@@ -414,7 +417,7 @@ text {
   width: 95%;
   height: 455px;
   z-index: 0;
-  background-color:#d6b86a;
+  background-color: #d6b86a;
 }
 
 
@@ -422,7 +425,7 @@ text {
   position: relative;
   display: block;
   width: 50%;
-  height: calc(100% - 55px);
+  height: calc(100% - 75px);
   float: left;
 }
 
@@ -438,10 +441,11 @@ text {
 #chart3-sub {
   position: relative;
   display: block;
-  height: 55px;
+  height: 65px;
   width: 100%;
   background-color: none;
   font-weight: bold;
+  font-size: 18px;
   text-align: center;
   color: #293971;
 
@@ -461,11 +465,13 @@ text {
 }
 
 #chart4label, #chart3label {
-  width: 50%;
+  width: 40%;
   /*height: 100%;*/
   display: inline-block;
   float: left;
   text-align: center;
+  margin-left: 5%;
+  margin-right: 5%;
   background-color: transparent;
 }
 
@@ -513,8 +519,12 @@ text {
   fill:  #293971;
 }
 
-.footer .soc-li:hover {
-  fill:  rgb(35, 113, 204);
+/*path:hover {
+  fill: rgb(35, 113, 204);
+}*/
+
+.soc-li-f {
+  fill: white;
 }
 
 .sociallinks {
@@ -609,7 +619,6 @@ button:hover {
 }
 
 .nv-pieLabels text {
-  text: red;
   fill: white;
 }
 

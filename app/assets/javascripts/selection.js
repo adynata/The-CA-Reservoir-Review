@@ -1,8 +1,37 @@
 $(document).ready(function(){
+  // .nvtooltip h3 {
+  //   color: white;
+  //   font-weight: lighter;
+  // }
+  $('#chartall h3').css("color", "white");
 
   $('.close-button').on("click", function() {
     $('.how-to').toggleClass('slidedown');
     // $('.how-to').addClass('slideup');
+  });
+
+  $('#ss-hover').on("mouseover", function(){
+    $('.ss').css('background-color', 'white');
+  });
+
+  $('#ss-hover').on("mouseout", function(){
+    $('.ss').css('background-color', '#d6b86a');
+  });
+
+  $('#hr-hover').on("mouseover", function(){
+    $('.hr').css('background-color', 'white');
+  });
+
+  $('#hr-hover').on("mouseout", function(){
+    $('.hr').css('background-color', '#d6b86a');
+  });
+
+  $('#all-hover').on("mouseover", function(){
+    $('.all').css('background-color', 'white');
+  });
+
+  $('#all-hover').on("mouseout", function(){
+    $('.all').css('background-color', '#d6b86a');
   });
 
   $('.how-to-link').on("click", function() {
@@ -84,5 +113,7 @@ $(document).ready(function(){
         });
       });
     });
+
+
 
 });
