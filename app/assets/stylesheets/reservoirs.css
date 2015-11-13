@@ -373,6 +373,7 @@ h1 {
 }
 
 .chart-info span, .chart-title span {
+  opacity: 0;
 }
 
 

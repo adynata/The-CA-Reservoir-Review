@@ -680,8 +680,11 @@ $(document).ready(function() {
   $('#chart2').css("z-index", "0");
   $('#chartall').css("z-index", "0");
 
+
+  $(".ss").click();
+
   setTimeout( function () {
-    $(".ss").click();
-  }, 1000);
+    $('span').css("opacity", "1");
+  }, 3500);
 
 });
