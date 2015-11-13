@@ -27,6 +27,9 @@ body {
   font-weight: lighter;
   background-color: grey;
   min-width: 1400px;
+  zoom: 0.9;
+  -moz-transform: scale(0.9);
+  -moz-transform-origin: 0 0;
 }
 
 svg {
