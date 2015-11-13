@@ -626,4 +626,14 @@ button:hover {
   fill: white;
 }
 
+@media (max-width: 800px){
+  .after-map, body  {
+    font-weight: 400;
+  }
+  #map-selection ul li {
+    font-weight: 600;
+  }
+}
+
+
 /* 1100px is about where things start to break */
