@@ -683,8 +683,5 @@ $(document).ready(function() {
   setTimeout( function () {
     $(".ss").click();
   }, 1000);
-    $('.beachball').hide();
-    $('.chart-title > span').hide();
-    $('.chart-info > span').hide();
 
 });
