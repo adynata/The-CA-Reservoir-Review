@@ -556,7 +556,7 @@ text {
 .after-map a {
   width: auto;
   height: auto;
-  display: block;
+  display: inline;
   color: #f6d544;
   font-weight: 300;
 }
