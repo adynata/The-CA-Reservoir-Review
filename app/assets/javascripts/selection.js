@@ -3,7 +3,10 @@ $(document).ready(function(){
   //   color: white;
   //   font-weight: lighter;
   // }
-  $('#chartall h3').css("color", "white");
+  $('.beachball').hide();
+  $('.chart-title > span').hide();
+  $('.chart-info > span').hide();
+
 
   $('.close-button').on("click", function() {
     $('.how-to').toggleClass('slidedown');
@@ -63,7 +66,7 @@ $(document).ready(function(){
    console.log("submit click");
   });
 
-  
+
 
   $(".scroll").on("click", function( e ) {
 
