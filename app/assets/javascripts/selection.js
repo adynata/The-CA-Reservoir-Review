@@ -1,16 +1,8 @@
 $(document).ready(function(){
-  // .nvtooltip h3 {
-  //   color: white;
-  //   font-weight: lighter;
-  // }
-  $('.beachball').hide();
-  $('.chart-title > span').hide();
-  $('.chart-info > span').hide();
 
 
   $('.close-button').on("click", function() {
     $('.how-to').toggleClass('slidedown');
-    // $('.how-to').addClass('slideup');
   });
 
   $('#ss-hover').on("mouseover", function(){
@@ -100,7 +92,7 @@ $(document).ready(function(){
             var succesBox = $('<div class="alert alert-success" role="alert">'+ '<strong>Thanks for reaching out!</strong></div>').hide();
             contactForm.before(succesBox);
             succesBox.fadeIn("slow");
-            succesBox.fadeTo(2000, 500).slideUp(500, function() {
+            succesBox.fadeTo(1000, 500).slideUp(500, function() {
               $('input').val('');
               $('textarea').val('');
 
