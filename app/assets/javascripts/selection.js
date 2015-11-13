@@ -59,10 +59,11 @@ $(document).ready(function(){
 
   $('.about-link').css("color", "white");
 
-
   $('.submit').on('click', function() {
    console.log("submit click");
   });
+
+  
 
   $(".scroll").on("click", function( e ) {
 
