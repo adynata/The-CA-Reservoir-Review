@@ -41,6 +41,7 @@ $(document).ready(function() {
       // $('#' + defaultRegion).d3Click();
       chartDiagnostic();
       updateHRSelectedStations();
+      updateLabelHr();
       $('#chart').css("z-index", "0");
       $('#chartall').css("z-index", "0");
       $('#chart2').css("z-index", "9");
@@ -175,7 +176,6 @@ $(document).ready(function() {
           }
       });
 
-    updateLabelHr();
   }
 
   function updateHRSelectedStations() {
@@ -193,13 +193,14 @@ $(document).ready(function() {
   function updateLabelSs() {
     var stationInfo = address + '/api/reservoirs/' + chartStation;
     $.getJSON( stationInfo, function( data ) {
+      $('.chart-info > span').show();
       $('.chart-type-ss').show();
       $('.chart-type-hr').hide();
       $('.chart-type-all').hide();
       $('.res-name').text(data.name);
       $('.res-year').text(chartYear);
       $('.res-county').text(data.county + " County");
-      $('.res-max').text(data.max_capacity);
+      $('.res-max').text(data.max_capacity + "af");
       $('.res-hr').text(data.hydrologic_area);
     });
   }
@@ -406,9 +407,11 @@ $(document).ready(function() {
       if ( chartState.getYear() !== chartYear ) {
         chartState.changeYear(chartYear);
         updateAllCharts();
+        $('.res-year').text(chartYear);
       } else if ( chartState.getState() === "ss" && chartStation !== chartState.getStation()) {
         chartState.changeStation(chartStation);
         makeMultiBarChartData();
+        updateLabelSs();
       } else if ( chartState.getState() === "hr" ) {
         updateHRSelectedStations();
         if ( defaultRegion !== chartState.getHR()) {
@@ -681,6 +684,7 @@ $(document).ready(function() {
     $(".ss").click();
   }, 1000);
     $('.beachball').hide();
-
+    $('.chart-title > span').hide();
+    $('.chart-info > span').hide();
 
 });

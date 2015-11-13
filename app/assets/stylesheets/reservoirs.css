@@ -323,7 +323,7 @@ h1 {
   z-index: 10;
   color: #293971;
   text-align: center;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 32px;
   margin-top: 455px;
 }
@@ -332,8 +332,8 @@ h1 {
   font-size: 1em;
 }
 
-.chart-info span {
-  /*font-weight: 400;*/
+.chart-info .res-county, .chart-info .res-max, .chart-info .res-hr {
+  font-weight: 600;
 }
 
 .beachball {
@@ -460,9 +460,6 @@ text {
 
 }
 
-#blankchart {
-  background-color: white;
-}
 
 #chart4label, #chart3label {
   width: 40%;
