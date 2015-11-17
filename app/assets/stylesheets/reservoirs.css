@@ -20,16 +20,18 @@ span, article, footer, time, small {
   padding: 0;
 }
 
+html {
+  zoom: 0.9;
+  -moz-transform-origin: 0 0;
+  min-width: 1400px;
+}
+
 body {
   width: 100%;
   height: 100%;
   font-family: 'Source Sans Pro';
   font-weight: lighter;
   background-color: grey;
-  min-width: 1400px;
-  zoom: 0.9;
-  -moz-transform: scale(0.9);
-  -moz-transform-origin: 0 0;
 }
 
 svg {
