@@ -81,15 +81,6 @@ class Reservoir < ActiveRecord::Base
     levels_set
   end
 
-  # this is a mess of AR queries that don't really do anything
-  def self.all_levels_grouped_by_month(id)
-    avg_levels_for_spec_month = Reservoir.includes(:levels).find_by(id: 2).levels.where("year = ?", 2002).where("month = ?", 2).average("level").to_i
-    Reservoir.includes(:levels).find_by(id: 2).levels.where("year = 2002")
-    Reservoir.includes(:levels).find_by(id: 2).levels.group(:month).where("year = ?", 2002).average("level")
-    avg_level_for_spec_year = Reservoir.includes(:levels).find_by(id: 2).levels.where("year = ?", 2002).average("level").to_i
-    returns_collection_by_id = Reservoir.includes(:levels).find_by(id: [2,3]).levels.where("year = 2002")
-  end
-
   def monthly_by_year_averaged(year)
     monthly_av_year = monthly_levels(year)
     monthly_av = monthly_av_obj
@@ -285,47 +276,4 @@ class Reservoir < ActiveRecord::Base
     return yearly_average.to_f
   end
 
-  def self.sqlstruggle()
-    # Reservoir.find_by_sql( "
-    # SELECT
-    # reservoir.name, reservoir.id, AVG(level)
-    # FROM
-    #   SELECT
-    #     name, month, AVG(levels.level)
-    #   FROM
-    #     levels
-    #   JOIN
-    #     reservoirs ON levels.reservoir_id=reservoirs.id
-    #   WHERE
-    #     year = 2002
-    #   GROUP BY
-    #     levels.month, name
-    # WHERE
-    # year = 2003 AND reservoirs.id IN (1,2)")
-    # Reservoir.find_by_sql( "
-    # SELECT
-    #   AVG(level)
-    # FROM
-    #   levels
-    # JOIN
-    #   reservoirs ON levels.reservoir_id=reservoirs.id
-    # GROUP BY
-    #   levels.month
-    # WHERE
-    #   year = 2003 AND reservoir_id = 1")
-    # Level.find_by_sql( "
-    # SELECT
-    #   *
-    # FROM
-    #   levels
-    # GROUP BY
-    #   levels.month, reservoir_id, levels.year
-    # WHERE
-    #   month=10")
-    # end
-    Reservoir.includes(:levels).find_by(id: self.id).levels.group(:month).where("year = ?", year).average("level")
-
-    # THIS ONE RIGHT here
-    Reservoir.where(id: [1,2,4,5,6,7,8,33]).includes(:levels).group(:month, :name).where("year = ?", 2003).average("level")
-  end
 end

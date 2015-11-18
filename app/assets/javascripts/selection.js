@@ -48,9 +48,9 @@ $(document).ready(function(){
     $('.about').css("display", "block");
   });
 
-  $('.arrow-down').on('click', function() {
-   $(document).scrollTo('.about-nav');
-  });
+  // $('.arrow-down').on('click', function() {
+  //  $(document).scrollTo('.about-nav');
+  // });
 
   $('.about-link').css("color", "white");
 

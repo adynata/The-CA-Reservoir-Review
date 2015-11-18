@@ -483,25 +483,23 @@ text {
 
 
 .arrow-down, .arrow-up {
-  width: 80px;
-  height: 50px;
+  width: 90px;
+  height: 40px;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  -webkit-clip-path: polygon(50% 0, 100% 0, 50% 50%, 0 0);
-  clip-path: polygon(50% 0, 100% 0, 50% 50%, 0 0);
-  background-color: #d1bf71;
   border: none;
 }
 
-.arrow-up {
-  -webkit-clip-path: polygon(50% 50%, 0% 100%, 100% 100%);
-  clip-path: polygon(50% 50%, 0% 100%, 100% 100%);
-  margin-top: 20px;
+
+.arrow-down svg:hover, .arrow-up svg:hover {
+  fill: #f6d544;
 }
 
-.arrow-down:hover, .arrow-up:hover {
-  background-color: #f6d544;
+
+.arrow-up svg, .arrow-down svg {
+  fill: #d1bf71;
+  position: relative;
 }
 
 .footer {
