@@ -122,7 +122,7 @@ $(document).ready(function() {
       var year = $self.data('dropdown-value');
       chartYear = year;
       $dropdown.find('.js-dropdown__current').text($self.text());
-      chartDiagnostic();
+      gnostic();
     });
 
     $html.on('click.ui.dropdown tap.ui.dropdown', function(e) {
@@ -417,6 +417,7 @@ $(document).ready(function() {
         if ( defaultRegion !== chartState.getHR()) {
           chartState.changeHR(defaultRegion);
           makeHRData();
+          updateLabelHr();
         }
       } else if ( chartState.getState() === "all" ) {
         makeAllStationData();
