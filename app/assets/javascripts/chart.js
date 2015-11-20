@@ -122,7 +122,7 @@ $(document).ready(function() {
       var year = $self.data('dropdown-value');
       chartYear = year;
       $dropdown.find('.js-dropdown__current').text($self.text());
-      gnostic();
+      chartDiagnostic();
     });
 
     $html.on('click.ui.dropdown tap.ui.dropdown', function(e) {
